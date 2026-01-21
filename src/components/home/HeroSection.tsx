@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -7,11 +7,23 @@ import dzidziIllustration from "@/assets/dzidzi-illustration.png";
 
 export const HeroSection = () => {
   const [showAlternateName, setShowAlternateName] = useState(false);
+  const [isWaving, setIsWaving] = useState(false);
 
-  const handleWave = () => {
-    setShowAlternateName(true);
-    setTimeout(() => setShowAlternateName(false), 2000);
-  };
+  // Auto-wave animation that triggers name switch
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsWaving(true);
+      setTimeout(() => {
+        setShowAlternateName(true);
+      }, 300);
+      setTimeout(() => {
+        setIsWaving(false);
+        setShowAlternateName(false);
+      }, 2000);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section className="relative h-screen flex items-center overflow-hidden pt-20">
@@ -63,12 +75,9 @@ export const HeroSection = () => {
               </AnimatePresence>{" "}
               <motion.span
                 className="inline-block cursor-pointer select-none"
-                onClick={handleWave}
                 whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9, rotate: 20 }}
-                animate={showAlternateName ? { rotate: [0, 20, -10, 20, 0] } : {}}
-                transition={{ duration: 0.5 }}
-                title="Click to see my other name!"
+                animate={isWaving ? { rotate: [0, 20, -10, 20, -10, 20, 0] } : {}}
+                transition={{ duration: 0.6 }}
               >
                 👋🏾
               </motion.span>
