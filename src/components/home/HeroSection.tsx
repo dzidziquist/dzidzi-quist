@@ -1,73 +1,105 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import dzidziIllustration from "@/assets/dzidzi-illustration.png";
 
 export const HeroSection = () => {
+  const [showAlternateName, setShowAlternateName] = useState(false);
+
+  const handleWave = () => {
+    setShowAlternateName(true);
+    setTimeout(() => setShowAlternateName(false), 2000);
+  };
+
   return (
     <section className="relative h-screen flex items-center overflow-hidden pt-20">
-      {/* Animated Background */}
-      <div className="absolute inset-0 animated-gradient opacity-50" />
-      
-      {/* Decorative Blobs */}
-      <motion.div
-        className="absolute top-20 right-10 w-72 h-72 bg-coral/20 rounded-full blur-3xl"
-        animate={{ 
-          scale: [1, 1.2, 1],
-          x: [0, 30, 0],
-          y: [0, -20, 0]
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-20 left-10 w-96 h-96 bg-mint/20 rounded-full blur-3xl"
-        animate={{ 
-          scale: [1, 1.1, 1],
-          x: [0, -20, 0],
-          y: [0, 30, 0]
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-      />
-      <motion.div
-        className="absolute top-1/2 left-1/2 w-64 h-64 bg-lavender/20 rounded-full blur-3xl"
-        animate={{ 
-          scale: [1, 1.3, 1],
-        }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-      />
-
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Text content */}
           <div className="text-center lg:text-left">
-            {/* Main Heading */}
+            {/* Greeting */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-lg md:text-xl text-muted-foreground mb-2"
+            >
+              Hello there! I'm
+            </motion.p>
+
+            {/* Name with wave interaction */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-6 leading-tight"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4 leading-tight"
             >
-              Hi, I'm{" "}
-              <span className="gradient-text">Maureen Dzifa Quist</span>
+              <AnimatePresence mode="wait">
+                {showAlternateName ? (
+                  <motion.span
+                    key="maureen"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-primary inline-block"
+                  >
+                    Maureen
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="dzifa"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-primary inline-block"
+                  >
+                    Dzifa
+                  </motion.span>
+                )}
+              </AnimatePresence>{" "}
+              <motion.span
+                className="inline-block cursor-pointer select-none"
+                onClick={handleWave}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9, rotate: 20 }}
+                animate={showAlternateName ? { rotate: [0, 20, -10, 20, 0] } : {}}
+                transition={{ duration: 0.5 }}
+                title="Click to see my other name!"
+              >
+                👋🏾
+              </motion.span>
             </motion.h1>
+
+            {/* Title */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-lg md:text-xl font-medium text-foreground mb-6"
+            >
+              Business Intelligence Engineer & Data Visualization Professional
+            </motion.p>
 
             {/* Description */}
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8"
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8"
             >
-              A data analyst who transforms complex datasets into compelling visual stories. 
-              I specialize in Tableau, Python, and creative analytics to help businesses 
-              make smarter, data-driven decisions.
+              Thank you for taking the time to be here 😊. I'm a data professional on an exciting 
+              journey of exploring data, continuously learning, and visualizing insights in meaningful ways.
             </motion.p>
 
             {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
             >
               <Button asChild size="lg" className="rounded-full px-8 group">
@@ -84,27 +116,35 @@ export const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Right side - Illustration placeholder */}
+          {/* Right side - Illustration */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="hidden lg:flex items-center justify-center"
           >
-            <div className="relative w-full max-w-md aspect-square">
-              {/* Placeholder for cat and monitor illustration */}
-              <div className="absolute inset-0 bg-gradient-to-br from-coral/20 via-lavender/20 to-mint/20 rounded-3xl flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="text-6xl mb-4">🖥️ 🐱</div>
-                  <p className="text-sm text-muted-foreground">
-                    Upload your cat & monitor illustration to replace this placeholder
-                  </p>
-                </div>
-              </div>
+            <div className="relative w-full max-w-lg">
+              <img 
+                src={dzidziIllustration} 
+                alt="Dzidzi working at laptop with cat" 
+                className="w-full h-auto object-contain"
+              />
             </div>
           </motion.div>
         </div>
       </div>
+
+      {/* Copyright Footer */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+        className="absolute bottom-6 left-0 right-0 text-center"
+      >
+        <p className="text-sm text-muted-foreground">
+          Copyright © 2026 Dzidzi Quist. Made with 💜.
+        </p>
+      </motion.div>
     </section>
   );
 };
