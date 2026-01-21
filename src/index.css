@@ -21,8 +21,8 @@
     --popover: 30 40% 99%;
     --popover-foreground: 20 20% 15%;
 
-    /* Coral/Peach Primary */
-    --primary: 12 90% 65%;
+    /* Balanced Purple Primary */
+    --primary: 270 60% 60%;
     --primary-foreground: 0 0% 100%;
 
     /* Soft Lavender Secondary */
@@ -42,12 +42,12 @@
 
     --border: 30 25% 88%;
     --input: 30 25% 88%;
-    --ring: 12 90% 65%;
+    --ring: 270 60% 60%;
 
     --radius: 0.75rem;
 
     /* Custom colors for gradients and effects */
-    --coral: 12 90% 65%;
+    --coral: 270 60% 60%;
     --peach: 25 90% 75%;
     --lavender: 270 50% 85%;
     --mint: 160 45% 80%;
@@ -57,12 +57,12 @@
     /* Sidebar */
     --sidebar-background: 30 40% 97%;
     --sidebar-foreground: 20 20% 25%;
-    --sidebar-primary: 12 90% 65%;
+    --sidebar-primary: 270 60% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 160 45% 88%;
     --sidebar-accent-foreground: 160 40% 25%;
     --sidebar-border: 30 25% 88%;
-    --sidebar-ring: 12 90% 65%;
+    --sidebar-ring: 270 60% 60%;
   }
 
   .dark {
@@ -75,7 +75,7 @@
     --popover: 20 15% 12%;
     --popover-foreground: 30 30% 95%;
 
-    --primary: 12 85% 60%;
+    --primary: 270 55% 65%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 270 25% 20%;
@@ -92,9 +92,9 @@
 
     --border: 20 15% 20%;
     --input: 20 15% 20%;
-    --ring: 12 85% 60%;
+    --ring: 270 55% 65%;
 
-    --coral: 12 85% 60%;
+    --coral: 270 55% 65%;
     --peach: 25 80% 65%;
     --lavender: 270 40% 45%;
     --mint: 160 40% 40%;
@@ -103,12 +103,12 @@
 
     --sidebar-background: 20 15% 10%;
     --sidebar-foreground: 30 30% 90%;
-    --sidebar-primary: 12 85% 60%;
+    --sidebar-primary: 270 55% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 160 35% 25%;
     --sidebar-accent-foreground: 160 45% 85%;
     --sidebar-border: 20 15% 20%;
-    --sidebar-ring: 12 85% 60%;
+    --sidebar-ring: 270 55% 65%;
   }
 }
 
