@@ -77,7 +77,7 @@ export const HeroSection = () => {
                 className="inline-block cursor-pointer select-none"
                 whileHover={{ scale: 1.1 }}
                 animate={isWaving ? { rotate: [0, 20, -10, 20, -10, 20, 0] } : {}}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 1 }}
               >
                 👋🏾
               </motion.span>
