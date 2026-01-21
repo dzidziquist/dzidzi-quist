@@ -23,17 +23,13 @@ export const Header = () => {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="group flex items-center gap-2">
-            <motion.div
-              className="w-10 h-10 rounded-full bg-primary flex items-center justify-center"
-              whileHover={{ scale: 1.05, rotate: 5 }}
-              whileTap={{ scale: 0.95 }}
+          <Link to="/" className="group">
+            <motion.span 
+              className="font-display font-semibold text-lg"
+              whileHover={{ scale: 1.02 }}
             >
-              <span className="text-primary-foreground font-display font-bold text-lg">D</span>
-            </motion.div>
-            <span className="font-display font-semibold text-lg hidden sm:block">
               dzidziquist
-            </span>
+            </motion.span>
           </Link>
 
           {/* Desktop Navigation */}
