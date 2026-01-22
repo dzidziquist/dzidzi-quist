@@ -25,8 +25,8 @@ const About = () => {
           <div className="max-w-5xl mx-auto">
             <AnimatedSection>
               <div className="flex flex-col md:flex-row gap-8 items-start">
-                {/* Left Column: Profile Image + Cat Illustration */}
-                <div className="flex flex-col flex-shrink-0 gap-6">
+                {/* Left Column: Profile Image */}
+                <div className="flex flex-col flex-shrink-0">
                   {/* Profile Image with Interactive Border */}
                   <motion.div
                     className={`relative cursor-pointer rounded-2xl p-1 transition-colors duration-300 border-4 ${
@@ -40,23 +40,10 @@ const About = () => {
                       <span className="text-6xl">👩🏾‍💻</span>
                     </div>
                   </motion.div>
-                  
-                  {/* Cat Illustration - positioned below to align with Get in Touch */}
-                  <motion.img
-                    src={catIllustration}
-                    alt="Cat illustration"
-                    className="w-24 h-24 mx-auto opacity-80"
-                    animate={{ y: [0, -5, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  />
                 </div>
 
                 {/* About Text */}
                 <div className="flex-1 pt-2">
-                  <span className="text-sm font-medium text-primary mb-2 block">About Me</span>
-                  <h1 className="text-2xl md:text-3xl font-display font-bold mb-4">
-                    Hello, I'm <span className="text-primary">Dzidzi</span> 👋🏾
-                  </h1>
                   
                   <div className="space-y-3 text-muted-foreground leading-relaxed text-sm mb-5">
                     <p>
@@ -96,22 +83,31 @@ const About = () => {
                     </p>
                   </div>
 
-                  {/* Contact Links */}
-                  <div>
-                    <h3 className="text-sm font-semibold text-foreground mb-2">Get in Touch</h3>
-                    <div className="flex flex-wrap gap-3">
-                      {contacts.map((contact) => (
-                        <a
-                          key={contact.label}
-                          href={contact.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
-                        >
-                          <contact.icon className="w-3.5 h-3.5" />
-                          <span>{contact.value}</span>
-                        </a>
-                      ))}
+                  {/* Contact Links with Cat Illustration */}
+                  <div className="flex items-end gap-4">
+                    <motion.img
+                      src={catIllustration}
+                      alt="Cat illustration"
+                      className="w-16 h-16 opacity-80"
+                      animate={{ y: [0, -5, 0] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    <div>
+                      <h3 className="text-sm font-semibold text-foreground mb-2">Get in Touch</h3>
+                      <div className="flex flex-wrap gap-3">
+                        {contacts.map((contact) => (
+                          <a
+                            key={contact.label}
+                            href={contact.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors"
+                          >
+                            <contact.icon className="w-3.5 h-3.5" />
+                            <span>{contact.value}</span>
+                          </a>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
