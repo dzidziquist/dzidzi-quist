@@ -5,6 +5,8 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import catIllustration from "@/assets/dzidzi-illustration.png";
 import { Mail, Twitter, Instagram, Linkedin, Award } from "lucide-react";
 
+const skills = ["Tableau", "Python", "SQL", "Data Visualization", "Data Analysis", "Stakeholder Communication"];
+
 const contacts = [
   { icon: Mail, label: "Email", value: "maureendzifa.awumeequist@gmail.com", href: "mailto:maureendzifa.awumeequist@gmail.com" },
   { icon: Twitter, label: "Twitter", value: "@dzidzi_quist", href: "https://twitter.com/dzidzi_quist" },
@@ -23,8 +25,9 @@ const About = () => {
           <div className="max-w-5xl mx-auto">
             <AnimatedSection>
               <div className="flex flex-col md:flex-row gap-8 items-start">
-                {/* Profile Image with Interactive Border */}
-                <div className="relative flex-shrink-0">
+                {/* Left Column: Profile Image + Cat Illustration */}
+                <div className="flex flex-col flex-shrink-0 gap-6">
+                  {/* Profile Image with Interactive Border */}
                   <motion.div
                     className={`relative cursor-pointer rounded-2xl p-1 transition-colors duration-300 border-4 ${
                       isImageClicked ? "border-primary" : "border-foreground"
@@ -38,11 +41,11 @@ const About = () => {
                     </div>
                   </motion.div>
                   
-                  {/* Cat Illustration - positioned at bottom */}
+                  {/* Cat Illustration - positioned below to align with Get in Touch */}
                   <motion.img
                     src={catIllustration}
                     alt="Cat illustration"
-                    className="w-16 h-16 absolute -bottom-10 left-1/2 -translate-x-1/2 opacity-80"
+                    className="w-24 h-24 mx-auto opacity-80"
                     animate={{ y: [0, -5, 0] }}
                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   />
@@ -68,6 +71,21 @@ const About = () => {
                     <p>
                       I believe and thrive in continuous learning to expand my knowledge and skillsets in solving problems. I have come to understand and appreciate that data is powerful. <strong className="text-foreground">Let's change the world with data.</strong>
                     </p>
+                  </div>
+
+                  {/* Skills */}
+                  <div className="mb-5">
+                    <h3 className="text-sm font-semibold text-foreground mb-2">Skills</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="px-3 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
 
                   {/* Hobbies */}
