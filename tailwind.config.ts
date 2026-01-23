@@ -15,7 +15,7 @@ export default {
   	extend: {
   		fontFamily: {
   			sans: [
-  				'Montserrat',
+  				'Poppins',
   				'ui-sans-serif',
   				'system-ui',
   				'sans-serif',
