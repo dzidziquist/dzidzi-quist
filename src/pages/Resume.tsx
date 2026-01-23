@@ -49,10 +49,10 @@ const Resume = () => {
           <AnimatedSection>
             <div className="max-w-3xl mx-auto text-center">
               
-              <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
+              <h1 className="text-4xl font-display font-bold mb-6 md:text-3xl">
                 Resume
               </h1>
-              <p className="text-xl text-muted-foreground mb-8">
+              <p className="text-muted-foreground mb-8 text-base">
                 A timeline of my professional experience, education, and certifications 
                 in the world of data analytics.
               </p>
