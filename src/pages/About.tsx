@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import catIllustration from "@/assets/dzidzi-illustration.png";
-import { Mail, Twitter, Instagram, Linkedin, Award } from "lucide-react";
+import { Mail, Twitter, Instagram, Linkedin, Award, BarChart3 } from "lucide-react";
 
 const skills = ["Tableau", "Python", "SQL", "Data Visualization", "Data Analysis", "Stakeholder Communication"];
 
@@ -12,6 +12,7 @@ const contacts = [
   { icon: Twitter, label: "Twitter", value: "@dzidzi_quist", href: "https://twitter.com/dzidzi_quist" },
   { icon: Instagram, label: "Instagram", value: "@dzidzi_quist", href: "https://instagram.com/dzidzi_quist" },
   { icon: Linkedin, label: "LinkedIn", value: "Maureen", href: "https://linkedin.com/in/maureen-dzifa-quist" },
+  { icon: BarChart3, label: "Tableau Public", value: "Tableau Public", href: "https://public.tableau.com/app/profile/maureen.quist" },
   { icon: Award, label: "Certification", value: "Credly", href: "https://www.credly.com" },
 ];
 
