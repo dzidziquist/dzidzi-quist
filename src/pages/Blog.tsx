@@ -96,11 +96,10 @@ const Blog = () => {
         <div className="container mx-auto px-6 relative z-10">
           <AnimatedSection>
             <div className="max-w-3xl mx-auto text-center">
-              <span className="text-sm font-medium text-primary mb-4 block">Blog</span>
-              <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
+              <h1 className="text-2xl md:text-3xl font-display font-bold mb-4">
                 Insights & Tutorials
               </h1>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-base text-muted-foreground">
                 Sharing knowledge about data visualization, analytics, and the journey 
                 of turning data into meaningful stories.
               </p>
@@ -112,12 +111,6 @@ const Blog = () => {
       {/* Featured Posts */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-6">
-          <AnimatedSection>
-            <div className="flex items-center gap-2 mb-8">
-              <Sparkles className="h-5 w-5 text-primary" />
-              <h2 className="text-2xl font-display font-bold">Featured Articles</h2>
-            </div>
-          </AnimatedSection>
 
           <div className="grid md:grid-cols-2 gap-6">
             {featuredPosts.map((post, index) => (
