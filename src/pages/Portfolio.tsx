@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { ArrowUpRight, BarChart2, Code, Palette, Filter } from "lucide-react";
+import { ArrowUpRight, BarChart2, Code, Palette, Filter, BarChart3, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const categories = ["All", "Tableau", "Python", "Data Viz", "Figma"];
@@ -65,6 +65,21 @@ const categoryIcons: Record<string, typeof BarChart2> = {
   Figma: Palette,
 };
 
+const externalLinks = [
+  { 
+    name: "Tableau Public", 
+    icon: BarChart3, 
+    href: "https://public.tableau.com/app/profile/maureen.quist",
+    description: "View my Tableau visualizations"
+  },
+  { 
+    name: "GitHub", 
+    icon: Github, 
+    href: "https://github.com/dzidziquist",
+    description: "Explore my code repositories"
+  },
+];
+
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState("All");
 
@@ -75,20 +90,38 @@ const Portfolio = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden">
+      <section className="relative py-12 overflow-hidden">
         <div className="absolute inset-0 animated-gradient opacity-30" />
         
         <div className="container mx-auto px-6 relative z-10">
           <AnimatedSection>
-            <div className="max-w-3xl mx-auto text-center">
-              <span className="text-sm font-medium text-primary mb-4 block">My Work</span>
-              <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
+            <div className="max-w-3xl mx-auto text-center mb-8">
+              <h1 className="text-2xl md:text-3xl font-display font-bold mb-3">
                 Portfolio
               </h1>
-              <p className="text-xl text-muted-foreground">
-                A collection of data visualization projects, dashboards, and analytics work
+              <p className="text-sm text-muted-foreground">
+                A collection of data visualization projects, dashboards, and analytics work 
                 that showcase my skills in turning data into insights.
               </p>
+            </div>
+
+            {/* External Links */}
+            <div className="flex justify-center gap-4 mb-6">
+              {externalLinks.map((link) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border hover:bg-primary hover:text-primary-foreground transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <link.icon className="h-4 w-4" />
+                  <span className="text-sm font-medium">{link.name}</span>
+                  <ArrowUpRight className="h-3 w-3" />
+                </motion.a>
+              ))}
             </div>
           </AnimatedSection>
         </div>
