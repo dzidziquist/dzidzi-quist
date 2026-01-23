@@ -29,6 +29,7 @@ export default {
   				'sans-serif'
   			],
   			serif: [
+  				'Playfair Display',
   				'ui-serif',
   				'Georgia',
   				'Cambria',
@@ -37,6 +38,7 @@ export default {
   				'serif'
   			],
   			mono: [
+  				'SF Mono',
   				'ui-monospace',
   				'SFMono-Regular',
   				'Menlo',
