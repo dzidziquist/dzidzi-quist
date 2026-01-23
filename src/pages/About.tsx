@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import catIllustration from "@/assets/dzidzi-illustration.png";
+import profileImage from "@/assets/dzidzi-profile.png";
 import { Mail, Twitter, Instagram, Linkedin, Award, BarChart3 } from "lucide-react";
 
 const skills = ["Tableau", "Python", "SQL", "Data Visualization", "Data Analysis", "Stakeholder Communication"];
@@ -37,8 +38,12 @@ const About = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <div className="w-48 h-48 md:w-56 md:h-56 bg-muted rounded-xl flex items-center justify-center text-muted-foreground overflow-hidden">
-                      <span className="text-6xl">👩🏾‍💻</span>
+                    <div className="w-48 h-48 md:w-56 md:h-56 rounded-xl overflow-hidden">
+                      <img 
+                        src={profileImage} 
+                        alt="Dzidzi profile" 
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </motion.div>
                 </div>
