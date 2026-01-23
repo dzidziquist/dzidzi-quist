@@ -23,7 +23,7 @@ export const Footer = () => {
               <span className="font-display font-semibold">Maureen Dzifa Quist</span>
             </Link>
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} All rights reserved.
+              Copyright © 2026 Dzidzi Quist. Made with 💜.
             </p>
           </div>
 
