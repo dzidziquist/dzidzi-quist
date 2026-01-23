@@ -108,51 +108,6 @@ const Blog = () => {
         </div>
       </section>
 
-      {/* Featured Posts */}
-      <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-6">
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {featuredPosts.map((post, index) => (
-              <AnimatedSection key={post.id} delay={index * 0.1}>
-                <motion.article
-                  className="group h-full p-8 rounded-2xl bg-gradient-to-br from-card to-muted/30 border border-border hover-lift"
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${categoryColors[post.category]}`}>
-                      {post.category}
-                    </span>
-                    <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                      <Clock className="h-3 w-3" />
-                      {post.readTime}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-display font-semibold mb-3 group-hover:text-primary transition-colors">
-                    {post.title}
-                  </h3>
-
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    {post.excerpt}
-                  </p>
-
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">{post.date}</span>
-                    <Link 
-                      to={`/blog/${post.id}`}
-                      className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all"
-                    >
-                      Read More
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </motion.article>
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* All Posts with Filter */}
       <section className="py-16">
