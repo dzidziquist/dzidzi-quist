@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import catIllustration from "@/assets/dzidzi-illustration.png";
+import profileImage from "@/assets/dzidzi-profile.png";
 import { Mail, Twitter, Instagram, Linkedin, Award, BarChart3 } from "lucide-react";
 
 const skills = ["Tableau", "Python", "SQL", "Data Visualization", "Data Analysis", "Stakeholder Communication"];
