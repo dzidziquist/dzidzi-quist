@@ -41,133 +41,136 @@ const certifications = [{
 const technologies = ["Tableau", "Python", "SQL", "Power BI", "Excel", "Figma", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Git", "PostgreSQL"];
 const Resume = () => {
   return <Layout>
-      {/* Hero Section */}
-      <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 animated-gradient opacity-30" />
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <AnimatedSection>
-            <div className="max-w-3xl mx-auto text-center">
-              
-              <h1 className="text-4xl font-display font-bold mb-6 md:text-3xl">
-                Resume
-              </h1>
-              <p className="text-muted-foreground mb-8 text-base">
-                A timeline of my professional experience, education, and certifications 
-                in the world of data analytics.
-              </p>
-              <Button className="rounded-full" size="lg">
-                <Download className="mr-2 h-4 w-4" />
-                Download Resume
-              </Button>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Timeline Section */}
-      <section className="py-24 bg-muted/30">
+      {/* Main Content */}
+      <section className="py-16">
         <div className="container mx-auto px-6">
-          <AnimatedSection>
-            <div className="text-center mb-16">
-              <span className="text-sm font-medium text-primary mb-2 block">Experience & Education</span>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">
-                Career Timeline
-              </h2>
-            </div>
-          </AnimatedSection>
-
-          <div className="max-w-3xl mx-auto">
-            {experience.map((item, index) => <AnimatedSection key={item.id} delay={index * 0.15}>
-                <motion.div className="relative pl-8 pb-12 last:pb-0" initial={{
-              opacity: 0,
-              x: -20
-            }} whileInView={{
-              opacity: 1,
-              x: 0
-            }} viewport={{
-              once: true
-            }}>
-                  {/* Timeline Line */}
-                  {index < experience.length - 1 && <div className="absolute left-[11px] top-10 w-0.5 h-full bg-border" />}
-
-                  {/* Timeline Dot */}
-                  <div className={`absolute left-0 top-1 w-6 h-6 rounded-full flex items-center justify-center ${item.type === "work" ? "bg-coral" : "bg-mint"}`}>
-                    {item.type === "work" ? <Briefcase className="h-3 w-3 text-white" /> : <GraduationCap className="h-3 w-3 text-white" />}
+          <div className="grid lg:grid-cols-2 gap-12">
+            {/* Left Column - Experience & Education */}
+            <div className="space-y-8">
+              {/* Experience */}
+              <AnimatedSection>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-coral flex items-center justify-center">
+                    <Briefcase className="h-5 w-5 text-white" />
                   </div>
+                  <h2 className="text-2xl font-display font-bold">Experience</h2>
+                </div>
+                <div className="space-y-4">
+                  {experience.filter(item => item.type === "work").map((item, index) => (
+                    <motion.div 
+                      key={item.id}
+                      className="p-5 rounded-xl bg-card border border-border"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
+                        <Calendar className="h-3 w-3" />
+                        {item.period}
+                      </div>
+                      <h3 className="font-display font-semibold">{item.role}</h3>
+                      <p className="text-primary text-sm">{item.company}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </AnimatedSection>
 
-                  {/* Content Card */}
-                  <motion.div className="p-6 rounded-2xl bg-card border border-border hover-lift ml-4" whileHover={{
-                scale: 1.02,
-                x: 10
-              }}>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                      <Calendar className="h-4 w-4" />
-                      {item.period}
-                    </div>
-                    <h3 className="text-xl font-display font-semibold mb-1">
-                      {item.role}
-                    </h3>
-                    <p className="text-primary font-medium mb-3">{item.company}</p>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {item.description}
-                    </p>
-                  </motion.div>
-                </motion.div>
-              </AnimatedSection>)}
-          </div>
-        </div>
-      </section>
-
-      {/* Certifications Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <AnimatedSection>
-            <div className="text-center mb-12">
-              <span className="text-sm font-medium text-primary mb-2 block">Credentials</span>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">
-                Certifications
-              </h2>
+              {/* Education */}
+              <AnimatedSection delay={0.2}>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-mint flex items-center justify-center">
+                    <GraduationCap className="h-5 w-5 text-white" />
+                  </div>
+                  <h2 className="text-2xl font-display font-bold">Education</h2>
+                </div>
+                <div className="space-y-4">
+                  {experience.filter(item => item.type === "education").map((item, index) => (
+                    <motion.div 
+                      key={item.id}
+                      className="p-5 rounded-xl bg-card border border-border"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
+                        <Calendar className="h-3 w-3" />
+                        {item.period}
+                      </div>
+                      <h3 className="font-display font-semibold">{item.role}</h3>
+                      <p className="text-primary text-sm">{item.company}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </AnimatedSection>
             </div>
-          </AnimatedSection>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {certifications.map((cert, index) => <AnimatedSection key={cert.name} delay={index * 0.1}>
-                <motion.div className="p-6 rounded-2xl bg-gradient-to-br from-card to-muted/50 border border-border text-center hover-lift" whileHover={{
-              scale: 1.05,
-              rotate: 1
-            }}>
-                  <Award className="h-8 w-8 text-primary mx-auto mb-4" />
-                  <h3 className="font-display font-semibold mb-1">{cert.name}</h3>
-                  <p className="text-sm text-muted-foreground">{cert.issuer}</p>
-                  <p className="text-xs text-muted-foreground mt-2">{cert.year}</p>
-                </motion.div>
-              </AnimatedSection>)}
-          </div>
-        </div>
-      </section>
+            {/* Right Column - Certifications & Technologies */}
+            <div className="space-y-8">
+              {/* Certifications */}
+              <AnimatedSection delay={0.1}>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                    <Award className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <h2 className="text-2xl font-display font-bold">Certifications</h2>
+                </div>
+                <div className="grid gap-3">
+                  {certifications.map((cert, index) => (
+                    <motion.div 
+                      key={cert.name}
+                      className="p-4 rounded-xl bg-card border border-border flex items-center justify-between"
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <div>
+                        <h3 className="font-display font-semibold text-sm">{cert.name}</h3>
+                        <p className="text-xs text-muted-foreground">{cert.issuer}</p>
+                      </div>
+                      <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded-full">
+                        {cert.year}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </AnimatedSection>
 
-      {/* Technologies Section */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-6">
-          <AnimatedSection>
-            <div className="text-center mb-12">
-              <span className="text-sm font-medium text-primary mb-2 block">Tech Stack</span>
-              <h2 className="text-3xl md:text-4xl font-display font-bold">
-                Technologies & Tools
-              </h2>
+              {/* Technologies */}
+              <AnimatedSection delay={0.3}>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center">
+                    <span className="text-lg">🛠</span>
+                  </div>
+                  <h2 className="text-2xl font-display font-bold">Technologies & Tools</h2>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {technologies.map((tech, index) => (
+                    <motion.span 
+                      key={tech}
+                      className="px-3 py-1.5 rounded-full bg-card border border-border text-sm font-medium"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.03 }}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+              </AnimatedSection>
+
+              {/* Download Button */}
+              <AnimatedSection delay={0.4}>
+                <Button className="rounded-full w-full" size="lg">
+                  <Download className="mr-2 h-4 w-4" />
+                  Download Resume
+                </Button>
+              </AnimatedSection>
             </div>
-          </AnimatedSection>
-
-          <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
-            {technologies.map((tech, index) => <AnimatedSection key={tech} delay={index * 0.05}>
-                <motion.span className="px-4 py-2 rounded-full bg-card border border-border text-sm font-medium hover:bg-primary hover:text-primary-foreground transition-colors cursor-default" whileHover={{
-              scale: 1.1,
-              rotate: Math.random() * 6 - 3
-            }}>
-                  {tech}
-                </motion.span>
-              </AnimatedSection>)}
           </div>
         </div>
       </section>
