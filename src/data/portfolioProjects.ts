@@ -22,6 +22,7 @@ export interface Project {
   tools: string[];
   year: string;
   collaborators?: string;
+  pdfUrl?: string;
 }
 
 export const projects: Project[] = [
@@ -201,7 +202,8 @@ A business owner and mother of two who purchased a robot vacuum for convenience.
     externalLink: "#",
     icon: Code,
     tools: ["Python", "Consumer Research", "Qualitative Analysis"],
-    year: "2024"
+    year: "2024",
+    pdfUrl: "/documents/consumer-purchase-journey.pdf"
   },
   {
     id: 9,

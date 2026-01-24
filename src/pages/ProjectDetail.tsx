@@ -147,6 +147,24 @@ const ProjectDetail = () => {
           </AnimatedSection>
         </div>
       </section>
+
+      {/* Embedded PDF */}
+      {project.pdfUrl && (
+        <section className="py-16 border-t border-border">
+          <div className="container mx-auto px-6">
+            <AnimatedSection>
+              <h2 className="text-2xl font-display font-bold mb-6">Project Document</h2>
+              <div className="rounded-2xl overflow-hidden border border-border bg-muted/30">
+                <iframe
+                  src={project.pdfUrl}
+                  className="w-full h-[800px]"
+                  title={`${project.title} - PDF Document`}
+                />
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+      )}
     </Layout>
   );
 };
