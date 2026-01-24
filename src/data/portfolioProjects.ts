@@ -236,7 +236,7 @@ Crew's Cup underwent ownership changes, leading to customer churn rates of 70% a
     icon: Code,
     tools: ["Python", "Survey Analysis", "Cluster Analysis", "Customer Analytics"],
     year: "2024",
-    pdfUrl: "/documents/customer-commitment-study.pptx"
+    pdfUrl: "/documents/customer-commitment-study.pdf"
   }
 ];
 
