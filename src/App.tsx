@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/hooks/use-theme";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Portfolio from "./pages/Portfolio";
+import ProjectDetail from "./pages/ProjectDetail";
 import Resume from "./pages/Resume";
 import Blog from "./pages/Blog";
 import NotFound from "./pages/NotFound";
@@ -24,6 +25,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/portfolio/:slug" element={<ProjectDetail />} />
             <Route path="/resume" element={<Resume />} />
             <Route path="/blog" element={<Blog />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
