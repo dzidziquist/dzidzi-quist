@@ -148,18 +148,26 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Embedded PDF */}
+      {/* Embedded Document */}
       {project.pdfUrl && (
         <section className="py-16 border-t border-border">
           <div className="container mx-auto px-6">
             <AnimatedSection>
               <h2 className="text-2xl font-display font-bold mb-6">Project Document</h2>
               <div className="rounded-2xl overflow-hidden border border-border bg-muted/30">
-                <iframe
-                  src={project.pdfUrl}
-                  className="w-full h-[800px]"
-                  title={`${project.title} - PDF Document`}
-                />
+                {project.pdfUrl.endsWith('.pdf') ? (
+                  <iframe
+                    src={project.pdfUrl}
+                    className="w-full h-[800px]"
+                    title={`${project.title} - PDF Document`}
+                  />
+                ) : (
+                  <iframe
+                    src={`https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(window.location.origin + project.pdfUrl)}`}
+                    className="w-full h-[800px]"
+                    title={`${project.title} - Document`}
+                  />
+                )}
               </div>
             </AnimatedSection>
           </div>
