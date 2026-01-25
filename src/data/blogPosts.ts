@@ -146,19 +146,31 @@ That's all for this simple yet fun dashboard. Thank you for reading. With love a
     excerpt: "A journey to re-learn Python and polish up my skills, from data cleaning to classification with the Titanic dataset.",
     content: `As part of my return journey to Python project; this is a journey to re-learn Python and polish up my skills, starting from the basics and climbing up to the advance; Machine Learning and Deep Learning, I look at data cleaning in Python and classification under the supervised learning algorithms.
 
+**In this blog post:**
+- What is data cleaning?
+- Understanding your data
+- Data cleaning
+- Feature Engineering
+- Data Encoding
+- The Model
+- The Prediction
+- The Evaluation
+- Tuning the Model
+- Final Evaluation
+
 ## What is Data Cleaning?
 
 This is the process of removing unwanted features, fixing or removing duplicates, incorrect entries, incomplete or missing values, incorrectly formatted data in the data to improve the quality of the data.
 
-The term "garbage in, garbage out" is very crucial in the data environment. When you use a poor dataset for analysis, you get very poor and incorrect insights. Similarly, a poor dataset being fed into a machine learning algorithm leads to poor performance.
+The term "garbage in, garbage out" is very crucial in the data environment. That is when you use a poor dataset for analysis, you get very poor and incorrect insights. Similarly, a poor dataset being fed into a machine learning or deep learning algorithm or model leads to poor performance.
 
 ## Understanding the Data
 
-Understanding your data leads you on the right path to cleaning the data and making the necessary wrangling to achieve your set goal.
+Understanding your data leads you on the right path to cleaning the data and making the necessary wrangling to achieve your set goal with the data.
 
-The ultimate goal of the dataset being used here is to predict if an individual would survive or not on the Titanic shipwreck. This is a classification problem under supervised learning algorithms in data science.
+The ultimate goal of the dataset being used here is to predict if an individual would survive or not on the Titanic shipwreck. This is a classification problem under supervised learning algorithms in data science. The Titanic dataset can be found on Kaggle. The datasets consist of train and test datasets. The train dataset will be used to train the model, whereas the test set will be used for the prediction of the survived variable.
 
-## Getting Started
+Shall we begin? Let's first import some packages.
 
 \`\`\`python
 import numpy as np 
@@ -171,59 +183,182 @@ from sklearn.neighbors import KNeighborsClassifier
 # Load dataset
 train = pd.read_csv('train.csv')
 test = pd.read_csv('test.csv')
+
+# Save passengerid to be used for later
+passengerid = test['PassengerId']
+train.head()
 \`\`\`
 
-## Data Cleaning Process
-
-Checking for missing values and handling them appropriately:
+The Passenger Id is saved to be used after the prediction for submission.
 
 \`\`\`python
+# Dropping the passenger ids in both dataset
+train, test = train.drop('PassengerId', axis=1), test.drop('PassengerId', axis=1)
+
+# Finding the relationship between survived and other variables
+correlation = train.corr()
+correlation.Survived
+\`\`\`
+
+From the above, Pclass has higher correlation to survived compared to the rest. The higher the class (1), the higher the chance of surviving.
+
+## Data Cleaning
+
+In this part, the data will be cleaned to suit what we intend to do with it. Mainly checking for missing values and imputing them when necessary.
+
+\`\`\`python
+# Concatenating the trainset and testset for cleaning
+data = pd.concat((train, test))
+
 # Identifying missing values
 print(data.isnull().values.any())
 print(data.isnull().sum())
+\`\`\`
+
+The missing values are found in Survived, Age, Cabin and Embarked features. Out of 1309 entries, there are 1014 missing cabin values. Imputing this variable might not be advisable, hence it will be dropped.
+
+\`\`\`python
+# Dropping the cabin variable
+dataset = data.drop('Cabin', axis=1)
 
 # Fill missing age values with median
 median = dataset["Age"].median()
 dataset["Age"].fillna(median, inplace=True)
 
+# Fill missing fare values with median
+median = dataset["Fare"].median()
+dataset["Fare"].fillna(median, inplace=True)
+
 # Fill missing embarked values with mode
 dataset["Embarked"].fillna("S", inplace=True)
 \`\`\`
 
+## Understanding the Dataset More
+
+\`\`\`python
+# Finding out which sex has higher chances of surviving
+print(dataset.groupby(["Sex"]).mean())
+
+# Finding which class has higher chances of surviving
+print(dataset.groupby(["Pclass"]).mean())
+\`\`\`
+
+The upper class (1st) has higher chances of surviving. Females have a higher chance of surviving compared to males with a survival rate of 0.74.
+
 ## Feature Engineering
 
-Creating new features to improve model performance:
+Feature engineering is extracting features from data which helps in the performance of a machine learning algorithm. The right features can help improve accuracy.
 
 \`\`\`python
-# Creating alone feature
+# Creating a new variable to tell if the passenger was traveling alone
 dataset["Alone"] = np.where((dataset["SibSp"] + dataset["Parch"]) > 0, 0, 1)
 
-# Extracting titles from names
+# Creating a new feature using titles
 dataset["Title"] = dataset.Name.str.extract(' ([A-Za-z]+).', expand=False)
+
+# Making adjustments to titles
+for i in dataset:
+    dataset["Title"] = dataset["Title"].replace("Mlle", "Miss")
+    dataset["Title"] = dataset["Title"].replace("Ms", "Miss")
+    dataset["Title"] = dataset["Title"].replace("Mme", "Mrs")
+    dataset["Title"] = dataset["Title"].replace(["Lady", "Sir", "Countess", "Jonkheer"], "Royalty")
+    dataset["Title"] = dataset["Title"].replace(["Capt", "Col", "Don", "Dona", "Major", 
+                                                 "Dr", "Rev", "Master"], "High rank")
 \`\`\`
 
-## Building the Model
+Royalties have higher chances of surviving compared to other titles. Therefore, titles and alone features will be very relevant in this ML model.
 
-Using K-Nearest Neighbors for classification:
+## Data Encoding
+
+Converting categorical data into numerical data which is easily understood by the model.
 
 \`\`\`python
-KNN = KNeighborsClassifier(n_neighbors=5, metric='euclidean')
-KNN.fit(x_train, y_train)
-prediction = KNN.predict(x_test)
+# Age grouping
+dataset.loc[dataset['Age'] <= 11, 'Age'] = 0              # Children
+dataset.loc[(dataset['Age'] > 11) & (dataset['Age'] <= 18), 'Age'] = 1   # Teens
+dataset.loc[(dataset['Age'] > 18) & (dataset['Age'] <= 22), 'Age'] = 2   # Youngsters
+dataset.loc[(dataset['Age'] > 22) & (dataset['Age'] <= 27), 'Age'] = 3   # Young Adults
+dataset.loc[(dataset['Age'] > 27) & (dataset['Age'] <= 33), 'Age'] = 4   # Adults
+dataset.loc[(dataset['Age'] > 33) & (dataset['Age'] <= 40), 'Age'] = 5   # Middle Age
+dataset.loc[(dataset['Age'] > 40) & (dataset['Age'] <= 66), 'Age'] = 6   # Senior
+dataset.loc[dataset['Age'] > 66, 'Age'] = 7               # Retired
+
+# Label encoding for categorical columns
+from sklearn.preprocessing import LabelEncoder
+cols = ("Embarked", "Sex", "Title")
+for i in cols:
+    le = LabelEncoder()
+    dataset[i] = le.fit_transform(list(dataset[i]))
 \`\`\`
 
-## Results
+## The Model
 
-- Training Accuracy: 90%
-- Test Accuracy: 87%
+Building the model using K-Nearest Neighbors (KNN).
 
-Using a higher number of neighbors, the accuracy on the test dataset increased from 0.83 to 0.87.
+\`\`\`python
+y_train = train["Survived"]
+trainset_len = len(train)
+x_train = dataset[:trainset_len]
+x_test = dataset[trainset_len:]
+
+KNN = KNeighborsClassifier(n_neighbors=1, metric='euclidean')
+KNN.fit(x_train, y_train)
+\`\`\`
+
+## The Prediction
+
+\`\`\`python
+prediction = KNN.predict(x_test)
+
+# Save prediction as CSV
+Survived = pd.DataFrame(prediction)
+Survived["PassengerId"] = passengerid
+Survived = Survived.rename(columns={0: "Survived"})
+Survived.to_csv("Submission.csv", index=False)
+\`\`\`
+
+## The Evaluation
+
+\`\`\`python
+# Training Accuracy
+train_accuracy = KNN.score(x_train, y_train)  # 90%
+
+# Test Accuracy
+y_test = pd.read_csv('gender_submission.csv', usecols=['Survived'])
+test_accuracy = KNN.score(x_test, y_test)  # 83%
+\`\`\`
+
+The train accuracy is 90%, and the test accuracy is 83%.
+
+## Tuning the Model
+
+\`\`\`python
+from sklearn.model_selection import GridSearchCV
+params = {"n_neighbors": np.arange(1, 9), "metric": ["euclidean"]}
+grid = GridSearchCV(estimator=KNN, param_grid=params)
+grid.fit(x_train, y_train)
+print(grid.best_score_)
+print(grid.best_estimator_.n_neighbors)  # 5 neighbors gives better accuracy
+\`\`\`
+
+## Final Evaluation
+
+\`\`\`python
+KNN = KNeighborsClassifier(n_neighbors=5)
+KNN.fit(x_train, y_train)
+y_pred = KNN.predict(x_test)
+
+train_accuracy = KNN.score(x_train, y_train)
+test_accuracy = KNN.score(x_test, y_test)  # Increased to 0.87
+\`\`\`
+
+Using a higher number of neighbors, the accuracy on the test dataset increases from 0.83 to 0.87.
 
 Data cleaning is a very crucial step in both data analysis and data science. Do not forget to run the codes! 🤗
 
 Codes can be found on my GitHub. Thank you for reading. Happy cleaning ❤️`,
     category: "Python",
-    readTime: "12 min read",
+    readTime: "15 min read",
     date: "November 7, 2020",
     featured: true,
   },
