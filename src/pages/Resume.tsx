@@ -44,6 +44,18 @@ const Resume = () => {
       {/* Main Content */}
       <section className="py-16">
         <div className="container mx-auto px-6">
+          {/* Top bar with Download button */}
+          <div className="flex justify-end mb-8">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="rounded-full border-2 border-foreground hover:bg-foreground hover:text-background"
+            >
+              <Download className="mr-2 h-3 w-3" />
+              Download Resume
+            </Button>
+          </div>
+          
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Left Column - Experience & Education */}
             <div className="space-y-8">
@@ -163,13 +175,6 @@ const Resume = () => {
                 </div>
               </AnimatedSection>
 
-              {/* Download Button */}
-              <AnimatedSection delay={0.4}>
-                <Button className="rounded-full w-full" size="lg">
-                  <Download className="mr-2 h-4 w-4" />
-                  Download Resume
-                </Button>
-              </AnimatedSection>
             </div>
           </div>
         </div>
