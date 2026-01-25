@@ -8,6 +8,7 @@ export interface BlogPost {
   readTime: string;
   date: string;
   featured: boolean;
+  image?: string;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -41,6 +42,7 @@ I love the tool and I am hoping one day, I will become super good at it. Oh, I f
     readTime: "5 min read",
     date: "May 28, 2020",
     featured: true,
+    image: "/blog/coronavirus-tracking-tableau.png",
   },
   {
     id: 2,
