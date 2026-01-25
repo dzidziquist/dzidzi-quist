@@ -197,7 +197,7 @@ A business owner and mother of two who purchased a robot vacuum for convenience.
 - Price comparison with traditional vacuums justified the investment
 
 **Methodology:** Qualitative interview and consumer behavior analysis framework.`,
-    category: "Python",
+    category: "Consumer Research",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
     externalLink: "#",
     icon: Code,
