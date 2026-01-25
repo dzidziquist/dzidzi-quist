@@ -31,27 +31,6 @@ const experience = [{
   location: "Kabul, Afghanistan",
   period: "Apr 2021 – Jul 2023",
   type: "work"
-}, {
-  id: 5,
-  role: "Data Analyst / Data Scientist Intern",
-  company: "Zuberi Technologies",
-  location: "Accra, Ghana",
-  period: "Nov 2020 – Mar 2021",
-  type: "work"
-}, {
-  id: 6,
-  role: "Data Engineering Intern",
-  company: "Appruve",
-  location: "Accra, Ghana",
-  period: "Apr 2020 – Jul 2020",
-  type: "work"
-}, {
-  id: 7,
-  role: "Quality Control Coordinator",
-  company: "Regional Maritime University",
-  location: "Accra, Ghana",
-  period: "Sep 2016 – Aug 2017",
-  type: "work"
 }];
 const education = [{
   id: 1,

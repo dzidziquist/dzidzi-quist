@@ -17,7 +17,7 @@ const Blog = () => {
         <div className="container mx-auto px-6">
           {/* Header */}
           <AnimatedSection>
-            
+            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">Blog</h1>
           </AnimatedSection>
 
           {/* Search and Filter */}
