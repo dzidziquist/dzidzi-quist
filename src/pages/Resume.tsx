@@ -99,7 +99,7 @@ const awards = [
 
 const technologies = [
   "Python", "SQL", "NoSQL", "MS Excel", "Tableau", "PowerPoint", 
-  "Xlsform (ODK)", "Power BI", "Palantir", "Amazon QuickSight", "R", "Core AI/ML"
+  "Xlsform (ODK)", "Power BI", "Palantir", "Amazon QuickSight", "R", "Core AI/ML Skills"
 ];
 const Resume = () => {
   return <Layout>
