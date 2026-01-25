@@ -1,4 +1,20 @@
-import { BarChart2, Code, Map, Music, Tv, ShoppingCart, Vote, Users, Bike, Gamepad2, BookOpen, Building2, Heart, Calendar, LucideIcon } from "lucide-react";
+import {
+  BarChart2,
+  Code,
+  Map,
+  Music,
+  Tv,
+  ShoppingCart,
+  Vote,
+  Users,
+  Bike,
+  Gamepad2,
+  BookOpen,
+  Building2,
+  Heart,
+  Calendar,
+  LucideIcon,
+} from "lucide-react";
 
 // Import portfolio images
 import genderInequalityImg from "@/assets/portfolio/gender-inequality-parliament.png";
@@ -259,7 +275,7 @@ Methodology: Survey of 1,500 respondents with cluster analysis and commitment fa
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
     externalLink: "#",
     icon: Code,
-    tools: ["Python", "Survey Analysis", "Cluster Analysis", "Customer Analytics"],
+    tools: ["Python", "Survey Analysis", "Cluster Analysis", "Customer Analytics", "Consumer Research"],
     year: "2024",
     pdfUrl: "/documents/customer-commitment-study.pdf",
   },
