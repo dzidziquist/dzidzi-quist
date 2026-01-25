@@ -6,7 +6,7 @@ import catIllustration from "@/assets/dzidzi-illustration.png";
 import profileImage from "@/assets/dzidzi-profile.png";
 import { Mail, Twitter, Instagram, Linkedin, Award, BarChart3 } from "lucide-react";
 
-const skills = ["Tableau", "Python", "SQL", "Data Visualization", "Data Analysis", "Amazon Quicksight", "Machine Learning", "NLP", "Generative AI"];
+const skills = ["Tableau", "Python", "SQL", "Data Visualization", "Data Analysis", "Amazon Quicksight", "Core AI/ML"];
 
 const contacts = [
   { icon: Mail, label: "Email", value: "maureendzifa.awumeequist@gmail.com", href: "mailto:maureendzifa.awumeequist@gmail.com" },
