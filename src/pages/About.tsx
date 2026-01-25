@@ -91,13 +91,11 @@ const About = () => {
 
                   {/* Contact Links with Cat Illustration */}
                   <div className="flex items-end gap-4">
-                    <motion.img
-                      src={catIllustration}
-                      alt="Cat illustration"
-                      className="w-16 h-16 opacity-80"
-                      animate={{ y: [0, -5, 0] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    />
+                  <img
+                    src={catIllustration}
+                    alt="Cat illustration"
+                    className="w-16 h-auto object-contain"
+                  />
                     <div>
                       <h3 className="text-sm font-semibold text-foreground mb-2">Get in Touch</h3>
                       <div className="flex flex-wrap gap-3">
