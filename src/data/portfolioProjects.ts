@@ -1,4 +1,4 @@
-import { BarChart2, Code, Map, Music, Tv, ShoppingCart, Vote, Users, LucideIcon } from "lucide-react";
+import { BarChart2, Code, Map, Music, Tv, ShoppingCart, Vote, Users, Bike, Gamepad2, BookOpen, Building2, Heart, Calendar, LucideIcon } from "lucide-react";
 
 // Import portfolio images
 import genderInequalityImg from "@/assets/portfolio/gender-inequality-parliament.png";
@@ -8,6 +8,15 @@ import accraMapImg from "@/assets/portfolio/accra-map-layers.png";
 import rugratsImg from "@/assets/portfolio/rugrats-viz.png";
 import boondocksImg from "@/assets/portfolio/boondocks-viz.png";
 import salesOverviewImg from "@/assets/portfolio/sales-overview.png";
+import ghanaianDayNamesImg from "@/assets/portfolio/ghanaian-day-names.png";
+import cyclisticRidesImg from "@/assets/portfolio/cyclistic-rides.png";
+import willSmithImg from "@/assets/portfolio/will-smith-filmography.png";
+import streetNamesAccraImg from "@/assets/portfolio/street-names-accra.png";
+import injustice2Img from "@/assets/portfolio/injustice-2.png";
+import ghana2016ElectionsImg from "@/assets/portfolio/ghana-2016-elections.png";
+import africanWritersBooksImg from "@/assets/portfolio/african-writers-books.png";
+import hrDashboardImg from "@/assets/portfolio/hr-dashboard.png";
+import bobMarleyTributeImg from "@/assets/portfolio/bob-marley-tribute.png";
 
 export interface Project {
   id: number;
@@ -254,9 +263,312 @@ Methodology: Survey of 1,500 respondents with cluster analysis and commitment fa
     year: "2024",
     pdfUrl: "/documents/customer-commitment-study.pdf",
   },
+  {
+    id: 10,
+    slug: "ghanaian-day-names",
+    title: "Ghanaian Day Names",
+    description:
+      "Interactive infographic exploring the Akan tradition of day naming in Ghana, featuring ethnic demographics and a day name finder tool.",
+    fullDescription: `With many ways of naming babies, one common way that runs through all the tribes in Ghana is day naming. Day naming is where a child is given the day name corresponding to the day of the week he or she is born. By default, everybody has one – though the name may not necessarily appear on official documents such as Birth Certificates and Passports.
+
+In Akan, which is the largest ethnicity in Ghana, the days of the week from Sunday to Saturday are: Kwasiada (Sunday), Ɛdwoada (Monday), Ɛbenada (Tuesday), Wukuada (Wednesday), Yawoada (Thursday), Efiada (Friday), and Memeneda (Saturday).
+
+Ghana Constitutes:
+47.5% of the people in Ghana are from the Akan Ethnicity. The other ethnicities include: 17% Dagbani, 14% Ewe, 7% Ga-Adangbe, 6% Gurma, 4% Guan, 2.5% Gurunsi, 1% Bissa.
+
+The people of Akan have different dialects which includes but not limited to the Akuapem, Akwamu, Akyem, Bono, Agona, Wassa, Fante, Kwahu, Ahanta and Asante.
+
+The icons shown are called Adinkra. They are symbols used by the people of Akan that represent concepts or aphorisms. Adinkra are used extensively in fabrics, logos and pottery.
+
+Data source: thediasporacollective, worldpopulationreview, Creo(Ghanaba), Wikipedia
+Icons: Noun Project`,
+    category: "Data Viz",
+    image: ghanaianDayNamesImg,
+    externalLink:
+      "https://public.tableau.com/views/GhanaianDayNames/GHANAIANDAYNAMES?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
+    icon: Calendar,
+    tools: ["Tableau", "Cultural Research", "Infographic Design"],
+    year: "2021",
+  },
+  {
+    id: 11,
+    slug: "cyclistic-bike-share",
+    title: "Cyclistic Bike-Share Analysis",
+    description:
+      "Google Data Analytics Capstone project analyzing 4 million+ bike rides to understand differences between casual users and annual members.",
+    fullDescription: `How Does a Bike-Share Navigate Speedy Success? This visualization explores the difference between a Cyclistic member and a regular user across the previous 12 months in Chicago.
+
+Key Findings:
+4,073,561 rides taken from June 2020 to May 2021
+58% rides taken by members
+42% rides taken by Casual users
+
+Insights:
+- Saturdays and Sundays are the weekend and people might take bike rides for leisure. It can be seen that as the week progresses into the weekend the number of rides grows.
+- Casual users tend to take more bike rides as compared to members on the weekends and less on the weekdays.
+- The peak of bike rides are around the summer months with August recording the highest bike trips of 622,361. 332,700 rides from members and 289,661 rides from casual users.
+- Average Ride Time: Total 00:24:14, Casual Users 00:41:18, Members 00:11:50
+
+Google Data Analytics Capstone | Track: 1 | Data: Motivate
+Source: Coursera | Shapefile: Chicago Data Portal`,
+    category: "Tableau",
+    image: cyclisticRidesImg,
+    externalLink:
+      "https://public.tableau.com/views/CyclisticBikeShare_16245367891230/CYCLISTIC?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
+    icon: Bike,
+    tools: ["Tableau", "Google Data Analytics", "Data Analysis"],
+    year: "2021",
+  },
+  {
+    id: 12,
+    slug: "will-smith-filmography",
+    title: "Will Smith's Filmography",
+    description:
+      "Interactive timeline visualization of Will Smith's career from 1990-2020, featuring movies and television appearances with toggle functionality.",
+    fullDescription: `Willard Carrol Smith Jr. popularly known as Will Smith or Fresh Prince is an American actor, producer and rapper. He was born on September 25, 1968 and has been active in the occupation since 1986. In April 2007, Newsweek called him "the most powerful actor in Hollywood". Having his breakthrough when he played a fictionalized version of himself in the famous 1990s television sitcom The Fresh Prince of Bel-Air (binged watched over two times) which he served as an executive producer on 24 episodes of the series.
+
+Timeline Highlights:
+- 1990: Fresh Prince of Bel-Air debut
+- 1996: Last Season of Fresh Prince of Bel-Air aired
+- Career spanning from 1990 to 2020
+
+The visualization features an interactive timeline where users can click on the years for more information, with a toggle between Movies and Television appearances.
+
+Design: @dzidzi_quist / Data Source: Wikipedia`,
+    category: "Data Viz",
+    image: willSmithImg,
+    externalLink:
+      "https://public.tableau.com/views/WillSmithsFilmography/WillSmithsFilmography?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
+    icon: Tv,
+    tools: ["Tableau", "Wikipedia Data", "Timeline Design"],
+    year: "2021",
+  },
+  {
+    id: 13,
+    slug: "street-names-accra",
+    title: "Street Name Suffixes of Central Accra",
+    description:
+      "Geographic visualization mapping street name suffixes across Central Accra, revealing urban naming patterns and road classifications.",
+    fullDescription: `This visualization explores the street name suffixes found in Central Accra, Ghana. Using geographic data from Open Street Map combined with Python, QGIS, and Tableau, the project reveals patterns in how streets are named across the city.
+
+Street Name Suffixes Distribution:
+- Unknown: 51.78%
+- Road: 13.69%
+- Avenue: 9.89%
+- Street: 9.06%
+- Central: 3.17%
+- Close: 2.92%
+- Lane: 2.24%
+- Roundabout: 1.22%
+- Link: 1.17%
+- Crescent: 0.97%
+- Drive: 0.93%
+- Highway: 0.83%
+- And various others including Agbogbloshie, Circle, East, Extension, Interchange, Loop, Oyeo, and Volta
+
+The map displays the building footprints alongside the road network, color-coded by suffix type, providing insights into Accra's urban development and street naming conventions.
+
+Data Source: Open Street Map
+Tools: Python, QGIS, Tableau`,
+    category: "Tableau",
+    image: streetNamesAccraImg,
+    externalLink:
+      "https://public.tableau.com/views/StreetNameSuffixesofCentralAccra/STREETNAMESUFFIXES?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
+    icon: Map,
+    tools: ["Tableau", "Python", "QGIS", "Open Street Map"],
+    year: "2022",
+  },
+  {
+    id: 14,
+    slug: "injustice-2-characters",
+    title: "Injustice 2: Character Analysis",
+    description:
+      "Interactive visualization of Injustice 2 game characters featuring stats comparison, character selection, and superhero/villain classification.",
+    fullDescription: `Injustice 2 is the super-powered sequel to the hit game Injustice: Gods Among Us that allows players to build and power up the ultimate version of their favorite DC characters. Featuring a massive selection of DC Super Heroes and Super-Villains.
+
+What's Your Fate?!! Select Your Character
+
+The visualization features:
+- Character Selection: Interactive circular character selector with all playable characters
+- Superhero vs Villain Classification: Toggle between heroes and villains
+- Sorting Options: Alphabetical sorting available
+- Character Stats: Radar chart displaying Defense, Strength, Ability, and Health stats for each selected character
+- Character Descriptions: Detailed backstory for each character
+
+Example - Batman:
+"There are lines we don't cross. Even after he's been exposed to the world as Batman, Bruce Wayne keeps his vow to avenge his parents' death by fighting for justice. He refuses to execute his enemies, believing that once he crosses that line, he's no better than the cowards he battles."
+
+#GamesNightViz
+Data Source: RankedBoost | Injustice.com
+Icons: Injustice.fandom
+Radar Tutorial: Cj Mayes
+Radial Tutorial: Lindsay Betzendahl`,
+    category: "Data Viz",
+    image: injustice2Img,
+    externalLink:
+      "https://public.tableau.com/views/Injustice2/INJUSTICE2?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
+    icon: Gamepad2,
+    tools: ["Tableau", "Game Data", "Radar Charts", "Interactive Design"],
+    year: "2022",
+  },
+  {
+    id: 15,
+    slug: "ghana-2016-elections",
+    title: "Is Ghana A Two Party State?",
+    description:
+      "Deep dive into Ghana's 2016 Presidential Election with voter statistics, regional analysis, and constituency-level results visualization.",
+    fullDescription: `Politics of Ghana takes place in a framework of a presidential representative democratic republic, whereby the President of Ghana is both head of state and head of government, and of a multi-party system. In past elections years, although the country has several political parties, the trend has been seen that most citizens prefer to either vote for the New Patriotic Party (NPP) or the National Democratic Congress (NDC).
+
+2016 Presidential Election:
+- NPP (Nana A. Akuffo-Addo): 53.72%
+- NDC (John Dramani Mahama): 44.53%
+- Others: 1.74%
+
+Voters' Statistics:
+- Registered Voters: 15,639,690
+- Ballots Cast: 10,881,083
+- Valid Votes: 10,713,734
+- Rejected Ballots: 167,349
+
+69.57% of registered voters in 2016 exercised their right to vote in Ghana. Out of which 10,881,083 casted ballots, 98% were rendered valid.
+
+The visualization includes:
+- Regional map view with constituency filtering
+- Constituency-level results with percentage breakdown
+- Winner analysis by region (e.g., Ashanti Region: Winner Nana A. Akuffo-Addo, Percent Win 75.98%)
+
+Design: Maureen Dzifa Quist | Icons: Flaticons`,
+    category: "Tableau",
+    image: ghana2016ElectionsImg,
+    externalLink:
+      "https://public.tableau.com/views/2016PresidentialElection/ISGHANAATWOPARTYSTATE?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
+    icon: Vote,
+    tools: ["Tableau", "Electoral Data", "Geographic Mapping", "Mapbox"],
+    year: "2020",
+  },
+  {
+    id: 16,
+    slug: "african-writers-books",
+    title: "The Read: Books by African Writers",
+    description:
+      "Creative bookshelf visualization showcasing books by African writers with reading status, book dimensions, and author information.",
+    fullDescription: `Going back to reading has been somewhat of an experience. Although I do not read frequently or as much as I want to, I have found that my love for greek mythology still holds but I have discovered a new love for reading books by African Writers.
+
+How To Read:
+Book colour may not be accurate since there may exist different book covers. This is my view of the colors.
+Note: A book may have different publishers, publishing dates and may have different book dimensions and pages.
+
+Colour of Bookmark:
+1. Read (completed)
+2. Reading (in progress)
+3. Yet to (on the list)
+
+Sorting:
+Books are sorted by reading status and in alphabetical order and not ranked in terms of favorite. The view below is a bar chart of the height and the size by pages of the books. Note: the actual book dimension is in inches.
+
+Featured Books Include:
+Maame, You made a fool of death with your beauty, Yinka where is your huzband?, A Broken People's Playlist, Home Going, Honey & Spice, Love in color, Nearly all the men in Lagos are Mad, On rotation, Rootless, Small Worlds, The List, Wahala, and many more.
+
+Made by Dzifa Quist
+Data: Wikipedia | Goodreads | Amazon
+Inspiration: Adedamola (Damola) Ladipo
+Ubuntu - I am because you are`,
+    category: "Data Viz",
+    image: africanWritersBooksImg,
+    externalLink:
+      "https://public.tableau.com/views/TheRead/THEREAD?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
+    icon: BookOpen,
+    tools: ["Tableau", "Creative Design", "Book Data"],
+    year: "2023",
+  },
+  {
+    id: 17,
+    slug: "hr-dashboard",
+    title: "Human Resource Dashboard",
+    description:
+      "Executive HR analytics dashboard featuring employee demographics, location distribution, diversity metrics, and department summaries.",
+    fullDescription: `RWFD 2020 Employee Statistics Dashboard - A comprehensive human resource analytics solution providing insights into workforce composition and distribution.
+
+Key Metrics:
+- Number of Employees: 1,012
+- Number of Active Employees: 1,009
+- Average Age: 37
+- Average Tenure: 1 year
+
+Employees by Location:
+- Ohio: 826 (Headquarters)
+- Indiana: 38
+- Pennsylvania: 38
+- Illinois: 35
+- Michigan: 34
+- Kentucky: 25
+- Wisconsin: 16
+
+With options to filter by All, Headquarters, and Remote workers.
+
+Diversity Metrics:
+Gender Distribution:
+- Male: 525
+- Female: 463
+- Non-Conforming: 24
+
+Race Distribution:
+- White: 286
+- Two or More Races: 189
+- Black or African American: 186
+- Asian: 140
+- Hispanic or Latino: 106
+- American Indian or Alaska Native: 56
+- Native Hawaiian or Other Pacific Islander: 49
+
+Age Distribution: Visualized across age groups from 20-55+
+
+The dashboard includes navigation for Human Resource overview, Employee Directory, and Department Summary views.`,
+    category: "Tableau",
+    image: hrDashboardImg,
+    externalLink:
+      "https://public.tableau.com/views/HumanResourceDashboard_16269245891230/DASHBOARD?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
+    icon: Building2,
+    tools: ["Tableau", "HR Analytics", "Business Intelligence"],
+    year: "2021",
+  },
+  {
+    id: 18,
+    slug: "bob-marley-tribute",
+    title: "My Cousin's Love for Bob Marley",
+    description:
+      "Personal data visualization tribute exploring a cousin's love for Bob Marley, featuring favorite songs from the Legend album with popularity scores.",
+    fullDescription: `Audrey's love for Bob Marley is very fascinating. Apart from she sharing the same birthday with Bob, she is a lover of most of his songs for a myriad of reasons.
+
+She adores his positive VIBRATIONS and loves the fact that Bob's words are quite deep and they reflect things happening in today's world.
+
+As popular as Bob Marley is, his song three little birds speaks to a lot of people. Great to ease ANXIETY and STRESS.
+
+Each bird represents her top favourite songs. Each box represents the songs in her favourite album, LEGEND and the size its popularity.
+
+About Bob Marley:
+Born on February 6, 1945 in Jamaica, Robert Nesta Marley was considered one of the pioneers of reggae. His songs still live on as we enjoy the beautiful impactful words he shared with the world.
+
+The visualization features:
+- Portrait illustration of Bob Marley
+- Interactive song boxes from the Legend album
+- Popularity score visualization
+- Bird motifs representing top 3 favorite songs
+
+Enjoy Bob Marley's songs as Audrey enjoys them.
+
+Design: @dzidzi_quist`,
+    category: "Data Viz",
+    image: bobMarleyTributeImg,
+    externalLink:
+      "https://public.tableau.com/views/MyCousinLovesforBobMarley/BOBMARLEY?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
+    icon: Heart,
+    tools: ["Tableau", "Personal Data", "Creative Design", "Music Data"],
+    year: "2022",
+  },
 ];
 
-export const categories = ["All", "Tableau", "Python", "Data Viz"];
+export const categories = ["All", "Tableau", "Python", "Data Viz", "Consumer Research"];
 
 export const categoryIcons: Record<string, typeof BarChart2> = {
   Tableau: BarChart2,
