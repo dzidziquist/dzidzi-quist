@@ -94,7 +94,7 @@ const About = () => {
                   <img
                     src={catIllustration}
                     alt="Cat illustration"
-                    className="w-16 h-auto object-contain"
+                    className="w-24 h-auto object-contain"
                   />
                     <div>
                       <h3 className="text-sm font-semibold text-foreground mb-2">Get in Touch</h3>
