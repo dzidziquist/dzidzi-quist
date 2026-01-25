@@ -119,7 +119,7 @@ const Resume = () => {
           </div>
           
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Left Column - Experience & Education */}
+            {/* Left Column - Experience */}
             <div className="space-y-8">
               {/* Experience */}
               <AnimatedSection>
@@ -152,9 +152,12 @@ const Resume = () => {
                   ))}
                 </div>
               </AnimatedSection>
+            </div>
 
+            {/* Right Column - Education, Certifications, Awards & Technologies */}
+            <div className="space-y-8">
               {/* Education */}
-              <AnimatedSection delay={0.2}>
+              <AnimatedSection>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="w-10 h-10 rounded-full bg-primary/80 flex items-center justify-center">
                     <GraduationCap className="h-5 w-5 text-primary-foreground" />
@@ -196,10 +199,6 @@ const Resume = () => {
                   ))}
                 </div>
               </AnimatedSection>
-            </div>
-
-            {/* Right Column - Certifications, Awards & Technologies */}
-            <div className="space-y-8">
               {/* Certifications */}
               <AnimatedSection delay={0.1}>
                 <div className="flex items-center gap-3 mb-6">
