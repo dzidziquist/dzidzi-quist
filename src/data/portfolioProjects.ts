@@ -34,10 +34,10 @@ export const projects: Project[] = [
     fullDescription: `This visualization explores the journey of female representation in Ghana's Parliament since independence. The female voice has yet to be fully heard in Ghana's parliament since independence. In 1960, Mabel Dove Danquah, a journalist, became the first female elected to parliament when she won the Ga Rural seat.
 
 The infographic analyzes:
-- **Historical Timeline**: Tracking the number of women MPs from the 1st Parliament to the 7th Parliament (2016), showing a gradual increase from 7 women (out of 129 members) in 1979 to 36 women (out of 275 members) in 2016.
-- **Regional Representation**: Breaking down female representatives across all 16 regions of Ghana, with Greater Accra leading in female representation.
-- **Party Representation**: Examining how the NDC and NPP, Ghana's dominant parties, compare in terms of female candidates elected.
-- **The Need for Women in Power**: Highlighting the importance of gender equality in political decision-making.
+Historical Timeline: Tracking the number of women MPs from the 1st Parliament to the 7th Parliament (2016), showing a gradual increase from 7 women (out of 129 members) in 1979 to 36 women (out of 275 members) in 2016.
+Regional Representation: Breaking down female representatives across all 16 regions of Ghana, with Greater Accra leading in female representation.
+Party Representation: Examining how the NDC and NPP, Ghana's dominant parties, compare in terms of female candidates elected.
+The Need for Women in Power: Highlighting the importance of gender equality in political decision-making.
 
 A collaboration between Lowar Akrofi and Maureen Dzifa Quist.`,
     category: "Tableau",
