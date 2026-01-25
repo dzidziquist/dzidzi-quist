@@ -64,7 +64,7 @@ const technologies = ["Python", "SQL", "NoSQL", "MS Excel", "Tableau", "PowerPoi
 const Resume = () => {
   return <Layout>
       {/* Main Content - Single page fit */}
-      <section className="py-6 h-[calc(100vh-120px)] overflow-hidden">
+      <section className="pt-20 pb-4 h-full overflow-hidden">
         <div className="container mx-auto px-6 h-full flex flex-col">
           {/* Top bar with Download button */}
           <div className="flex justify-end mb-4">
