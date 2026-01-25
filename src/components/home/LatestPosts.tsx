@@ -3,41 +3,12 @@ import { ArrowRight, Clock, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Button } from "@/components/ui/button";
-
-const posts = [
-  {
-    id: 1,
-    title: "Building Interactive Dashboards with Tableau",
-    excerpt: "Learn the key principles of creating engaging, user-friendly data visualizations that tell a story.",
-    category: "Tableau",
-    readTime: "5 min read",
-    date: "2024-01-15",
-  },
-  {
-    id: 2,
-    title: "Python for Data Analysis: A Beginner's Guide",
-    excerpt: "Getting started with pandas, numpy, and matplotlib for your data analysis journey.",
-    category: "Python",
-    readTime: "8 min read",
-    date: "2024-01-10",
-  },
-  {
-    id: 3,
-    title: "The Art of Data Storytelling",
-    excerpt: "How to transform raw numbers into compelling narratives that drive business decisions.",
-    category: "Insights",
-    readTime: "6 min read",
-    date: "2024-01-05",
-  },
-];
-
-const categoryColors: Record<string, string> = {
-  Tableau: "bg-coral/10 text-coral",
-  Python: "bg-mint/20 text-accent-foreground",
-  Insights: "bg-lavender/20 text-secondary-foreground",
-};
+import { blogPosts, categoryColors } from "@/data/blogPosts";
 
 export const LatestPosts = () => {
+  // Get the 3 most recent posts
+  const latestPosts = blogPosts.slice(0, 3);
+
   return (
     <section className="py-24">
       <div className="container mx-auto px-6">
@@ -59,7 +30,7 @@ export const LatestPosts = () => {
         </AnimatedSection>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post, index) => (
+          {latestPosts.map((post, index) => (
             <AnimatedSection key={post.id} delay={index * 0.1}>
               <motion.article
                 className="group h-full flex flex-col p-6 rounded-2xl bg-card border border-border hover-lift"
@@ -88,7 +59,7 @@ export const LatestPosts = () => {
 
                 {/* Read More Link */}
                 <Link 
-                  to={`/blog/${post.id}`}
+                  to={`/blog/${post.slug}`}
                   className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all"
                 >
                   <BookOpen className="h-4 w-4" />

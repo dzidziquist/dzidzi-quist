@@ -30,6 +30,7 @@ const App = () => (
             <Route path="/resume" element={<Resume />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:id" element={<BlogPost />} />
+            {/* Supports both slug and numeric id for backwards compatibility */}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
