@@ -52,6 +52,14 @@ const experience = [
     location: "Accra, Ghana",
     period: "Apr 2020 – Jul 2020",
     type: "work"
+  },
+  {
+    id: 7,
+    role: "Quality Control Coordinator",
+    company: "Regional Maritime University",
+    location: "Accra, Ghana",
+    period: "Sep 2016 – Aug 2017",
+    type: "work"
   }
 ];
 
