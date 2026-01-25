@@ -70,7 +70,9 @@ const education = [
     school: "University of Southern California, Marshall School of Business",
     location: "Los Angeles, CA",
     period: "Dec 2024",
-    honors: "USC MSBA Fall 2023 Scholarship Award, Dean's List"
+    membership: "Business Analytics Student Association (BASA)",
+    honors: "USC MSBA Fall 2023 Scholarship Award, USC Marshall MSBA Global Case Competition - Finalist (Nov 2023), Dean's List (May & Dec 2024)",
+    experience: "USC Black Graduate Business Leaders - VP of Community and Events, USC MSBA Student Ambassador"
   },
   {
     id: 2,
@@ -175,8 +177,20 @@ const Resume = () => {
                       </div>
                       <h3 className="font-display font-semibold text-sm">{item.degree}</h3>
                       <p className="text-primary text-sm">{item.school}</p>
+                      {item.membership && (
+                        <p className="text-xs text-muted-foreground mt-2">
+                          <span className="font-medium text-foreground">Membership:</span> {item.membership}
+                        </p>
+                      )}
                       {item.honors && (
-                        <p className="text-xs text-muted-foreground mt-1">{item.honors}</p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          <span className="font-medium text-foreground">Honors:</span> {item.honors}
+                        </p>
+                      )}
+                      {item.experience && (
+                        <p className="text-xs text-muted-foreground mt-1">
+                          <span className="font-medium text-foreground">Experience:</span> {item.experience}
+                        </p>
                       )}
                     </motion.div>
                   ))}
