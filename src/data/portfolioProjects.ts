@@ -40,7 +40,7 @@ export interface Project {
   title: string;
   description: string;
   fullDescription: string;
-  category: string;
+  category: string | string[];
   image: string;
   externalLink: string;
   icon: LucideIcon;
@@ -49,6 +49,11 @@ export interface Project {
   collaborators?: string;
   pdfUrl?: string;
 }
+
+// Helper to get display categories (always returns array)
+export const getCategories = (category: string | string[]): string[] => {
+  return Array.isArray(category) ? category : [category];
+};
 
 export const projects: Project[] = [
   {
@@ -271,7 +276,7 @@ Investment Options Analyzed:
 Recommendation: Implement the Monk's Strategy focusing on normative commitment, as it encourages loyalty based on values rather than just personal benefit, creating more sustainable customer relationships.
 
 Methodology: Survey of 1,500 respondents with cluster analysis and commitment factor modeling.`,
-    category: "Consumer Research",
+    category: ["Python", "Consumer Research"],
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
     externalLink: "#",
     icon: Code,
