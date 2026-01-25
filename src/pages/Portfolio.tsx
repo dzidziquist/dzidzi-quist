@@ -5,10 +5,12 @@ import { Layout } from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { ArrowUpRight, BarChart2, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { projects, categories, categoryIcons } from "@/data/portfolioProjects";
+import { projects, categories, categoryIcons, getCategories } from "@/data/portfolioProjects";
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState("All");
-  const filteredProjects = activeCategory === "All" ? projects : projects.filter(p => p.category === activeCategory);
+  const filteredProjects = activeCategory === "All" 
+    ? projects 
+    : projects.filter(p => getCategories(p.category).includes(activeCategory));
   return <Layout>
       {/* Hero Section */}
       
@@ -42,7 +44,8 @@ const Portfolio = () => {
             duration: 0.3
           }} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects.map((project, index) => {
-              const Icon = project.icon || categoryIcons[project.category] || BarChart2;
+              const projectCategories = getCategories(project.category);
+              const Icon = project.icon || categoryIcons[projectCategories[0]] || BarChart2;
               return <motion.div key={project.id} initial={{
                 opacity: 0,
                 y: 20
@@ -69,7 +72,7 @@ const Portfolio = () => {
                               <Icon className="h-4 w-4 text-primary" />
                             </div>
                             <span className="text-xs font-medium text-muted-foreground">
-                              {project.category}
+                              {projectCategories.join(" • ")}
                             </span>
                           </div>
 

@@ -4,7 +4,7 @@ import { Layout } from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { ArrowLeft, ExternalLink, Calendar, Users, Wrench, Download, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { getProjectBySlug } from "@/data/portfolioProjects";
+import { getProjectBySlug, getCategories } from "@/data/portfolioProjects";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const ProjectDetail = () => {
@@ -69,7 +69,7 @@ const ProjectDetail = () => {
                   <div className="p-2 rounded-lg bg-primary/10">
                     <Icon className="h-5 w-5 text-primary" />
                   </div>
-                  <span className="text-sm font-medium text-primary">{project.category}</span>
+                  <span className="text-sm font-medium text-primary">{getCategories(project.category).join(" • ")}</span>
                 </div>
 
                 <h1 className="text-3xl md:text-4xl font-display font-bold mb-4">
