@@ -30,7 +30,8 @@ export const projects: Project[] = [
     id: 1,
     slug: "gender-inequality-parliament",
     title: "Gender Inequality in Ghana's Parliament",
-    description: "Interactive infographic analyzing gender representation across parliamentary sessions, regional distribution, and party representation from 1960-2020.",
+    description:
+      "Interactive infographic analyzing gender representation across parliamentary sessions, regional distribution, and party representation from 1960-2020.",
     fullDescription: `This visualization explores the journey of female representation in Ghana's Parliament since independence. The female voice has yet to be fully heard in Ghana's parliament since independence. In 1960, Mabel Dove Danquah, a journalist, became the first female elected to parliament when she won the Ga Rural seat.
 
 The infographic analyzes:
@@ -46,13 +47,14 @@ A collaboration between Lowar Akrofi and Maureen Dzifa Quist.`,
     icon: Users,
     tools: ["Tableau", "Data Research", "Infographic Design"],
     year: "2020",
-    collaborators: "Lowar Akrofi"
+    collaborators: "Lowar Akrofi",
   },
   {
     id: 2,
     slug: "trend-of-elections-ghana",
     title: "Trend of Elections in Ghana",
-    description: "Comprehensive visualization of Ghana's electoral history, examining voting patterns, regional preferences, and macroeconomic factors affecting election results.",
+    description:
+      "Comprehensive visualization of Ghana's electoral history, examining voting patterns, regional preferences, and macroeconomic factors affecting election results.",
     fullDescription: `Since the first presidential election in 1992 following the country's transition to multi-party democracy, Ghana has held seven presidential elections with the two major parties—NDC and NPP—alternating power.
 
 This visualization explores:
@@ -67,13 +69,14 @@ The data reveals interesting patterns about how Ghanaians vote and what factors 
     externalLink: "https://public.tableau.com/app/profile/dzidzi.quist",
     icon: Vote,
     tools: ["Tableau", "Data Analysis", "Geographic Mapping"],
-    year: "2020"
+    year: "2020",
   },
   {
     id: 3,
     slug: "music-plays-2023",
     title: "Know Me By My 2023 Music Plays",
-    description: "Personal data visualization of Apple Music listening habits - 27,215 minutes of music analyzed by top songs, monthly patterns, and listening trends.",
+    description:
+      "Personal data visualization of Apple Music listening habits - 27,215 minutes of music analyzed by top songs, monthly patterns, and listening trends.",
     fullDescription: `They often say music is food for the soul, and I find great pleasure in immersing myself in its beautiful melodies. This year, I listened to about 27,215 minutes of music, savoring various genres.
 
 This personal data visualization explores:
@@ -87,13 +90,14 @@ This visualization tells the story of my year through the music I listened to—
     externalLink: "https://public.tableau.com/app/profile/dzidzi.quist",
     icon: Music,
     tools: ["Tableau", "Apple Music Data", "Personal Analytics"],
-    year: "2023"
+    year: "2023",
   },
   {
     id: 4,
     slug: "places-accra-map",
     title: "Places I Have Been To in Accra",
-    description: "Interactive map using parameter actions and map layers in Tableau, showcasing locations visited across Greater Accra with toggle-able categories.",
+    description:
+      "Interactive map using parameter actions and map layers in Tableau, showcasing locations visited across Greater Accra with toggle-able categories.",
     fullDescription: `This project demonstrates the use of map layers and parameters in Tableau. Parameter actions give end-users of a dashboard more control in terms of interactivity, while map layers allow adding multiple layers of geographic data to a map.
 
 Key features include:
@@ -107,13 +111,14 @@ This visualization serves as practice for mastering Tableau's advanced mapping c
     externalLink: "https://public.tableau.com/app/profile/dzidzi.quist",
     icon: Map,
     tools: ["Tableau", "QGIS", "OpenStreetMap", "Google Maps"],
-    year: "2022"
+    year: "2022",
   },
   {
     id: 5,
     slug: "rugrats-analysis",
     title: "Rugrats: Animated Series Analysis",
-    description: "Creative data visualization exploring the Rugrats animated series (1991-2001) - season ratings, character timelines, and episode premier history.",
+    description:
+      "Creative data visualization exploring the Rugrats animated series (1991-2001) - season ratings, character timelines, and episode premier history.",
     fullDescription: `Rugrats reveals the world from a baby's point of view. Everything looks bigger, more mysterious and uncontrollable. Angelica, the oldest, likes to terrorize her cousin, Tommy, and his friends, and is famous for screaming, "You stupid babies!" The adults in the series are often clueless.
 
 This visualization explores:
@@ -128,13 +133,14 @@ Data sourced from Wikipedia, IMDb, Fandom, and Pinterest with sound from Redring
     externalLink: "https://public.tableau.com/app/profile/dzidzi.quist",
     icon: Tv,
     tools: ["Tableau", "IMDb Data", "Creative Design"],
-    year: "2022"
+    year: "2022",
   },
   {
     id: 6,
     slug: "boondocks-analysis",
     title: "The Boondocks: Series Deep Dive",
-    description: "Visual analysis of The Boondocks animated series featuring character breakdowns, episode ratings per season, and series timeline from 2005-2014.",
+    description:
+      "Visual analysis of The Boondocks animated series featuring character breakdowns, episode ratings per season, and series timeline from 2005-2014.",
     fullDescription: `Cantankerous Robert "Granddad" Freeman is the legal guardian of his grandsons, 10-year-old revolutionary Huey and 8-year-old Riley, a product of contemporary rap culture. After moving the family from Chicago's South Side to the safety of suburban Woodcrest—aka the boondocks—Granddad hopes to ignore the grandkids and enjoy his golden years in peace.
 
 This visualization explores:
@@ -149,13 +155,14 @@ Data sourced from IMDb and Wikipedia, with icons from The Noun Project and audio
     externalLink: "https://public.tableau.com/app/profile/dzidzi.quist",
     icon: Tv,
     tools: ["Tableau", "IMDb Data", "Creative Design", "Audio Integration"],
-    year: "2022"
+    year: "2022",
   },
   {
     id: 7,
     slug: "sales-overview-dashboard",
     title: "Sales Overview Dashboard",
-    description: "Executive sales dashboard with KPI tracking, regional breakdowns, sales trends, and category analysis for business intelligence reporting.",
+    description:
+      "Executive sales dashboard with KPI tracking, regional breakdowns, sales trends, and category analysis for business intelligence reporting.",
     fullDescription: `A comprehensive executive dashboard designed for tracking sales performance across multiple dimensions. This dashboard demonstrates proficiency in creating business intelligence solutions that enable data-driven decision making.
 
 Key features include:
@@ -171,13 +178,14 @@ Key features include:
     externalLink: "https://public.tableau.com/app/profile/dzidzi.quist",
     icon: ShoppingCart,
     tools: ["Tableau", "Business Intelligence", "KPI Design"],
-    year: "2023"
+    year: "2023",
   },
   {
     id: 8,
     slug: "consumer-purchase-journey",
     title: "Consumer Purchase Journey Analysis",
-    description: "Market research project analyzing consumer buying behavior for smart home products using qualitative research methods and customer insights frameworks.",
+    description:
+      "Market research project analyzing consumer buying behavior for smart home products using qualitative research methods and customer insights frameworks.",
     fullDescription: `This market research project analyzes the consumer buying journey to understand decision-making processes for smart home products, specifically focusing on robot vacuum cleaners.
 
 **Research Objectives:**
@@ -201,15 +209,16 @@ A business owner and mother of two who purchased a robot vacuum for convenience.
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
     externalLink: "#",
     icon: Code,
-    tools: ["Python", "Consumer Research", "Qualitative Analysis"],
+    tools: ["Consumer Research", "Qualitative Analysis"],
     year: "2024",
-    pdfUrl: "/documents/consumer-purchase-journey.pdf"
+    pdfUrl: "/documents/consumer-purchase-journey.pdf",
   },
   {
     id: 9,
     slug: "customer-commitment-study",
     title: "Customer Commitment Study",
-    description: "Five-factor customer commitment analysis for Crew's Cup using Python - examining economic, forced, habitual, normative, and affective commitment drivers.",
+    description:
+      "Five-factor customer commitment analysis for Crew's Cup using Python - examining economic, forced, habitual, normative, and affective commitment drivers.",
     fullDescription: `A comprehensive customer commitment analysis for Crew's Cup fitness center, examining the optimal investment strategy to increase customer retention and reduce churn.
 
 **Background:**
@@ -236,8 +245,8 @@ Crew's Cup underwent ownership changes, leading to customer churn rates of 70% a
     icon: Code,
     tools: ["Python", "Survey Analysis", "Cluster Analysis", "Customer Analytics"],
     year: "2024",
-    pdfUrl: "/documents/customer-commitment-study.pdf"
-  }
+    pdfUrl: "/documents/customer-commitment-study.pdf",
+  },
 ];
 
 export const categories = ["All", "Tableau", "Python", "Data Viz"];
@@ -245,9 +254,9 @@ export const categories = ["All", "Tableau", "Python", "Data Viz"];
 export const categoryIcons: Record<string, typeof BarChart2> = {
   Tableau: BarChart2,
   Python: Code,
-  "Data Viz": BarChart2
+  "Data Viz": BarChart2,
 };
 
 export const getProjectBySlug = (slug: string): Project | undefined => {
-  return projects.find(p => p.slug === slug);
+  return projects.find((p) => p.slug === slug);
 };
