@@ -2,9 +2,10 @@ import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { ArrowLeft, ExternalLink, Calendar, Users, Wrench } from "lucide-react";
+import { ArrowLeft, ExternalLink, Calendar, Users, Wrench, Download, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getProjectBySlug } from "@/data/portfolioProjects";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -150,30 +151,96 @@ const ProjectDetail = () => {
 
       {/* Embedded Document */}
       {project.pdfUrl && (
-        <section className="py-16 border-t border-border">
-          <div className="container mx-auto px-6">
-            <AnimatedSection>
-              <h2 className="text-2xl font-display font-bold mb-6">Project Document</h2>
-              <div className="rounded-2xl overflow-hidden border border-border bg-muted/30">
-                {project.pdfUrl.endsWith('.pdf') ? (
-                  <iframe
-                    src={project.pdfUrl}
-                    className="w-full h-[800px]"
-                    title={`${project.title} - PDF Document`}
-                  />
-                ) : (
-                  <iframe
-                    src={`https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(window.location.origin + project.pdfUrl)}`}
-                    className="w-full h-[800px]"
-                    title={`${project.title} - Document`}
-                  />
-                )}
-              </div>
-            </AnimatedSection>
-          </div>
-        </section>
+        <PdfSection pdfUrl={project.pdfUrl} title={project.title} />
       )}
     </Layout>
+  );
+};
+
+// Separate component for PDF section to use hooks
+const PdfSection = ({ pdfUrl, title }: { pdfUrl: string; title: string }) => {
+  const isMobile = useIsMobile();
+  const isPdf = pdfUrl.endsWith('.pdf');
+  
+  // On mobile/tablet, show download option instead of iframe for better UX
+  if (isMobile) {
+    return (
+      <section className="py-16 border-t border-border">
+        <div className="container mx-auto px-6">
+          <AnimatedSection>
+            <h2 className="text-2xl font-display font-bold mb-6">Project Document</h2>
+            <div className="rounded-2xl overflow-hidden border border-border bg-muted/30 p-8">
+              <div className="flex flex-col items-center justify-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                  <FileText className="h-8 w-8 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-display font-semibold text-lg mb-2">View Document</h3>
+                  <p className="text-muted-foreground text-sm mb-4 max-w-sm">
+                    For the best viewing experience on mobile devices, open or download the document directly.
+                  </p>
+                </div>
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <a
+                    href={pdfUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button className="gap-2">
+                      <ExternalLink className="h-4 w-4" />
+                      Open Document
+                    </Button>
+                  </a>
+                  <a
+                    href={pdfUrl}
+                    download
+                  >
+                    <Button variant="outline" className="gap-2">
+                      <Download className="h-4 w-4" />
+                      Download PDF
+                    </Button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+    );
+  }
+
+  // Desktop view with embedded iframe
+  return (
+    <section className="py-16 border-t border-border">
+      <div className="container mx-auto px-6">
+        <AnimatedSection>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-display font-bold">Project Document</h2>
+            <a href={pdfUrl} download>
+              <Button variant="outline" size="sm" className="gap-2">
+                <Download className="h-4 w-4" />
+                Download
+              </Button>
+            </a>
+          </div>
+          <div className="rounded-2xl overflow-hidden border border-border bg-muted/30">
+            {isPdf ? (
+              <iframe
+                src={pdfUrl}
+                className="w-full h-[600px] lg:h-[800px]"
+                title={`${title} - PDF Document`}
+              />
+            ) : (
+              <iframe
+                src={`https://view.officeapps.live.com/op/embed.aspx?src=${encodeURIComponent(window.location.origin + pdfUrl)}`}
+                className="w-full h-[600px] lg:h-[800px]"
+                title={`${title} - Document`}
+              />
+            )}
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
   );
 };
 
