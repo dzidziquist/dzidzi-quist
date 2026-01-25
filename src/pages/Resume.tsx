@@ -3,42 +3,94 @@ import { Layout } from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Download, Briefcase, GraduationCap, Award, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
-const experience = [{
-  id: 1,
-  role: "Senior Data Analyst",
-  company: "Company Name",
-  period: "2022 - Present",
-  description: "Lead data visualization initiatives and create executive dashboards using Tableau. Mentor junior analysts and establish data visualization best practices.",
-  type: "work"
-}, {
-  id: 2,
-  role: "Data Analyst",
-  company: "Previous Company",
-  period: "2020 - 2022",
-  description: "Built interactive dashboards and automated reporting processes. Collaborated with stakeholders to translate business requirements into data solutions.",
-  type: "work"
-}, {
-  id: 3,
-  role: "Bachelor's in Computer Science",
-  company: "University Name",
-  period: "2016 - 2020",
-  description: "Focused on data science and analytics. Graduated with honors and completed thesis on data visualization techniques.",
-  type: "education"
-}];
-const certifications = [{
-  name: "Tableau Desktop Specialist",
-  issuer: "Tableau",
-  year: "2023"
-}, {
-  name: "Google Data Analytics",
-  issuer: "Google",
-  year: "2022"
-}, {
-  name: "Python for Data Science",
-  issuer: "IBM",
-  year: "2021"
-}];
-const technologies = ["Tableau", "Python", "SQL", "Power BI", "Excel", "Figma", "Pandas", "NumPy", "Matplotlib", "Seaborn", "Git", "PostgreSQL"];
+
+const experience = [
+  {
+    id: 1,
+    role: "Business Intelligence Engineer",
+    company: "Amazon Prime Video",
+    location: "Seattle, WA",
+    period: "Feb 2025 – Present",
+    type: "work"
+  },
+  {
+    id: 2,
+    role: "SQL Instructional Assistant",
+    company: "University of Southern California",
+    location: "Los Angeles, CA",
+    period: "Sep 2024 – Dec 2024",
+    type: "work"
+  },
+  {
+    id: 3,
+    role: "Business Intelligence Engineer Intern",
+    company: "Amazon Prime Video",
+    location: "Seattle, WA",
+    period: "Jun 2024 – Aug 2024",
+    type: "work"
+  },
+  {
+    id: 4,
+    role: "Programme Policy Officer (Data Engineer/Analyst)",
+    company: "World Food Programme",
+    location: "Kabul, Afghanistan",
+    period: "Apr 2021 – Jul 2023",
+    type: "work"
+  },
+  {
+    id: 5,
+    role: "Data Analyst / Data Scientist Intern",
+    company: "Zuberi Technologies",
+    location: "Accra, Ghana",
+    period: "Nov 2020 – Mar 2021",
+    type: "work"
+  },
+  {
+    id: 6,
+    role: "Data Engineering Intern",
+    company: "Appruve",
+    location: "Accra, Ghana",
+    period: "Apr 2020 – Jul 2020",
+    type: "work"
+  }
+];
+
+const education = [
+  {
+    id: 1,
+    degree: "Master of Science in Business Analytics (STEM)",
+    school: "University of Southern California, Marshall School of Business",
+    location: "Los Angeles, CA",
+    period: "Dec 2024",
+    honors: "USC MSBA Fall 2023 Scholarship Award, Dean's List"
+  },
+  {
+    id: 2,
+    degree: "Bachelor of Arts in Economics and Statistics",
+    school: "University of Ghana",
+    location: "Accra, Ghana",
+    period: "May 2016",
+    honors: ""
+  }
+];
+
+const certifications = [
+  { name: "GIS Fundamentals (QGIS Training)", issuer: "QGIS" },
+  { name: "Google Data Analytics", issuer: "Google" },
+  { name: "Tableau Consumer, Author, Designer", issuer: "Tableau" }
+];
+
+const awards = [
+  "Tableau Public Ambassador 2023",
+  "Tableau Public Ambassador 2022",
+  "Tableau Conference Gallery - Data Viz Displayed 2022 & 2020",
+  "Tableau Featured Author 2021"
+];
+
+const technologies = [
+  "Python", "SQL", "NoSQL", "MS Excel", "Tableau", "PowerPoint", 
+  "Xlsform (ODK)", "Power BI", "Palantir", "Amazon QuickSight", "R"
+];
 const Resume = () => {
   return <Layout>
       {/* Main Content */}
@@ -49,7 +101,7 @@ const Resume = () => {
             <Button 
               variant="outline" 
               size="sm" 
-              className="rounded-full border-2 border-foreground hover:bg-foreground hover:text-background"
+              className="rounded-full border-2 border-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary"
             >
               <Download className="mr-2 h-3 w-3" />
               Download Resume
@@ -77,11 +129,14 @@ const Resume = () => {
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 }}
                     >
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
-                        <Calendar className="h-3 w-3" />
-                        {item.period}
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                          <Calendar className="h-3 w-3" />
+                          {item.period}
+                        </div>
+                        <span className="text-xs text-muted-foreground">{item.location}</span>
                       </div>
-                      <h3 className="font-display font-semibold">{item.role}</h3>
+                      <h3 className="font-display font-semibold text-sm">{item.role}</h3>
                       <p className="text-primary text-sm">{item.company}</p>
                     </motion.div>
                   ))}
@@ -91,13 +146,13 @@ const Resume = () => {
               {/* Education */}
               <AnimatedSection delay={0.2}>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-full bg-mint flex items-center justify-center">
-                    <GraduationCap className="h-5 w-5 text-white" />
+                  <div className="w-10 h-10 rounded-full bg-primary/80 flex items-center justify-center">
+                    <GraduationCap className="h-5 w-5 text-primary-foreground" />
                   </div>
                   <h2 className="text-2xl font-display font-bold">Education</h2>
                 </div>
                 <div className="space-y-4">
-                  {experience.filter(item => item.type === "education").map((item, index) => (
+                  {education.map((item, index) => (
                     <motion.div 
                       key={item.id}
                       className="p-5 rounded-xl bg-card border border-border"
@@ -110,15 +165,18 @@ const Resume = () => {
                         <Calendar className="h-3 w-3" />
                         {item.period}
                       </div>
-                      <h3 className="font-display font-semibold">{item.role}</h3>
-                      <p className="text-primary text-sm">{item.company}</p>
+                      <h3 className="font-display font-semibold text-sm">{item.degree}</h3>
+                      <p className="text-primary text-sm">{item.school}</p>
+                      {item.honors && (
+                        <p className="text-xs text-muted-foreground mt-1">{item.honors}</p>
+                      )}
                     </motion.div>
                   ))}
                 </div>
               </AnimatedSection>
             </div>
 
-            {/* Right Column - Certifications & Technologies */}
+            {/* Right Column - Certifications, Awards & Technologies */}
             <div className="space-y-8">
               {/* Certifications */}
               <AnimatedSection delay={0.1}>
@@ -142,10 +200,31 @@ const Resume = () => {
                         <h3 className="font-display font-semibold text-sm">{cert.name}</h3>
                         <p className="text-xs text-muted-foreground">{cert.issuer}</p>
                       </div>
-                      <span className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded-full">
-                        {cert.year}
-                      </span>
                     </motion.div>
+                  ))}
+                </div>
+              </AnimatedSection>
+
+              {/* Awards */}
+              <AnimatedSection delay={0.25}>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-primary/60 flex items-center justify-center">
+                    <span className="text-lg">🏆</span>
+                  </div>
+                  <h2 className="text-2xl font-display font-bold">Awards</h2>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {awards.map((award, index) => (
+                    <motion.span 
+                      key={award}
+                      className="px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-medium"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.05 }}
+                    >
+                      {award}
+                    </motion.span>
                   ))}
                 </div>
               </AnimatedSection>
