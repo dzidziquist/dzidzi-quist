@@ -271,7 +271,7 @@ Investment Options Analyzed:
 Recommendation: Implement the Monk's Strategy focusing on normative commitment, as it encourages loyalty based on values rather than just personal benefit, creating more sustainable customer relationships.
 
 Methodology: Survey of 1,500 respondents with cluster analysis and commitment factor modeling.`,
-    category: "Python",
+    category: ["Python", "Consumer Research"]
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
     externalLink: "#",
     icon: Code,
