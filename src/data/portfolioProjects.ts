@@ -58,10 +58,10 @@ A collaboration between Lowar Akrofi and Maureen Dzifa Quist.`,
     fullDescription: `Since the first presidential election in 1992 following the country's transition to multi-party democracy, Ghana has held seven presidential elections with the two major parties—NDC and NPP—alternating power.
 
 This visualization explores:
-- **Vote Trends**: Tracking the total votes received by NDC and NPP from 1992 to 2016, showing how electoral support has shifted over time.
-- **Regional Analysis**: An interactive map showing which party won in each region and year, revealing regional voting patterns and strongholds.
-- **Macroeconomic Factors**: Examining whether GDP per capita, inflation rates, and unemployment rates correlate with election outcomes.
-- **Predictive Analysis**: Using historical data to explore whether economic factors can predict future election results.
+- Vote Trends: Tracking the total votes received by NDC and NPP from 1992 to 2016, showing how electoral support has shifted over time.
+- Regional Analysis: An interactive map showing which party won in each region and year, revealing regional voting patterns and strongholds.
+- Macroeconomic Factors: Examining whether GDP per capita, inflation rates, and unemployment rates correlate with election outcomes.
+- Predictive Analysis: Using historical data to explore whether economic factors can predict future election results.
 
 The data reveals interesting patterns about how Ghanaians vote and what factors influence their decisions at the polls.`,
     category: "Tableau",
@@ -80,9 +80,9 @@ The data reveals interesting patterns about how Ghanaians vote and what factors 
     fullDescription: `They often say music is food for the soul, and I find great pleasure in immersing myself in its beautiful melodies. This year, I listened to about 27,215 minutes of music, savoring various genres.
 
 This personal data visualization explores:
-- **Top 15 Songs Played**: Featuring "All Over" by Magixx as the #1 most played song with 157 plays (433.7 minutes), followed by "Xtra Cool" by Young Jonn and "Sinner" by Adekunle Gold & Lucky Daye.
-- **Top 100 Plays by Month**: A radial visualization showing the distribution of top songs across all 12 months, with peaks during February, March, April, May, and July corresponding to road trips and international travels.
-- **Monthly Listening Patterns**: A bar chart showing total minutes listened each month, with March (3,294 minutes) being the highest.
+- Top 15 Songs Played: Featuring "All Over" by Magixx as the #1 most played song with 157 plays (433.7 minutes), followed by "Xtra Cool" by Young Jonn and "Sinner" by Adekunle Gold & Lucky Daye.
+- Top 100 Plays by Month: A radial visualization showing the distribution of top songs across all 12 months, with peaks during February, March, April, May, and July corresponding to road trips and international travels.
+- Monthly Listening Patterns: A bar chart showing total minutes listened each month, with March (3,294 minutes) being the highest.
 
 This visualization tells the story of my year through the music I listened to—revealing travel periods, mood patterns, and musical preferences.`,
     category: "Data Viz",
@@ -101,9 +101,9 @@ This visualization tells the story of my year through the music I listened to—
     fullDescription: `This project demonstrates the use of map layers and parameters in Tableau. Parameter actions give end-users of a dashboard more control in terms of interactivity, while map layers allow adding multiple layers of geographic data to a map.
 
 Key features include:
-- **Interactive Layer Controls**: Toggle on/off different location categories including Desserts, Malls, Recreational Centers, Restaurants & Bars, Beaches, Salons, Cafés, Supermarkets, and Roads.
-- **Geographic Data Sources**: Using shapefiles from data.gov.gh for Greater Accra roads and Google Maps coordinates for personal location history.
-- **Technical Implementation**: Combining QGIS for location selection by radius with Tableau for visualization.
+- Interactive Layer Controls: Toggle on/off different location categories including Desserts, Malls, Recreational Centers, Restaurants & Bars, Beaches, Salons, Cafés, Supermarkets, and Roads.
+- Geographic Data Sources: Using shapefiles from data.gov.gh for Greater Accra roads and Google Maps coordinates for personal location history.
+- Technical Implementation: Combining QGIS for location selection by radius with Tableau for visualization.
 
 This visualization serves as practice for mastering Tableau's advanced mapping capabilities while creating a personal geography of experiences in Accra.`,
     category: "Tableau",
@@ -122,10 +122,10 @@ This visualization serves as practice for mastering Tableau's advanced mapping c
     fullDescription: `Rugrats reveals the world from a baby's point of view. Everything looks bigger, more mysterious and uncontrollable. Angelica, the oldest, likes to terrorize her cousin, Tommy, and his friends, and is famous for screaming, "You stupid babies!" The adults in the series are often clueless.
 
 This visualization explores:
-- **Season Ratings**: Average ratings for all 9 seasons, with Season 2 achieving the highest average rating of 7.532 and Season 1 at 7.160.
-- **Character Profiles**: Introducing the main characters including Tommy Pickles (main protagonist), Chuckie Finster (Tommy's best friend), Angelica Pickles (main antagonist), Reptar (fictional dinosaur), and Spike (family pet).
-- **Timeline**: Tracking when each season premiered from 1991 to 2002, showing the show's evolution over more than a decade.
-- **Number of Votes**: Visualizing audience engagement across all 9 seasons.
+- Season Ratings: Average ratings for all 9 seasons, with Season 2 achieving the highest average rating of 7.532 and Season 1 at 7.160.
+- Character Profiles: Introducing the main characters including Tommy Pickles (main protagonist), Chuckie Finster (Tommy's best friend), Angelica Pickles (main antagonist), Reptar (fictional dinosaur), and Spike (family pet).
+- Timeline: Tracking when each season premiered from 1991 to 2002, showing the show's evolution over more than a decade.
+- Number of Votes: Visualizing audience engagement across all 9 seasons.
 
 Data sourced from Wikipedia, IMDb, Fandom, and Pinterest with sound from Redringtones.`,
     category: "Data Viz",
@@ -144,10 +144,10 @@ Data sourced from Wikipedia, IMDb, Fandom, and Pinterest with sound from Redring
     fullDescription: `Cantankerous Robert "Granddad" Freeman is the legal guardian of his grandsons, 10-year-old revolutionary Huey and 8-year-old Riley, a product of contemporary rap culture. After moving the family from Chicago's South Side to the safety of suburban Woodcrest—aka the boondocks—Granddad hopes to ignore the grandkids and enjoy his golden years in peace.
 
 This visualization explores:
-- **Series Overview**: 4 seasons, 55 episodes, first aired November 6, 2005, last aired June 23, 2014.
-- **Character Classification**: Main characters (Huey, Robert, Riley Freeman), secondary characters (Thomas Lancaster DuBois, Sarah DuBois, Jazmine DuBois), other major characters (Uncle Ruckus, Ed Wuncler Jr., and more), and recurring characters.
-- **Rating per Episode**: Bar chart visualizations showing episode ratings across all 4 seasons, featuring character illustrations of Riley and Robert.
-- **Votes per Season**: Circular visualization showing audience engagement trends.
+- Series Overview: 4 seasons, 55 episodes, first aired November 6, 2005, last aired June 23, 2014.
+- Character Classification: Main characters (Huey, Robert, Riley Freeman), secondary characters (Thomas Lancaster DuBois, Sarah DuBois, Jazmine DuBois), other major characters (Uncle Ruckus, Ed Wuncler Jr., and more), and recurring characters.
+- Rating per Episode: Bar chart visualizations showing episode ratings across all 4 seasons, featuring character illustrations of Riley and Robert.
+- Votes per Season: Circular visualization showing audience engagement trends.
 
 Data sourced from IMDb and Wikipedia, with icons from The Noun Project and audio from YouTube.`,
     category: "Data Viz",
@@ -166,13 +166,13 @@ Data sourced from IMDb and Wikipedia, with icons from The Noun Project and audio
     fullDescription: `A comprehensive executive dashboard designed for tracking sales performance across multiple dimensions. This dashboard demonstrates proficiency in creating business intelligence solutions that enable data-driven decision making.
 
 Key features include:
-- **KPI Cards**: Total Sales ($13,794), Total Profit ($1,030), Total Quantity (256), and Profit Percentage (7.47%) for the selected region.
-- **Regional Filtering**: Filter views by different regions (Central, East, West, South) with a date selector for temporal analysis.
-- **Breakdown by State**: Ranked list showing sales performance by state, from Michigan ($2,903) to Oklahoma ($11).
-- **Sales Trend Analysis**: Time series visualization showing sales patterns from 2015-2019 with notable peaks and valleys.
-- **Top Sellers**: Identifying best-performing products including Phones ($2,832), Chairs ($2,424), and Appliances ($2,382).
-- **Category Breakdown**: Sparklines showing sales trends for Furniture, Office Supplies, and Technology segments.
-- **Export Options**: PDF and image export functionality for reporting.`,
+- KPI Cards: Total Sales ($13,794), Total Profit ($1,030), Total Quantity (256), and Profit Percentage (7.47%) for the selected region.
+- Regional Filtering: Filter views by different regions (Central, East, West, South) with a date selector for temporal analysis.
+- Breakdown by State: Ranked list showing sales performance by state, from Michigan ($2,903) to Oklahoma ($11).
+- Sales Trend Analysis: Time series visualization showing sales patterns from 2015-2019 with notable peaks and valleys.
+- Top Sellers: Identifying best-performing products including Phones ($2,832), Chairs ($2,424), and Appliances ($2,382).
+- Category Breakdown: Sparklines showing sales trends for Furniture, Office Supplies, and Technology segments.
+- Export Options: PDF and image export functionality for reporting.`,
     category: "Tableau",
     image: salesOverviewImg,
     externalLink: "https://public.tableau.com/app/profile/dzidzi.quist",
@@ -188,23 +188,23 @@ Key features include:
       "Market research project analyzing consumer buying behavior for smart home products using qualitative research methods and customer insights frameworks.",
     fullDescription: `This market research project analyzes the consumer buying journey to understand decision-making processes for smart home products, specifically focusing on robot vacuum cleaners.
 
-**Research Objectives:**
+Research Objectives:
 - Analyze the consumer buying journey to better understand their decision-making process
 - Assess customer satisfaction with the product and likelihood of repeat purchases
 - Determine whether customers would recommend the products to others
 - Explore the relationship model between the company and the customer
 - Identify complementary quantitative research opportunities
 
-**Case Study: Meet Brittany**
+Case Study: Meet Brittany
 A business owner and mother of two who purchased a robot vacuum for convenience. Her journey began when she moved to a new home and was looking for cleaning supplies.
 
-**Key Insights:**
+Key Insights:
 - Purchase decisions influenced by Amazon reviews and Prime membership
 - Smartphone connectivity is a valued feature over traditional vacuums
 - Visual content (pictures & videos) played a significant role in purchase decisions
 - Price comparison with traditional vacuums justified the investment
 
-**Methodology:** Qualitative interview and consumer behavior analysis framework.`,
+Methodology: Qualitative interview and consumer behavior analysis framework.`,
     category: "Consumer Research",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
     externalLink: "#",
@@ -221,24 +221,24 @@ A business owner and mother of two who purchased a robot vacuum for convenience.
       "Five-factor customer commitment analysis for Crew's Cup using Python - examining economic, forced, habitual, normative, and affective commitment drivers.",
     fullDescription: `A comprehensive customer commitment analysis for Crew's Cup fitness center, examining the optimal investment strategy to increase customer retention and reduce churn.
 
-**Background:**
+Background:
 Crew's Cup underwent ownership changes, leading to customer churn rates of 70% annually. Through strategic interventions including the return of popular instructors and positive media coverage, churn was reduced to 60%. This analysis examines how to further improve retention.
 
-**Five-Factor Commitment Model:**
-1. **Economic Commitment**: Loyalty driven by benefits gained from being a customer
-2. **Forced Commitment**: When customers feel compelled to stay due to external pressures
-3. **Habitual Commitment**: Routine-based loyalty from consistent usage patterns
-4. **Normative Commitment**: Moral or values-based connection to the brand
-5. **Affective Commitment**: Emotional attachment and genuine love for the brand
+Five-Factor Commitment Model:
+1. Economic Commitment: Loyalty driven by benefits gained from being a customer
+2. Forced Commitment: When customers feel compelled to stay due to external pressures
+3. Habitual Commitment: Routine-based loyalty from consistent usage patterns
+4. Normative Commitment: Moral or values-based connection to the brand
+5. Affective Commitment: Emotional attachment and genuine love for the brand
 
-**Investment Options Analyzed:**
+Investment Options Analyzed:
 - Monk's Strategy: Addressing normative commitment through brand values
 - Proposed Subscription: Economic commitment through stable pricing
 - Instructor's New Product: Reducing forced commitment through variety
 
-**Recommendation:** Implement the Monk's Strategy focusing on normative commitment, as it encourages loyalty based on values rather than just personal benefit, creating more sustainable customer relationships.
+Recommendation: Implement the Monk's Strategy focusing on normative commitment, as it encourages loyalty based on values rather than just personal benefit, creating more sustainable customer relationships.
 
-**Methodology:** Survey of 1,500 respondents with cluster analysis and commitment factor modeling.`,
+Methodology: Survey of 1,500 respondents with cluster analysis and commitment factor modeling.`,
     category: "Python",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
     externalLink: "#",
