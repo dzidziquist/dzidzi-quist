@@ -43,11 +43,12 @@ The Need for Women in Power: Highlighting the importance of gender equality in p
 A collaboration between Lowar Akrofi and Maureen Dzifa Quist.`,
     category: "Tableau",
     image: genderInequalityImg,
-    externalLink: "https://public.tableau.com/app/profile/dzidzi.quist",
+    externalLink:
+      "https://public.tableau.com/views/InequalityinGhanasParliament_15997884283440/InequalityinGhanasParliament2?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
     icon: Users,
     tools: ["Tableau", "Data Research", "Infographic Design"],
     year: "2020",
-    collaborators: "Lowar Akrofi",
+    collaborators: "Lawer Akrofi",
   },
   {
     id: 2,
@@ -66,7 +67,8 @@ This visualization explores:
 The data reveals interesting patterns about how Ghanaians vote and what factors influence their decisions at the polls.`,
     category: "Tableau",
     image: electionsImg,
-    externalLink: "https://public.tableau.com/app/profile/dzidzi.quist",
+    externalLink:
+      "https://public.tableau.com/views/TrendofElections/TrendofElections?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
     icon: Vote,
     tools: ["Tableau", "Data Analysis", "Geographic Mapping"],
     year: "2020",
@@ -87,7 +89,8 @@ This personal data visualization explores:
 This visualization tells the story of my year through the music I listened to—revealing travel periods, mood patterns, and musical preferences.`,
     category: "Data Viz",
     image: musicPlaysImg,
-    externalLink: "https://public.tableau.com/app/profile/dzidzi.quist",
+    externalLink:
+      "https://public.tableau.com/views/MyMusicPlays2023/MYMUSICPLAYS?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
     icon: Music,
     tools: ["Tableau", "Apple Music Data", "Personal Analytics"],
     year: "2023",
@@ -108,9 +111,10 @@ Key features include:
 This visualization serves as practice for mastering Tableau's advanced mapping capabilities while creating a personal geography of experiences in Accra.`,
     category: "Tableau",
     image: accraMapImg,
-    externalLink: "https://public.tableau.com/app/profile/dzidzi.quist",
+    externalLink:
+      "https://public.tableau.com/views/ParametersXMapLayers/PARAMETERSXLAYERS?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
     icon: Map,
-    tools: ["Tableau", "QGIS", "OpenStreetMap", "Google Maps"],
+    tools: ["Tableau", "QGIS"],
     year: "2022",
   },
   {
@@ -130,7 +134,8 @@ This visualization explores:
 Data sourced from Wikipedia, IMDb, Fandom, and Pinterest with sound from Redringtones.`,
     category: "Data Viz",
     image: rugratsImg,
-    externalLink: "https://public.tableau.com/app/profile/dzidzi.quist",
+    externalLink:
+      "https://public.tableau.com/views/Rugrats/Rugrats?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
     icon: Tv,
     tools: ["Tableau", "IMDb Data", "Creative Design"],
     year: "2022",
@@ -152,7 +157,8 @@ This visualization explores:
 Data sourced from IMDb and Wikipedia, with icons from The Noun Project and audio from YouTube.`,
     category: "Data Viz",
     image: boondocksImg,
-    externalLink: "https://public.tableau.com/app/profile/dzidzi.quist",
+    externalLink:
+      "https://public.tableau.com/views/TheBoondocks/THEBOONDOCKS?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
     icon: Tv,
     tools: ["Tableau", "IMDb Data", "Creative Design", "Audio Integration"],
     year: "2022",
@@ -175,7 +181,8 @@ Key features include:
 - Export Options: PDF and image export functionality for reporting.`,
     category: "Tableau",
     image: salesOverviewImg,
-    externalLink: "https://public.tableau.com/app/profile/dzidzi.quist",
+    externalLink:
+      "https://public.tableau.com/views/SalesOverview_16081326841510/salesoverview?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
     icon: ShoppingCart,
     tools: ["Tableau", "Business Intelligence", "KPI Design"],
     year: "2023",
