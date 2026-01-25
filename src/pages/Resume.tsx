@@ -75,7 +75,7 @@ const Resume = () => {
           </div>
           
           <div className="grid lg:grid-cols-2 gap-12">
-            {/* Left Column - Experience */}
+            {/* Left Column - Experience & Certifications */}
             <div className="space-y-8">
               {/* Experience */}
               <AnimatedSection>
@@ -109,9 +109,37 @@ const Resume = () => {
                     </motion.div>)}
                 </div>
               </AnimatedSection>
+
+              {/* Certifications */}
+              <AnimatedSection delay={0.1}>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
+                    <Award className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <h2 className="text-2xl font-display font-bold">Certifications</h2>
+                </div>
+                <div className="grid gap-3">
+                  {certifications.map((cert, index) => <motion.div key={cert.name} className="p-4 rounded-xl bg-card border border-border flex items-center justify-between" initial={{
+                  opacity: 0,
+                  x: -20
+                }} whileInView={{
+                  opacity: 1,
+                  x: 0
+                }} viewport={{
+                  once: true
+                }} transition={{
+                  delay: index * 0.1
+                }}>
+                      <div>
+                        <h3 className="font-display font-semibold text-sm">{cert.name}</h3>
+                        <p className="text-xs text-muted-foreground">{cert.issuer}</p>
+                      </div>
+                    </motion.div>)}
+                </div>
+              </AnimatedSection>
             </div>
 
-            {/* Right Column - Education, Certifications, Awards & Technologies */}
+            {/* Right Column - Education, Awards & Technologies */}
             <div className="space-y-8">
               {/* Education */}
               <AnimatedSection>
@@ -148,33 +176,6 @@ const Resume = () => {
                       {item.experience && <p className="text-xs text-muted-foreground mt-1">
                           <span className="font-medium text-foreground">Experience:</span> {item.experience}
                         </p>}
-                    </motion.div>)}
-                </div>
-              </AnimatedSection>
-              {/* Certifications */}
-              <AnimatedSection delay={0.1}>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                    <Award className="h-5 w-5 text-primary-foreground" />
-                  </div>
-                  <h2 className="text-2xl font-display font-bold">Certifications</h2>
-                </div>
-                <div className="grid gap-3">
-                  {certifications.map((cert, index) => <motion.div key={cert.name} className="p-4 rounded-xl bg-card border border-border flex items-center justify-between" initial={{
-                  opacity: 0,
-                  x: 20
-                }} whileInView={{
-                  opacity: 1,
-                  x: 0
-                }} viewport={{
-                  once: true
-                }} transition={{
-                  delay: index * 0.1
-                }}>
-                      <div>
-                        <h3 className="font-display font-semibold text-sm">{cert.name}</h3>
-                        <p className="text-xs text-muted-foreground">{cert.issuer}</p>
-                      </div>
                     </motion.div>)}
                 </div>
               </AnimatedSection>
