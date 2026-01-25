@@ -10,12 +10,14 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const isResumePage = location.pathname === "/resume";
+  const isFullScreenPage = isHomePage || isResumePage;
 
   return (
-    <div className={isHomePage ? "h-screen overflow-hidden" : "min-h-screen flex flex-col"}>
+    <div className={isFullScreenPage ? "h-screen overflow-hidden" : "min-h-screen flex flex-col"}>
       <Header />
-      <main className={isHomePage ? "h-full" : "flex-1 pt-20"}>{children}</main>
-      {!isHomePage && <Footer />}
+      <main className={isFullScreenPage ? "h-full" : "flex-1 pt-20"}>{children}</main>
+      {!isFullScreenPage && <Footer />}
     </div>
   );
 };
