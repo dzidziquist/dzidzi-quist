@@ -61,6 +61,17 @@ const BlogPost = () => {
               </div>
             </header>
 
+            {/* Featured Image */}
+            {post.image && (
+              <div className="mb-10 rounded-xl overflow-hidden border border-border">
+                <img 
+                  src={post.image} 
+                  alt={post.title}
+                  className="w-full h-auto"
+                />
+              </div>
+            )}
+
             {/* Content */}
             <div className="prose prose-lg dark:prose-invert max-w-none">
               {post.content.split('\n\n').map((paragraph, index) => {
