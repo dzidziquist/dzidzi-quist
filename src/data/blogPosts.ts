@@ -632,39 +632,163 @@ This project is based on the Google Data Analytics Professional Certificate.`,
   },
   {
     id: 6,
-    slug: "building-interactive-dashboards-with-tableau",
-    title: "Building Interactive Dashboards with Tableau: A Complete Guide",
-    excerpt: "Learn the key principles of creating engaging, user-friendly data visualizations that tell a story and drive action.",
-    content: `Data visualization is more than just creating charts—it's about telling a story that drives action. In this comprehensive guide, we'll explore the key principles of building interactive dashboards with Tableau that engage users and communicate insights effectively.
+    slug: "python-publish-csv-to-tableau-server",
+    title: "How To Use Python To Publish Data From A CSV To Tableau Server",
+    excerpt: "Learn how to automate publishing CSV data as Hyper extracts to Tableau Server using Python and the Tableau APIs.",
+    content: `![CSV Python Tableau](/blog/csv-python-tableau.png)
 
-## Understanding Your Audience
+Over the past year, I have learned a lot and I am extremely excited to share some of the cool things with you. As the world keeps evolving at a fast pace, it has led to automation. In my daily work, it is a key priority to automate some aspects of work to make life easy for everyone. Who doesn't love to do the hard lifting and enjoy its fruits? 😅
 
-Before diving into Tableau, it's crucial to understand who will be using your dashboard. Are they executives who need high-level KPIs? Analysts who want to drill down into details? Understanding your audience shapes every design decision.
+With this said. I had a long discussion with my friend and mentor some months ago, a big shout-out to Lawer Akrofi. To be exact two years ago. I know!!! it has taken me two years to put this together. But then it is good news because I tried re-implementing this solution we came up with and realized I had some restrictions on the server hence an API to the server to insert data was not a solution for me. So what did I do? I had a script that fetched daily CSV files onto my machine with the help of cronjobs and Tableau Prep flow which cleans the data and publishes it to the server using the prep command line. oh yes, it was a fun time for me to learn and once I figured it out, I did reward myself with a very good piece of tiramisù. If you do know me, well I have a sweet tooth. 😊
 
-## Key Design Principles
+I have said a lot of things but no codes yet. Let's dive into publishing a static CSV file as hyper on the Tableau server using the Tableau Server's API. In another blog post, we will do a little rewiring when we talk about using SharePoint instead of a CSV file that sits on your laptop. In case your firm has its own database and API, an API call to fetch data, is indeed possible. Everything under the sun is possible to achieve!!!!
 
-### 1. Start with the Big Picture
-Place your most important metrics at the top-left of your dashboard. This is where users naturally look first. Use large, bold numbers for KPIs that matter most.
+To every data enthusiast out there using python, is it safe to say pandas is our best friend and first love of data manipulation? Below, I will insert the block of codes and try my very best to explain. I came across a blog post that was extremely helpful for the creation of the hyper extract. I modified it to prevent typing in 100 column names if your data is large while creating the schema and also allows users to specify which project to publish the data to.
 
-### 2. Use Color Purposefully
-Color should highlight insights, not decorate. Use a consistent color palette and reserve bright colors for important data points or alerts.
+\`\`\`python
+#importing all needed libarires
+import pandas as pd
 
-### 3. Enable Interactivity
-Tableau's strength lies in its interactivity. Add filters, parameters, and actions that let users explore the data on their own terms.
+from tableau_api_lib import TableauServerConnection
+from tableau_api_lib.utils.querying import get_projects_dataframe
 
-## Best Practices for Performance
+from tableauhyperapi import HyperProcess, Connection, TableDefinition, SqlType, Telemetry, Inserter, CreateMode, TableName
+from tableauhyperapi import escape_string_literal
 
-- Limit the number of marks on a single view
-- Use extracts instead of live connections when possible
-- Optimize calculated fields by moving them to the data source level
+import tableauserverclient as TSC
 
-## Conclusion
+#Get the data; read in csv file
+filename = pd.read_csv(['file name goes here'], usecols = ['read in appropriate columns needed'])
 
-Building effective dashboards is an iterative process. Gather feedback from your users, measure engagement, and continuously refine your designs.`,
-    category: "Tutorials",
-    readTime: "8 min read",
-    date: "December 28, 2023",
+
+#convert all datetime values to appropriate type
+#convert data types into their appropriate types and formats
+#an example below to convert date
+filename['date'] = filename['date'].apply(pd.to_datetime)
+
+
+
+# get a list of column names from the csv file
+colnames = filename.columns
+
+# get a list of column types from the csv file
+coltypes = filename.dtypes
+
+#the above would help with the definition of the schema
+
+#specifying the various data type to be used to define the schema 
+field = { 
+    'float64' :     SqlType.double(), 
+    'float32' :     SqlType.double(),
+    'int64' :       SqlType.double(),
+    'int32' :       SqlType.double(),
+    'object':       SqlType.text(),
+    'bool':         SqlType.bool(),
+    'datetime64[ns, UTC]':   SqlType.date(),
+}
+
+
+# for each column, add the appropriate info for the Table Definition
+column_names = []
+column_type = []
+for i in range(0, len(colnames)):
+    cname = colnames[i] #header of column
+    coltype = coltypes[i] #pandas data type of column
+    ctype = field.get(str(coltype)) #get corresponding sql column type 
+
+    #store in lists to used for column and schema
+    column_names.append(cname)
+    column_type.append(ctype)
+
+
+#name and path to save extract temporarily
+PATH_TO_HYPER = 'hyper_extract.hyper'
+
+# Step 1: Start a new private local Hyper instance
+with HyperProcess(Telemetry.SEND_USAGE_DATA_TO_TABLEAU, 'myapp' ) as hyper:
+
+# Step 2:  Create the the .hyper file, replace it if it already exists
+    with Connection(endpoint=hyper.endpoint, 
+                    create_mode=CreateMode.CREATE_AND_REPLACE,
+                    database=PATH_TO_HYPER) as connection:
+
+# Step 3: Create the schema(empty)
+        connection.catalog.create_schema('Extract')
+
+
+# Step 4: Create the table definition
+        #defining the columns according to the dataframe
+        cols = []
+        for i, j in zip(column_names, column_type):
+            columns = TableDefinition.Column(i, j)
+            cols.append(columns)
+
+
+        #creating schema 
+        schema = TableDefinition(table_name=TableName('Extract','Extract'),
+                columns= cols)
+
+# Step 5: Create the table in the connection catalog
+        connection.catalog.create_table(schema)
+    
+        with Inserter(connection, schema) as inserter:
+            for index, row in filename.iterrows():
+                inserter.add_row(row)
+            inserter.execute()
+
+    print("The connection to the Hyper file is closed.")     
+
+
+# Establish a connection to Tableau Server and publish the extract
+tableau_auth = TSC.PersonalAccessTokenAuth('name of API goes here', 'your token secret goes here')
+server = TSC.Server('site address')
+
+# For Tableau Online instead, use:
+# tableau_auth = TSC.PersonalAccessTokenAuth('name of API', 'token secret', 'site name')
+# server = TSC.Server('site address')
+
+
+#allow user to input project name for datasource to be published
+datasource = input(str('enter name of datasource project directory to publish datasource '))
+
+
+with server.auth.sign_in(tableau_auth):
+
+     # fetch the corresponding project id 
+    ID = ''
+
+    all_project_items, pagination_item = server.projects.get()
+    for proj in all_project_items:
+        if proj.name == datasource:
+            ID = proj.id
+
+    # Use the project id to create new datsource_item
+    new_datasource = TSC.DatasourceItem(ID)
+
+    # publish data source (specified in file_path)
+    new_datasource = server.datasources.publish(
+                    new_datasource, PATH_TO_HYPER, 'CreateNew')
+        
+    # since datasource exist from prior publish, overwrite it 
+    # new_datasource = server.datasources.publish(
+    #                 new_datasource, PATH_TO_HYPER, 'Overwrite')
+
+#signing out of the tableau server
+print('Publishing completed')
+server.auth.sign_out()
+\`\`\`
+
+That is all folks!! This is pretty straightforward. In order to run this periodically, saving these codes as .py file and using cronjobs on MAC or task scheduler on WINDOWS, I believe a good job on automation could be done. Having this periodically on the server and feeding it into a dashboard for reporting is pretty much hard lifting work. Sit back and enjoy the beauty of technology and evolution. I hope the above comments in the codes make a good explanation. 😊
+
+## Resources
+
+- **Tableau Hyper API**: https://tableau.github.io/hyper-db/docs/
+- **Tableau REST API**: https://help.tableau.com/current/api/rest_api/en-us/REST/rest_api.htm`,
+    category: "Python",
+    readTime: "7 min read",
+    date: "February 18, 2022",
     featured: false,
+    image: "/blog/csv-python-tableau.png",
   },
   {
     id: 7,
