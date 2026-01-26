@@ -61,62 +61,79 @@ const BlogPost = () => {
 
             {/* Content */}
             <div className="prose prose-lg dark:prose-invert max-w-none">
-              {post.content.split('\n\n').map((paragraph, index) => {
-              if (paragraph.startsWith('## ')) {
-                return <h2 key={index} className="text-2xl font-display font-bold mt-8 mb-4">
-                      {paragraph.replace('## ', '')}
-                    </h2>;
-              }
-              if (paragraph.startsWith('### ')) {
-                return <h3 key={index} className="text-xl font-display font-semibold mt-6 mb-3">
-                      {paragraph.replace('### ', '')}
-                    </h3>;
-              }
-              // Handle images with markdown syntax ![alt](src)
-              if (paragraph.startsWith('![')) {
-                const match = paragraph.match(/!\[(.*?)\]\((.*?)\)/);
-                if (match) {
-                  return <div key={index} className="my-6 rounded-xl overflow-hidden border border-border">
-                        
-                      </div>;
-                }
-              }
-              if (paragraph.startsWith('```')) {
-                const lines = paragraph.split('\n');
-                // Skip the first line (```language) and last line (```) if present
-                const codeLines = lines.slice(1);
-                // Remove the closing ``` if it's the last line
-                const code = codeLines[codeLines.length - 1] === '```' 
-                  ? codeLines.slice(0, -1).join('\n')
-                  : codeLines.join('\n');
-                return (
-                  <pre key={index} className="bg-muted p-4 rounded-lg overflow-x-auto my-6 border border-border">
-                    <code className="text-sm font-mono text-foreground whitespace-pre-wrap break-words">{code}</code>
-                  </pre>
-                );
-              }
-              if (paragraph.startsWith('- ')) {
-                const items = paragraph.split('\n').filter(line => line.startsWith('- '));
-                return <ul key={index} className="list-disc pl-6 my-4 space-y-2">
-                      {items.map((item, i) => <li key={i} className="text-muted-foreground">
-                          {item.replace('- ', '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}
-                        </li>)}
-                    </ul>;
-              }
-              if (paragraph.match(/^\d+\./)) {
-                const items = paragraph.split('\n').filter(line => line.match(/^\d+\./));
-                return <ol key={index} className="list-decimal pl-6 my-4 space-y-2">
-                      {items.map((item, i) => <li key={i} className="text-muted-foreground">
-                          {item.replace(/^\d+\.\s*/, '')}
-                        </li>)}
-                    </ol>;
-              }
-              // Handle bold text and regular paragraphs
-              const formattedText = paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-              return <p key={index} className="text-muted-foreground leading-relaxed my-4" dangerouslySetInnerHTML={{
-                __html: formattedText
-              }} />;
-            })}
+              {(() => {
+                // First, extract code blocks and replace them with placeholders
+                const codeBlocks: string[] = [];
+                let contentWithPlaceholders = post.content.replace(/```[\s\S]*?```/g, (match) => {
+                  codeBlocks.push(match);
+                  return `___CODE_BLOCK_${codeBlocks.length - 1}___`;
+                });
+
+                // Now split by double newlines
+                const paragraphs = contentWithPlaceholders.split('\n\n');
+
+                return paragraphs.map((paragraph, index) => {
+                  // Check if this is a code block placeholder
+                  const codeBlockMatch = paragraph.match(/___CODE_BLOCK_(\d+)___/);
+                  if (codeBlockMatch) {
+                    const codeBlockIndex = parseInt(codeBlockMatch[1]);
+                    const codeBlock = codeBlocks[codeBlockIndex];
+                    const lines = codeBlock.split('\n');
+                    // Skip the first line (```language) and get all lines until closing ```
+                    const codeLines = lines.slice(1);
+                    // Remove the closing ``` if it's the last line
+                    const code = codeLines[codeLines.length - 1] === '```' 
+                      ? codeLines.slice(0, -1).join('\n')
+                      : codeLines.join('\n');
+                    return (
+                      <pre key={index} className="bg-muted p-4 rounded-lg overflow-x-auto my-6 border border-border">
+                        <code className="text-sm font-mono text-foreground whitespace-pre-wrap break-words">{code}</code>
+                      </pre>
+                    );
+                  }
+
+                  if (paragraph.startsWith('## ')) {
+                    return <h2 key={index} className="text-2xl font-display font-bold mt-8 mb-4">
+                          {paragraph.replace('## ', '')}
+                        </h2>;
+                  }
+                  if (paragraph.startsWith('### ')) {
+                    return <h3 key={index} className="text-xl font-display font-semibold mt-6 mb-3">
+                          {paragraph.replace('### ', '')}
+                        </h3>;
+                  }
+                  // Handle images with markdown syntax ![alt](src)
+                  if (paragraph.startsWith('![')) {
+                    const match = paragraph.match(/!\[(.*?)\]\((.*?)\)/);
+                    if (match) {
+                      return <div key={index} className="my-6 rounded-xl overflow-hidden border border-border">
+                            <img src={match[2]} alt={match[1]} className="w-full h-auto" />
+                          </div>;
+                    }
+                  }
+                  if (paragraph.startsWith('- ')) {
+                    const items = paragraph.split('\n').filter(line => line.startsWith('- '));
+                    return <ul key={index} className="list-disc pl-6 my-4 space-y-2">
+                          {items.map((item, i) => <li key={i} className="text-muted-foreground" dangerouslySetInnerHTML={{
+                              __html: item.replace('- ', '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                            }} />)}
+                        </ul>;
+                  }
+                  if (paragraph.match(/^\d+\./)) {
+                    const items = paragraph.split('\n').filter(line => line.match(/^\d+\./));
+                    return <ol key={index} className="list-decimal pl-6 my-4 space-y-2">
+                          {items.map((item, i) => <li key={i} className="text-muted-foreground">
+                              {item.replace(/^\d+\.\s*/, '')}
+                            </li>)}
+                        </ol>;
+                  }
+                  // Handle bold text and regular paragraphs
+                  const formattedText = paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                  return <p key={index} className="text-muted-foreground leading-relaxed my-4" dangerouslySetInnerHTML={{
+                    __html: formattedText
+                  }} />;
+                });
+              })()}
             </div>
 
             {/* Navigation to other posts */}
