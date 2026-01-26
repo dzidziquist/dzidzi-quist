@@ -166,33 +166,39 @@ With love always ❤️😘`,
     slug: "data-cleaning-to-machine-learning",
     title: "Data Cleaning to Machine Learning",
     excerpt: "A journey to re-learn Python and polish up my skills, from data cleaning to classification with the Titanic dataset.",
-    content: `As part of my return journey to Python project; this is a journey to re-learn Python and polish up my skills, starting from the basics and climbing up to the advance; Machine Learning and Deep Learning, I look at data cleaning in Python and classification under the supervised learning algorithms.
+    content: `As part of my return journey to python project; this is a journey to re-learn python and polish up my skills, starting from the basics and climbing up to the advance; Machine Learning and Deep Learning, I look at data cleaning in python and classification under the supervised learning algorithms.
 
 **In this blog post:**
 - What is data cleaning?
 - Understanding your data
 - Data cleaning
+- Understand the data more after cleaning
 - Feature Engineering
 - Data Encoding
 - The Model
 - The Prediction
 - The Evaluation
 - Tuning the Model
+- Visualization of Accuracy
 - Final Evaluation
 
-## What is Data Cleaning?
+## What is data cleaning?
 
 This is the process of removing unwanted features, fixing or removing duplicates, incorrect entries, incomplete or missing values, incorrectly formatted data in the data to improve the quality of the data.
 
-The term "garbage in, garbage out" is very crucial in the data environment. That is when you use a poor dataset for analysis, you get very poor and incorrect insights. Similarly, a poor dataset being fed into a machine learning or deep learning algorithm or model leads to poor performance.
+The term garbage in garbage out is very crucial in the data environment. That is when you use a poor dataset for analysis, you get very poor and incorrect insights. Similarly, poor dataset being fed into a machine learning or deep learning algorithm or model leads to poor performance.
 
-## Understanding the Data
+## Understanding the data
 
 Understanding your data leads you on the right path to cleaning the data and making the necessary wrangling to achieve your set goal with the data.
 
-The ultimate goal of the dataset being used here is to predict if an individual would survive or not on the Titanic shipwreck. This is a classification problem under supervised learning algorithms in data science. The Titanic dataset can be found on Kaggle. The datasets consist of train and test datasets. The train dataset will be used to train the model, whereas the test set will be used for the prediction of the survived variable.
+In this post, using python, I will show how to understand the features of a data in order to achieve clean data for analysis or machine learning algorithm.
 
-Shall we begin? Let's first import some packages.
+The ultimate goal of the dataset being used here is to predict if an individual would survive or not on the Titanic shipwreck. This is a classification problem under supervised learning algorithms in data science. The titanic dataset can be found on Kaggle. The datasets of this task consist of a train and test datasets. The train dataset will be used to train the model, whereas the test set will be used for the prediction of the survived variable. Also, it consists of the survived dataset which serves as the actual survival of the test dataset, hence using it for evaluation of the model.
+
+**Shall we begin?**
+
+Let's first import some packages.
 
 \`\`\`python
 import numpy as np 
@@ -201,129 +207,222 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from scipy import stats
 from sklearn.neighbors import KNeighborsClassifier
+\`\`\`
 
-# Load dataset
+\`\`\`python
+#load dataset
 train = pd.read_csv('train.csv')
 test = pd.read_csv('test.csv')
 
-# Save passengerid to be used for later
+#save passengerid to be used for later
 passengerid = test['PassengerId']
 train.head()
 \`\`\`
 
-The Passenger Id is saved to be used after the prediction for submission.
+From the above codes, loading in the train dataset and taking a look at this. The Passenger Id is saved to be used after the prediction for submission.
 
 \`\`\`python
-# Dropping the passenger ids in both dataset
-train, test = train.drop('PassengerId', axis=1), test.drop('PassengerId', axis=1)
+#dropping the passenger ids in both dataset, this does not have any correlation to whether an 
+#individual will survive or not 
+train, test = train.drop('PassengerId', axis = 1) , test.drop('PassengerId', axis = 1)
+\`\`\`
 
-# Finding the relationship between survived and other variables
+The main aim of this is to predict the survival on the titanic. therefore survival is the target variable. First, performing summary statistics.
+
+\`\`\`python
+#Let's take a look at the dataset 
+train["Survived"].describe()
+\`\`\`
+
+From the summary statistics performed, it can be seen that the mean of the survived is 0.383838 with a minimum of zero and maximum of 1. It is also known that females and children have a higher chance of surviving so as the higher class. Finding a correlation of the other variables and the target variable to know the effect they have on the target variable.
+
+**How do the features in the dataset relates or behaves with the target variable?**
+
+\`\`\`python
+#finding the relationship between the survived and other variables 
 correlation = train.corr()
+correlation.sort_values(["Survived"])
 correlation.Survived
 \`\`\`
 
-From the above, Pclass has higher correlation to survived compared to the rest. The higher the class (1), the higher the chance of surviving.
+From the above, it can be seen that Pclass has higher correlation to survived compared to the rest. Therefore, the higher the class(1), the higher the chance of surviving(1). That is, if the class has a high number(3), the lower the chances of surviving.
 
 ## Data Cleaning
 
-In this part, the data will be cleaned to suit what we intend to do with it. Mainly checking for missing values and imputing them when necessary.
+In this part, the data will be cleaned or wrangled to suit what we intend to do with it. Mainly checking for missing values and imputing them when necessary or relevant.
 
 \`\`\`python
-# Concatenating the trainset and testset for cleaning
+#concating the trainset and the testset for cleaning 
 data = pd.concat((train, test))
 
-# Identifying missing values
+#identifying missing values 
 print(data.isnull().values.any())
+
+#check for missing values
 print(data.isnull().sum())
 \`\`\`
 
-The missing values are found in Survived, Age, Cabin and Embarked features. Out of 1309 entries, there are 1014 missing cabin values. Imputing this variable might not be advisable, hence it will be dropped.
+The missing values are found in the Survived, Age, Cabin and Embark Features.
 
 \`\`\`python
-# Dropping the cabin variable
-dataset = data.drop('Cabin', axis=1)
-
-# Fill missing age values with median
-median = dataset["Age"].median()
-dataset["Age"].fillna(median, inplace=True)
-
-# Fill missing fare values with median
-median = dataset["Fare"].median()
-dataset["Fare"].fillna(median, inplace=True)
-
-# Fill missing embarked values with mode
-dataset["Embarked"].fillna("S", inplace=True)
+len(data)
 \`\`\`
 
-## Understanding the Dataset More
+Out of 1309 entries, there are 1014 missing cabin values. Imputing this variable and using it in the prediction might not be advisable. Hence it will be ignored and dropped.
 
 \`\`\`python
-# Finding out which sex has higher chances of surviving
+#dropping the cabin variable from the dataset since it is not so relevant in the prediction
+dataset = data.drop('Cabin', axis = 1)
+\`\`\`
+
+For the age, the median would be used to impute the missing values.
+
+\`\`\`python
+median = dataset["Age"].median()
+dataset["Age"].fillna(median, inplace = True)
+\`\`\`
+
+Same would be done for the fare variable.
+
+\`\`\`python
+median = dataset["Fare"].median()
+dataset["Fare"].fillna(median, inplace = True)
+\`\`\`
+
+For the embarked variable, the mode would be used to fill out the missing values.
+
+\`\`\`python
+print(dataset["Embarked"].mode())
+dataset["Embarked"].fillna("S", inplace = True)
+\`\`\`
+
+\`\`\`python
+#checking if all the missing values have been imputed 
+print(len(test))
+dataset.isnull().values.any()
+\`\`\`
+
+From the above code, we find out that the missing values are in the survived feature, which is the target variable needed to be predicted for the test dataset. The number of the missing values make up the length of the test dataset (the number of the data entries in the test dataset).
+
+## Understanding the dataset more
+
+\`\`\`python
+#finding out which sex has the higher chances of suviving 
 print(dataset.groupby(["Sex"]).mean())
 
-# Finding which class has higher chances of surviving
+#finding which class has the higher chances of surviving 
 print(dataset.groupby(["Pclass"]).mean())
 \`\`\`
 
-The upper class (1st) has higher chances of surviving. Females have a higher chance of surviving compared to males with a survival rate of 0.74.
+The upper class (1st) has higher chances of surviving. It is in line with the above correlation found. Whereby, when the class is lower that is 3, the chances of surviving is less.
+
+From the above, females have a higher chance of surviving as compared to males with a survival rate of 0.74.
 
 ## Feature Engineering
 
-Feature engineering is extracting features from data which helps in the performance of a machine learning algorithm. The right features can help improve accuracy.
+Feature engineering is extracting features from data which helps in the performance of a machine learning algorithm. The right features can help improve the accuracy of the model hence it is a very crucial step.
 
 \`\`\`python
-# Creating a new variable to tell if the passenger was traveling alone
-dataset["Alone"] = np.where((dataset["SibSp"] + dataset["Parch"]) > 0, 0, 1)
+#creating a new variable to tell if the passenger was traveling alone or with either a parent or a sibling 
+dataset["Alone"]=np.where((dataset["SibSp"]+dataset["Parch"]) >0, 0, 1)
 
-# Creating a new feature using titles
+#finding out the chances of surviving if the passenger traveled alone 
+dataset.groupby(["Alone"]).mean()
+\`\`\`
+
+There is a 50.6% chance that the passenger will survival if traveling alone.
+
+\`\`\`python
+#creating a new feature using the titles of the individual 
 dataset["Title"] = dataset.Name.str.extract(' ([A-Za-z]+).', expand=False)
+dataset.head()
+\`\`\`
 
-# Making adjustments to titles
+\`\`\`python
+#making some adjustments to the titles 
 for i in dataset:
     dataset["Title"] = dataset["Title"].replace("Mlle", "Miss")
     dataset["Title"] = dataset["Title"].replace("Ms", "Miss")
     dataset["Title"] = dataset["Title"].replace("Mme", "Mrs")
     dataset["Title"] = dataset["Title"].replace(["Lady", "Sir", "Countess", "Jonkheer"], "Royalty")
     dataset["Title"] = dataset["Title"].replace(["Capt", "Col", "Don", "Dona", "Major", 
-                                                 "Dr", "Rev", "Master"], "High rank")
+                                                 "Dr","Rev", "Master"], "High rank")
+
+#finding out the chances of surviving based on the title of the individual 
+dataset[["Title","Survived"]].groupby(["Title"]).mean()
 \`\`\`
 
-Royalties have higher chances of surviving compared to other titles. Therefore, titles and alone features will be very relevant in this ML model.
+Royalties have higher chances of surviving as compared to the other titles. Therefore, titles and alone features will be very relevant in this ML model since they have a correlation with the survived target variable.
+
+\`\`\`python
+#dropping the name column and the ticket column which is irrevelant to our prediction
+dataset = dataset.drop(["Name", "Ticket"], axis = 1)
+print(dataset.head())
+dataset.info()
+\`\`\`
 
 ## Data Encoding
 
-Converting categorical data into numerical data which is easily understood by the model.
+This is converting categorical data into numerical or quantitative data which is easily understood by the model.
 
 \`\`\`python
-# Age grouping
-dataset.loc[dataset['Age'] <= 11, 'Age'] = 0              # Children
-dataset.loc[(dataset['Age'] > 11) & (dataset['Age'] <= 18), 'Age'] = 1   # Teens
-dataset.loc[(dataset['Age'] > 18) & (dataset['Age'] <= 22), 'Age'] = 2   # Youngsters
-dataset.loc[(dataset['Age'] > 22) & (dataset['Age'] <= 27), 'Age'] = 3   # Young Adults
-dataset.loc[(dataset['Age'] > 27) & (dataset['Age'] <= 33), 'Age'] = 4   # Adults
-dataset.loc[(dataset['Age'] > 33) & (dataset['Age'] <= 40), 'Age'] = 5   # Middle Age
-dataset.loc[(dataset['Age'] > 40) & (dataset['Age'] <= 66), 'Age'] = 6   # Senior
-dataset.loc[dataset['Age'] > 66, 'Age'] = 7               # Retired
+#age is a categorical data not numerical in this case. therefore, grouping the into children, youngster ... and 
+#converting them into proper numerical values 
+dataset["Age"].astype(int)
+dataset.loc[ dataset['Age'] <= 11, 'Age'] = 0                             #Children
+dataset.loc[(dataset['Age'] > 11) & (dataset['Age'] <= 18), 'Age'] = 1    #Teens
+dataset.loc[(dataset['Age'] > 18) & (dataset['Age'] <= 22), 'Age'] = 2    #Youngsters
+dataset.loc[(dataset['Age'] > 22) & (dataset['Age'] <= 27), 'Age'] = 3    #Young Adults
+dataset.loc[(dataset['Age'] > 27) & (dataset['Age'] <= 33), 'Age'] = 4    #Adults
+dataset.loc[(dataset['Age'] > 33) & (dataset['Age'] <= 40), 'Age'] = 5    #Middle Age
+dataset.loc[(dataset['Age'] > 40) & (dataset['Age'] <= 66), 'Age'] = 6    #Senior
+dataset.loc[ dataset['Age'] > 66, 'Age'] = 7                              #Retired
+\`\`\`
 
-# Label encoding for categorical columns
+\`\`\`python
+#for fare
+dataset.loc[ dataset['Fare'] <= 7.91, 'Fare'] = 0                                 #Extremely low
+dataset.loc[(dataset['Fare'] > 7.91) & (dataset['Fare'] <= 14.454), 'Fare'] = 1   #very low
+dataset.loc[(dataset['Fare'] > 14.454) & (dataset['Fare'] <= 31), 'Fare']   = 2   #low
+dataset.loc[(dataset['Fare'] > 31) & (dataset['Fare'] <= 99), 'Fare']   = 3       #high
+dataset.loc[(dataset['Fare'] > 99) & (dataset['Fare'] <= 250), 'Fare']   = 4      #very high
+dataset.loc[ dataset['Fare'] > 250, 'Fare'] = 5                                   #extremely high
+
+dataset = dataset.drop("Survived", axis = 1)
+dataset.info()
+\`\`\`
+
+Changing all other categorical data into numerical data using the label encoder module from scikit-learn.
+
+\`\`\`python
 from sklearn.preprocessing import LabelEncoder
-cols = ("Embarked", "Sex", "Title")
+cols = ("Embarked","Sex", "Title")
 for i in cols:
     le = LabelEncoder()
     dataset[i] = le.fit_transform(list(dataset[i]))
 \`\`\`
 
+For the above test, One Hot Encoding could have be used. Below is the code for that.
+
+\`\`\`python
+dataset=pd.get_dummies(dataset, columns=["Embarked","Sex", "Title"])
+\`\`\`
+
 ## The Model
 
-Building the model using K-Nearest Neighbors (KNN).
+Building the model for training using the K-nearest neighbors (knn). First, let's set up our train and test datasets.
 
 \`\`\`python
 y_train = train["Survived"]
 trainset_len = len(train)
 x_train = dataset[:trainset_len]
 x_test = dataset[trainset_len:]
+\`\`\`
 
-KNN = KNeighborsClassifier(n_neighbors=1, metric='euclidean')
+The model; building the knn model with the nearest neighbors as 1. The model behaves by looking at the nearest one old data point to predict what the new data point is.
+
+\`\`\`python
+KNN = KNeighborsClassifier(n_neighbors=1, metric = 'euclidean')
 KNN.fit(x_train, y_train)
 \`\`\`
 
@@ -331,36 +430,74 @@ KNN.fit(x_train, y_train)
 
 \`\`\`python
 prediction = KNN.predict(x_test)
+\`\`\`
 
-# Save prediction as CSV
+To save the prediction as csv with the passenger ids:
+
+\`\`\`python
 Survived = pd.DataFrame(prediction)
 Survived["PassengerId"] = passengerid
 Survived = Survived.rename(columns={0: "Survived"})
+Survived = Survived[["PassengerId","Survived"]]
 Survived.to_csv("Submission.csv", index=False)
 \`\`\`
 
 ## The Evaluation
 
 \`\`\`python
-# Training Accuracy
-train_accuracy = KNN.score(x_train, y_train)  # 90%
-
-# Test Accuracy
-y_test = pd.read_csv('gender_submission.csv', usecols=['Survived'])
-test_accuracy = KNN.score(x_test, y_test)  # 83%
+#training Accuracy
+train_accuracy = KNN.score(x_train, y_train)
+train_accuracy
 \`\`\`
 
-The train accuracy is 90%, and the test accuracy is 83%.
+The train accuracy is 90%, therefore was able to learn 90% of the train dataset.
 
-## Tuning the Model
+For the test data, let's load the actuals for evaluation.
+
+\`\`\`python
+#load in the actuals 
+y_test = pd.read_csv('gender_submission.csv', usecols = ['Survived'])
+y_test = y_test.to_numpy()
+y_test.shape
+
+test_accuracy = KNN.score(x_test, y_test)
+print(test_accuracy)
+
+from sklearn.metrics import accuracy_score
+accuracy_score(y_test, prediction)
+\`\`\`
+
+The test accuracy is 83%, therefore the model was able to accurately predict 83% of the dataset.
+
+## Tuning the model
 
 \`\`\`python
 from sklearn.model_selection import GridSearchCV
-params = {"n_neighbors": np.arange(1, 9), "metric": ["euclidean"]}
-grid = GridSearchCV(estimator=KNN, param_grid=params)
+
+params = {"n_neighbors": np.arange(1,9),
+"metric": ["euclidean"]}
+
+grid = GridSearchCV(estimator=KNN,
+param_grid=params)
+
 grid.fit(x_train, y_train)
 print(grid.best_score_)
-print(grid.best_estimator_.n_neighbors)  # 5 neighbors gives better accuracy
+print(grid.best_estimator_.n_neighbors)
+\`\`\`
+
+From the above, it is seen that a number of 5 neighbors gives a better score in accuracy.
+
+## Visualization of Accuracy
+
+Visualizing the above for clarity.
+
+\`\`\`python
+mean_score = grid.cv_results_['mean_test_score']
+k = np.arange(1,9)
+
+plt.plot(k, mean_score)
+plt.xlabel('Number of Neighbors')
+plt.ylabel('Testing Accuracy')
 \`\`\`
 
 ## Final Evaluation
@@ -370,15 +507,24 @@ KNN = KNeighborsClassifier(n_neighbors=5)
 KNN.fit(x_train, y_train)
 y_pred = KNN.predict(x_test)
 
+#training Accuracy
 train_accuracy = KNN.score(x_train, y_train)
-test_accuracy = KNN.score(x_test, y_test)  # Increased to 0.87
+print('train accuracy is', train_accuracy)
+
+test_accuracy = KNN.score(x_test, y_test)
+print('test accuracy is', test_accuracy)
+
+from sklearn.metrics import accuracy_score
+accuracy_score(y_test, y_pred)
 \`\`\`
 
-Using a higher number of neighbors, the accuracy on the test dataset increases from 0.83 to 0.87.
+Using a higher number of neighbors, it can be seen that the accuracy on the test dataset increases slightly from 0.83 to 0.87.
 
-Data cleaning is a very crucial step in both data analysis and data science. Do not forget to run the codes! 🤗
+Data cleaning is a very crucial step in both data analysis and data science and I hope this blog shared some insights on that. Do not forget to run the codes.🤗
 
-Codes can be found on my GitHub. Thank you for reading. Happy cleaning ❤️`,
+Codes can be found on my GitHub.
+
+Thank you for reading. Happy cleaning ❤️`,
     category: "Python",
     readTime: "15 min read",
     date: "November 7, 2020",
