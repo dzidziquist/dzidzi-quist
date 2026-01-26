@@ -48,6 +48,7 @@ export interface Project {
   year: string;
   collaborators?: string;
   pdfUrl?: string;
+  codeSnippet?: string;
 }
 
 // Helper to get display categories (always returns array)
@@ -283,6 +284,120 @@ Methodology: Survey of 1,500 respondents with cluster analysis and commitment fa
     tools: ["Python", "Survey Analysis", "Cluster Analysis", "Customer Analytics", "Consumer Research"],
     year: "2024",
     pdfUrl: "/documents/customer-commitment-study.pdf",
+    codeSnippet: `import pandas as pd
+import seaborn as sns
+import numpy as np 
+import matplotlib.pyplot as plt 
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from factor_analyzer import FactorAnalyzer
+import pingouin as pg
+
+crewsCup = pd.read_csv("crews-cup-data.csv")
+crewsCup.head()
+
+# copy original df and store treatment to add back in later 
+crewsCup = crewsCup.copy()
+treatmentCol = crewsCup["treatment"] 
+
+# drop categorical vars 
+crewsCup = crewsCup.drop(["treatment", "id"], axis=1)
+
+scaledFeatures = StandardScaler()
+crewsCup = pd.DataFrame(scaledFeatures.fit_transform(crewsCup), columns=crewsCup.columns)
+
+# create the scree plot 
+fa = FactorAnalyzer(rotation=None)
+fa.fit(crewsCup)
+
+# get eigenvalues to see how many factors to keep 
+eigenvalues, vectors = fa.get_eigenvalues()
+
+# elbow plot 
+plt.plot(range(1, len(eigenvalues) + 1), eigenvalues, marker="o")
+plt.title("Scree Plot for EFA")
+plt.xlabel("Number of Factors")
+plt.ylabel("Eigenvalue")
+plt.show()
+
+# print eigenvalues to see which are > 1
+np.set_printoptions(suppress=True, precision=3)
+print("Eigenvalues:", eigenvalues)
+
+# using five factors 
+fiveFactors = FactorAnalyzer(n_factors=5, rotation="Varimax")
+fiveFactors.fit(crewsCup)
+
+# Get variance of each factor
+varianceExplainedFiveF = fiveFactors.get_factor_variance()
+print(round(varianceExplainedFiveF[1].sum()*100))
+
+# get factor loadings
+loadings = fiveFactors.loadings_
+
+# get factor scores
+factorScores = fiveFactors.transform(crewsCup)
+loadings = pd.DataFrame(loadings, columns=["Factor 1", "Factor 2", "Factor 3", "Factor 4", "Factor 5"], index=crewsCup.columns)
+round(loadings, 3)
+
+# group variables by factors > 0.7 loading score are good  
+factor1 = crewsCup[["f1", "f2", "f3", "h1", "h2", "h3", "e1", "e2", "e3", "classes"]]
+factor2 = crewsCup[["n1", "n2", "n3"]]
+factor3 = crewsCup[["origination", "classes", "contribution"]]
+factor4 = crewsCup[["a1", "a2", "a3"]]
+factor5 = crewsCup[["f1", "f2", "f3", "csat"]]
+
+# calculate Cronbach's Alpha for each factor
+chronAOne = round(pg.cronbach_alpha(factor1)[0],2)
+chronATwo = round(pg.cronbach_alpha(factor2)[0],2)
+chronAThree = round(pg.cronbach_alpha(factor3)[0],2)
+chronAFour = round(pg.cronbach_alpha(factor4)[0],2)
+chronAFive = round(pg.cronbach_alpha(factor5)[0],2)
+
+# Factor 1 --> Convenience (Forced/Habitual Commitment)
+# Factor 2 --> Emotional Connection (Affective Commitment)
+# Factor 3 --> Ethical Duty (Normative Commitment)
+
+# Add treatment back in
+crewsCup["treatment"] = treatmentCol
+
+# Check and calculate scores for each factor based on Cronbach's Alpha
+if chronAOne >= 0.7:
+    crewsCup["Convenience"] = factor1.mean(axis=1)
+if chronATwo >= 0.7:
+    crewsCup["Emotional Connection"] = factor2.mean(axis=1)
+if chronAThree >= 0.7:
+    crewsCup["Ethical Duty"] = factor3.mean(axis=1)
+if chronAFour >= 0.7:
+    crewsCup["Customer Engagement"] = factor4.mean(axis=1)
+if chronAFive >= 0.7:
+    crewsCup["Satisfaction"] = factor5.mean(axis=1)
+
+# Group by treatment and calculate mean scores
+scores = crewsCup.groupby("treatment")[["Convenience", "Emotional Connection", "Ethical Duty", "Customer Engagement", "Satisfaction"]].mean().reset_index()
+scores = round(scores, 3)
+
+# K-Means Clustering
+from sklearn.decomposition import PCA
+features = crewsCup[["Convenience", "Emotional Connection", "Customer Engagement"]]
+
+scaler = StandardScaler()
+scaleFeatures = scaler.fit_transform(features)
+
+inertia = []
+cluster_range = range(1, 11)
+
+for k in cluster_range:
+    kmeans = KMeans(n_clusters=k, random_state=42)
+    kmeans.fit(scaleFeatures)
+    inertia.append(kmeans.inertia_)
+
+# plotting scree plot 
+plt.figure(figsize=(8, 5))
+plt.plot(cluster_range, inertia, marker="o")
+plt.xlabel("Number of Clusters")
+plt.ylabel("Inertia")
+plt.show()`,
   },
   {
     id: 10,
