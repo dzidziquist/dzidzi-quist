@@ -12,16 +12,15 @@ export const Layout = ({ children }: LayoutProps) => {
   const isHomePage = location.pathname === "/";
   const isResumePage = location.pathname === "/resume";
 
-  // Home: always fullscreen no scroll
-  // Resume: fullscreen on desktop, scrollable on mobile/tablet
+  // All pages: flex column layout with footer at bottom
   const getContainerClass = () => {
-    if (isHomePage) return "h-screen overflow-hidden";
-    if (isResumePage) return "min-h-screen lg:h-screen lg:overflow-hidden flex flex-col";
+    if (isHomePage) return "h-screen flex flex-col overflow-hidden";
+    if (isResumePage) return "min-h-screen lg:h-screen flex flex-col lg:overflow-hidden";
     return "min-h-screen flex flex-col";
   };
 
   const getMainClass = () => {
-    if (isHomePage) return "h-full";
+    if (isHomePage) return "flex-1 overflow-hidden";
     if (isResumePage) return "flex-1 pt-16 md:pt-20";
     return "flex-1 pt-20";
   };
