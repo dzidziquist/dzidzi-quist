@@ -1010,38 +1010,36 @@ Once comfortable with these basics, explore scikit-learn for machine learning an
   },
   {
     id: 8,
-    slug: "the-art-of-data-storytelling",
-    title: "The Art of Data Storytelling",
+    slug: "building-cool-things-learning-to-prototype-with-figma",
+    title: "Building Cool Things: Learning How to Prototype (Mock up) with Figma",
     excerpt:
-      "How to transform raw numbers into compelling narratives that resonate with stakeholders and drive business decisions.",
-    content: `Numbers alone rarely inspire action. The most impactful data professionals know how to weave data into narratives that resonate with their audience and drive decisions.
+      "Learning how to use Figma for dashboard prototyping and mock-ups. A pretty amazing level-up on using this AWESOME tool.",
+    content: `I have used Figma a lot of times for both static wireframes and dashboard backgrounds. This is a pretty amazing level-up on using this AWESOME tool. The purpose of learning this level is to make sure that as a whole I appreciate the capability of the tool and also to build up my skill set. You can never know too much.
 
-## The Three Pillars of Data Storytelling
+One of the beauties of being part of the DataFam Community is you always learn and incorporate tips and tools from the community as you grow. I came across this Tutorial Session by [Autumn Battani](https://public.tableau.com/app/profile/autumnbattani/vizzes) and I just wanted to learn and also share my understanding of it.
 
-### 1. Data: The Foundation
-Your story must be built on solid, accurate data. This means understanding your data sources, acknowledging limitations, and being transparent about uncertainty.
+First and foremost, let me acknowledge how awesome She is. She took her time to really explain and put together an interactive mock-up in Figma. You can find her videos here.
 
-### 2. Narrative: The Structure
-Every good story has a beginning, middle, and end. In data storytelling:
-- **Beginning**: Set the context. What question are we answering?
-- **Middle**: Present the evidence. What does the data show?
-- **End**: Call to action. What should we do about it?
+In the below file, I went through the tutorial videos and created the different pages. Feel free to [duplicate the file](https://www.figma.com/design/WRXOY3j7uwV8LVJjgkx6HO/Learning?node-id=0-1&p=f) and use it as needed.
 
-### 3. Visuals: The Engagement
-The right visualization can make complex patterns immediately apparent. Choose charts that match your message—trends call for line charts, comparisons call for bar charts.
+Would this be a series? Most likely!!!!!! In the coming weeks I would go deeper in learning how to build more complicated dashboards and learn more on how to do the absolutely most with this UX/UI tool. As I said, It is pretty AWESOME.
 
-## Common Pitfalls to Avoid
+## Basic Charts
 
-- Overwhelming your audience with too many metrics
-- Using jargon that alienates non-technical stakeholders
-- Presenting data without clear recommendations
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FWRXOY3j7uwV8LVJjgkx6HO%2FLearning%3Fpage-id%3D0%253A1%26node-id%3D72%253A34%26viewport%3D398%252C467%252C0.21%26scaling%3Dcontain" allowfullscreen></iframe>
 
-## Practice Makes Perfect
+## Building a Complete Dashboard
 
-The best way to improve is through practice. Start with low-stakes presentations and gather feedback. Over time, you'll develop an intuition for what resonates with your audience.`,
-    category: "Insights",
-    readTime: "6 min read",
-    date: "January 5, 2024",
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FWRXOY3j7uwV8LVJjgkx6HO%2FLearning%3Fpage-id%3D1%253A241%26node-id%3D72%253A35%26viewport%3D862%252C750%252C0.92%26scaling%3Dcontain" allowfullscreen></iframe>
+
+## Interactivity and Mock up
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FWRXOY3j7uwV8LVJjgkx6HO%2FLearning%3Fpage-id%3D1%253A496%26node-id%3D72%253A36%26viewport%3D34%252C522%252C0.53%26scaling%3Dcontain" allowfullscreen></iframe>
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FWRXOY3j7uwV8LVJjgkx6HO%2FLearning%3Fpage-id%3D121%253A776%26node-id%3D121%253A1037%26viewport%3D664%252C438%252C0.53%26scaling%3Dcontain%26starting-point-node-id%3D121%253A1037" allowfullscreen></iframe>`,
+    category: "Design",
+    readTime: "4 min read",
+    date: "September 26, 2022",
     featured: false,
   },
   {
