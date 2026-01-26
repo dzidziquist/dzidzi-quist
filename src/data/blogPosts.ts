@@ -1338,12 +1338,12 @@ That's it guys. Thank you for checking this out. Enjoy music, it is the food for
   },
 ];
 
-export const categories = ["All", "Tableau", "Python", "Tutorials", "Insights", "Career"];
+export const categories = ["All", "Tableau", "Python", "SQL", "Design", "Insights"];
 
 export const categoryColors: Record<string, string> = {
   Tableau: "bg-coral/10 text-coral",
   Python: "bg-mint/20 text-accent-foreground",
-  Tutorials: "bg-lavender/20 text-secondary-foreground",
-  Insights: "bg-peach/20 text-foreground",
-  Career: "bg-soft-pink/20 text-foreground",
+  SQL: "bg-lavender/20 text-secondary-foreground",
+  Design: "bg-peach/20 text-foreground",
+  Insights: "bg-soft-pink/20 text-foreground",
 };
