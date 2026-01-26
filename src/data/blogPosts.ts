@@ -1010,39 +1010,40 @@ Once comfortable with these basics, explore scikit-learn for machine learning an
   },
   {
     id: 8,
-    slug: "the-art-of-data-storytelling",
-    title: "The Art of Data Storytelling",
+    slug: "figma-prototyping-tutorial",
+    title: "Building Cool Things: Learning How to Prototype (Mock up) with Figma",
     excerpt:
-      "How to transform raw numbers into compelling narratives that resonate with stakeholders and drive business decisions.",
-    content: `Numbers alone rarely inspire action. The most impactful data professionals know how to weave data into narratives that resonate with their audience and drive decisions.
+      "A tutorial on using Figma for dashboard prototyping, from basic charts to complete interactive dashboards.",
+    content: `![Figma Dashboard Prototype](/blog/figma-prototyping.png)
 
-## The Three Pillars of Data Storytelling
+I have used Figma a lot of times for both static wireframes and dashboard backgrounds. This is a pretty amazing level-up on using this AWESOME tool. The purpose of learning this level is to make sure that as a whole I appreciate the capability of the tool and also to build up my skill set. You can never know too much.
 
-### 1. Data: The Foundation
-Your story must be built on solid, accurate data. This means understanding your data sources, acknowledging limitations, and being transparent about uncertainty.
+One of the beauties of being part of the DataFam Community is you always learn and incorporate tips and tools from the community as you grow. I came across this Tutorial Session by **Autumn Battani** ([Her Tableau Profile](https://public.tableau.com/app/profile/autumnbattani/vizzes)) and I just wanted to learn and also share my understanding of it.
 
-### 2. Narrative: The Structure
-Every good story has a beginning, middle, and end. In data storytelling:
-- **Beginning**: Set the context. What question are we answering?
-- **Middle**: Present the evidence. What does the data show?
-- **End**: Call to action. What should we do about it?
+First and foremost, let me acknowledge how awesome She is. She took her time to really explain and put together an interactive mock-up in Figma. You can find her videos here.
 
-### 3. Visuals: The Engagement
-The right visualization can make complex patterns immediately apparent. Choose charts that match your message—trends call for line charts, comparisons call for bar charts.
+In the below file, I went through the tutorial videos and created the different pages. Feel free to **duplicate** the file: [Figma Learning File](https://www.figma.com/design/WRXOY3j7uwV8LVJjgkx6HO/Learning?node-id=0-1&p=f) and use it as needed.
 
-## Common Pitfalls to Avoid
+Would this be a series? Most likely!!!!!! In the coming weeks I would go deeper in learning how to build more complicated dashboards and learn more on how to do the absolutely most with this UX/UI tool. As I said, It is pretty AWESOME.
 
-- Overwhelming your audience with too many metrics
-- Using jargon that alienates non-technical stakeholders
-- Presenting data without clear recommendations
+## Basic Charts
 
-## Practice Makes Perfect
+[figma:https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FWRXOY3j7uwV8LVJjgkx6HO%2FLearning%3Fpage-id%3D0%253A1%26node-id%3D72%253A34%26viewport%3D398%252C467%252C0.21%26scaling%3Dcontain]
 
-The best way to improve is through practice. Start with low-stakes presentations and gather feedback. Over time, you'll develop an intuition for what resonates with your audience.`,
+## Building a Complete Dashboard
+
+[figma:https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FWRXOY3j7uwV8LVJjgkx6HO%2FLearning%3Fpage-id%3D1%253A241%26node-id%3D72%253A35%26viewport%3D862%252C750%252C0.92%26scaling%3Dcontain]
+
+## Interactivity and Mock up
+
+[figma:https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FWRXOY3j7uwV8LVJjgkx6HO%2FLearning%3Fpage-id%3D1%253A496%26node-id%3D72%253A36%26viewport%3D34%252C522%252C0.53%26scaling%3Dcontain]
+
+[figma:https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FWRXOY3j7uwV8LVJjgkx6HO%2FLearning%3Fpage-id%3D121%253A776%26node-id%3D121%253A1037%26viewport%3D664%252C438%252C0.53%26scaling%3Dcontain%26starting-point-node-id%3D121%253A1037]`,
     category: "Insights",
-    readTime: "6 min read",
-    date: "January 5, 2024",
+    readTime: "5 min read",
+    date: "September 26, 2022",
     featured: false,
+    image: "/blog/figma-prototyping.png",
   },
   {
     id: 9,
