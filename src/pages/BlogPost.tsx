@@ -106,6 +106,20 @@ const BlogPost = () => {
                           </div>;
                   }
                 }
+                // Handle iframe embeds
+                if (paragraph.includes('<iframe')) {
+                  const srcMatch = paragraph.match(/src="([^"]+)"/);
+                  if (srcMatch) {
+                    return <div key={index} className="my-6 rounded-xl overflow-hidden border border-border">
+                            <iframe 
+                              src={srcMatch[1]}
+                              className="w-full aspect-video"
+                              style={{ border: '1px solid rgba(0, 0, 0, 0.1)' }}
+                              allowFullScreen
+                            />
+                          </div>;
+                  }
+                }
                 if (paragraph.startsWith('- ')) {
                   const items = paragraph.split('\n').filter(line => line.startsWith('- '));
                   return <ul key={index} className="list-disc pl-6 my-4 space-y-2">
