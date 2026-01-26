@@ -740,45 +740,148 @@ The best way to improve is through practice. Start with low-stakes presentations
   },
   {
     id: 9,
-    slug: "breaking-into-data-analytics",
-    title: "Breaking Into Data Analytics: My Career Journey",
-    excerpt: "Personal insights and lessons learned from transitioning into a data analytics career.",
-    content: `Transitioning into data analytics wasn't a straight path for me. Here's what I learned along the way that might help others on a similar journey.
+    slug: "making-music-cool-get-lyrics-from-spotify",
+    title: "Making Music Cool; Get Lyrics From Spotify Music",
+    excerpt: "Using the Spotify API and Genius API to retrieve lyrics of the song currently playing.",
+    content: `![Headphones](/blog/spotify-lyrics-headphones.png)
+*(image from Unsplash)*
 
-## My Background
+I love music. Growing up I was introduced to different genres at a pretty young age. My dad's love for jazz and my brother's hip-hop nature. I appreciate and love all genres of music. Most importantly, I love the words that compose a song. Words are big for me in music. With my love for H.E.R, J Cole and Kendrick Lamar based on their choices of words in their art.
 
-I didn't start in a technical field. My journey began with a curiosity about why certain business decisions worked and others didn't. That curiosity led me to data.
+Apple Music has a pretty cool feature of getting the lyrics of the song while playing. In my bid to wanting to enjoy something like that from Spotify, I found myself looking at APIs that can help me achieve this task. An easy task when using the Spotify API to retrieve the song playing and the genius API to get the lyrics of the song (Thanks to my cool Data Scientist Friend who put me to the task of grabbing lyrics of some songs from genius for a pretty cool project- watch out for his project, he is AWESOME). You can find his profile here.
 
-## Key Lessons Learned
+I know at this point, you are tired of reading. Let's get to the cool stuff.
 
-### 1. Start with the Business Problem
-Technical skills matter, but understanding business context is what makes you valuable. Always ask "why" before "how."
+## Setting Up Spotify API
 
-### 2. Build a Portfolio
-Nothing speaks louder than demonstrated work. Create projects that showcase your ability to:
-- Clean messy data
-- Find meaningful insights
-- Communicate findings clearly
+In order to get started, we need to sign up to use the Spotify API. you can do so here and create an app. After doing so, let's get the client id and secret code. Also, add a direct URL 'http://localhost:8888/callback/' to your created app.
 
-### 3. Network Authentically
-The data community is incredibly generous. Engage on LinkedIn, attend meetups, and don't be afraid to reach out to people whose work you admire.
+**Spotify API credentials:**
 
-### 4. Embrace Continuous Learning
-The field evolves rapidly. Stay curious and dedicate time each week to learning something new.
+\`\`\`python
+#getting my spotify credentials 
+USERNAME = 'Your username'
+SPOTIPY_CLIENT_ID = 'client id'
+SPOTIPY_CLIENT_SECRET = 'client secret code'
+SPOTIPY_REDIRECT_URI = 'http://localhost:8888/callback/'
+\`\`\`
 
-## Resources That Helped Me
+Do not forget to install the Spotipy by using the 'pip install command':
 
-- Coursera and DataCamp for structured learning
-- Kaggle for practice datasets
-- Medium and Towards Data Science for staying current
+\`\`\`bash
+pip install spotipy
+\`\`\`
 
-## Final Thoughts
+## Retrieving Current Song
 
-Every expert was once a beginner. Be patient with yourself, celebrate small wins, and keep building.`,
-    category: "Career",
-    readTime: "7 min read",
+Let's retrieve the song name and artist name of the music we are listening to on Spotify.
+
+\`\`\`python
+import spotipy
+import spotipy.util as util
+
+from config import USERNAME, SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI, access_token
+import lyricsgenius 
+
+#this is to tell spotify what you are doing with the script.
+#'https://developer.spotify.com/documentation/general/guides/scopes/'
+scope = 'user-read-currently-playing'
+
+# providing credentials 
+token = util.prompt_for_user_token(
+    USERNAME, scope, client_id=SPOTIPY_CLIENT_ID, client_secret=SPOTIPY_CLIENT_SECRET, redirect_uri=SPOTIPY_REDIRECT_URI)
+
+
+if token:
+    # intialize with the token to gain access 
+    sp = spotipy.Spotify(auth=token)
+    # retrive name of song playing on spotify now 
+    current_song = sp.currently_playing()
+    # Extract artist
+    artist = current_song['item']['artists'][0]['name']
+    # Extract song name 
+    song_name = current_song['item']['name']
+
+    #print out the extracted items 
+    print('\\nSong: {}\\nArtist: {}'.format(song_name, artist))
+\`\`\`
+
+## Setting Up Genius API
+
+We are then going to feed this information into the Genius API but first let's setup the environment.
+
+With this available API, the task of getting song lyrics by an artist has rather been simplified. To get the ball rolling, first you have to sign up for the Genius API on here. Once that is done, install the model by running the line below in your terminal. This is the python client for the Genius API.
+
+\`\`\`bash
+pip install lyricsgenius
+\`\`\`
+
+Generate your access token after signing up. We need it for our codes to work! Do not forget that. Now, save your access token.
+
+\`\`\`python
+access_token = 'Your Copied Token Goes Here'
+\`\`\`
+
+## Getting the Lyrics
+
+Let's get the lyrics now!!!!! shall we!
+
+\`\`\`python
+# using the genius api to get the lyrics 
+#getting the lyrics of songs by the artist 
+genius = lyricsgenius.Genius(access_token)
+song = genius.search_song(song_name, artist)
+songlyrics = song.lyrics
+print(songlyrics)
+\`\`\`
+
+## Full Code
+
+Let's see the full codes, save and run in our terminal.
+
+\`\`\`python
+import spotipy
+import spotipy.util as util
+
+from config import USERNAME, SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI, access_token
+import lyricsgenius 
+
+scope = 'user-read-currently-playing'
+
+# To connect succesfully you need to provide your own Spotify Credentials
+# You can do this signing up in https://developer.spotify.com/ and creating a new app.
+token = util.prompt_for_user_token(
+    USERNAME, scope, client_id=SPOTIPY_CLIENT_ID, client_secret=SPOTIPY_CLIENT_SECRET, redirect_uri=SPOTIPY_REDIRECT_URI)
+
+if token:
+    # Create a Spotify() instance with our token
+    sp = spotipy.Spotify(auth=token)
+    # method currently playing return an actual song on Spotify
+    current_song = sp.currently_playing()
+    # Extract artist from json response
+    artist = current_song['item']['artists'][0]['name']
+    # Extract song name from json response
+    song_name = current_song['item']['name']
+
+    print('\\nSong: {}\\nArtist: {}'.format(song_name, artist))
+
+    # using the genius api to get the lyrics 
+    #getting the lyrics of songs by the artist 
+    genius = lyricsgenius.Genius(access_token)
+    song = genius.search_song(song_name, artist)
+    songlyrics = song.lyrics
+    print(songlyrics)
+
+else:
+    print("token can not be found for", username)
+\`\`\`
+
+That's it guys. Thank you for checking this out. Enjoy music, it is the food for the soul❤️.`,
+    category: "Python",
+    readTime: "5 min read",
     date: "December 20, 2023",
     featured: false,
+    image: "/blog/spotify-lyrics-headphones.png",
   },
 ];
 
