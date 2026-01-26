@@ -744,11 +744,29 @@ Can it be said that, some members may be using the bikes as commute to work?
 
 ### What is the percentage of members to casual riders?
 
-**58%** of rides are taken by members, while **42%** are taken by casual users.
+**TOTAL**
+
+![Total Rides](/blog/cyclistic-total-rides.png)
+
+**MEMBER**
+
+![Percent Member](/blog/cyclistic-percent-member.png)
+
+**CASUAL**
+
+![Percent Casual](/blog/cyclistic-percent-casual.png)
 
 ### What times do we start both types of rides on the road?
 
-Members ride as early as 05:59:59 am as compared to casual riders who can start at 06:00:46am.
+Members ride as early as 05:59:59 am as compared to casual riders who can start at 06:00:46am. Showing the table breakdowns below for months and days:
+
+![Start Time by Day](/blog/cyclistic-starttime-day.png)
+
+![Start Time by Day Breakdown](/blog/cyclistic-starttime-day-breakdown.png)
+
+![Start Time by Month](/blog/cyclistic-starttime-month.png)
+
+![Start Time by Month Breakdown](/blog/cyclistic-starttime-month-breakdown.png)
 
 Most of the months have rides starting as early as after midnight. Some people do appreciate midnight ride tour of the city after all.
 
@@ -759,6 +777,18 @@ In this step, visualizing the findings as seen in the Analyse progress and bring
 Decided to make a fun visualization to project the findings of the analysis. The heatmap in the dashboard shows the number of trips completed in the days of each month. That is from Sunday to Saturday. Currently showing the total for both user types for the line chart and the heatmap. Once the parameter is changed to either of the user type, this visualization would have to represent the user type.
 
 **Saturdays in August recorded the highest number of rides for both users.**
+
+**TOTAL**
+
+![Heatmap Total](/blog/cyclistic-heatmap-total.png)
+
+**MEMBER**
+
+![Heatmap Member](/blog/cyclistic-heatmap-member.png)
+
+**CASUAL**
+
+![Heatmap Casual](/blog/cyclistic-heatmap-casual.png)
 
 ## ACT
 
