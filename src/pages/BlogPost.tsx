@@ -83,10 +83,17 @@ const BlogPost = () => {
               }
               if (paragraph.startsWith('```')) {
                 const lines = paragraph.split('\n');
-                const code = lines.slice(1, -1).join('\n');
-                return <pre key={index} className="bg-muted p-4 rounded-lg overflow-x-auto my-4">
-                      <code className="text-sm font-mono">{code}</code>
-                    </pre>;
+                // Skip the first line (```language) and last line (```) if present
+                const codeLines = lines.slice(1);
+                // Remove the closing ``` if it's the last line
+                const code = codeLines[codeLines.length - 1] === '```' 
+                  ? codeLines.slice(0, -1).join('\n')
+                  : codeLines.join('\n');
+                return (
+                  <pre key={index} className="bg-muted p-4 rounded-lg overflow-x-auto my-6 border border-border">
+                    <code className="text-sm font-mono text-foreground whitespace-pre-wrap break-words">{code}</code>
+                  </pre>
+                );
               }
               if (paragraph.startsWith('- ')) {
                 const items = paragraph.split('\n').filter(line => line.startsWith('- '));
