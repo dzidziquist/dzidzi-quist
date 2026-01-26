@@ -1343,7 +1343,7 @@ export const categories = ["All", "Tableau", "Python", "SQL", "Design", "Insight
 export const categoryColors: Record<string, string> = {
   Tableau: "bg-coral/10 text-coral",
   Python: "bg-mint/20 text-accent-foreground",
-  SQL: "bg-lavender/20 text-lavender",
+  SQL: "bg-lavender/30 text-coral",
   Design: "bg-peach/20 text-foreground",
   Insights: "bg-soft-pink/20 text-foreground",
 };
