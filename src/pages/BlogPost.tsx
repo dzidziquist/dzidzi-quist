@@ -102,7 +102,7 @@ const BlogPost = () => {
                   if (match) {
                     const [, alt, src] = match;
                     return <div key={index} className="my-6 rounded-xl overflow-hidden border border-border">
-                            <img src={src} alt={alt} className="w-full h-auto" />
+                            
                           </div>;
                   }
                 }
@@ -111,22 +111,16 @@ const BlogPost = () => {
                   const srcMatch = paragraph.match(/src="([^"]+)"/);
                   if (srcMatch) {
                     return <div key={index} className="my-6 rounded-xl overflow-hidden border border-border">
-                            <iframe 
-                              src={srcMatch[1]}
-                              className="w-full aspect-video"
-                              style={{ border: '1px solid rgba(0, 0, 0, 0.1)' }}
-                              allowFullScreen
-                            />
+                            <iframe src={srcMatch[1]} className="w-full aspect-video" style={{
+                        border: '1px solid rgba(0, 0, 0, 0.1)'
+                      }} allowFullScreen />
                           </div>;
                   }
                 }
                 // Helper function to format text with bold and links
                 const formatText = (text: string) => {
-                  return text
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">$1</a>');
+                  return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">$1</a>');
                 };
-
                 if (paragraph.startsWith('- ')) {
                   const items = paragraph.split('\n').filter(line => line.startsWith('- '));
                   return <ul key={index} className="list-disc pl-6 my-4 space-y-2">
@@ -139,8 +133,8 @@ const BlogPost = () => {
                   const items = paragraph.split('\n').filter(line => line.match(/^\d+\./));
                   return <ol key={index} className="list-decimal pl-6 my-4 space-y-2">
                           {items.map((item, i) => <li key={i} className="text-muted-foreground" dangerouslySetInnerHTML={{
-                              __html: formatText(item.replace(/^\d+\.\s*/, ''))
-                            }} />)}
+                      __html: formatText(item.replace(/^\d+\.\s*/, ''))
+                    }} />)}
                         </ol>;
                 }
                 // Handle bold text, links, and regular paragraphs
