@@ -568,6 +568,7 @@ Thank you for reading ❤️❤️. Data is the new world.`,
     readTime: "5 min read",
     date: "January 31, 2021",
     featured: false,
+    image: "/blog/data-getting-started.png",
   },
   {
     id: 5,
