@@ -120,26 +120,32 @@ const BlogPost = () => {
                           </div>;
                   }
                 }
+                // Helper function to format text with bold and links
+                const formatText = (text: string) => {
+                  return text
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">$1</a>');
+                };
+
                 if (paragraph.startsWith('- ')) {
                   const items = paragraph.split('\n').filter(line => line.startsWith('- '));
                   return <ul key={index} className="list-disc pl-6 my-4 space-y-2">
                           {items.map((item, i) => <li key={i} className="text-muted-foreground" dangerouslySetInnerHTML={{
-                      __html: item.replace('- ', '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                      __html: formatText(item.replace('- ', ''))
                     }} />)}
                         </ul>;
                 }
                 if (paragraph.match(/^\d+\./)) {
                   const items = paragraph.split('\n').filter(line => line.match(/^\d+\./));
                   return <ol key={index} className="list-decimal pl-6 my-4 space-y-2">
-                          {items.map((item, i) => <li key={i} className="text-muted-foreground">
-                              {item.replace(/^\d+\.\s*/, '')}
-                            </li>)}
+                          {items.map((item, i) => <li key={i} className="text-muted-foreground" dangerouslySetInnerHTML={{
+                              __html: formatText(item.replace(/^\d+\.\s*/, ''))
+                            }} />)}
                         </ol>;
                 }
-                // Handle bold text and regular paragraphs
-                const formattedText = paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                // Handle bold text, links, and regular paragraphs
                 return <p key={index} className="text-muted-foreground leading-relaxed my-4" dangerouslySetInnerHTML={{
-                  __html: formattedText
+                  __html: formatText(paragraph)
                 }} />;
               });
             })()}
