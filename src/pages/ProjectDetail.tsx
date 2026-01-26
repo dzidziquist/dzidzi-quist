@@ -150,14 +150,14 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Code Snippet Section */}
-      {project.codeSnippet && (
-        <CodeSection code={project.codeSnippet} title={project.title} />
-      )}
-
       {/* Embedded Document */}
       {project.pdfUrl && (
         <PdfSection pdfUrl={project.pdfUrl} title={project.title} />
+      )}
+
+      {/* Code Snippet Section */}
+      {project.codeSnippet && (
+        <CodeSection code={project.codeSnippet} title={project.title} />
       )}
     </Layout>
   );
