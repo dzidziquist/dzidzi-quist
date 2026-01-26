@@ -972,39 +972,65 @@ That is all folks!! This is pretty straightforward. In order to run this periodi
   },
   {
     id: 7,
-    slug: "python-for-data-analysis",
-    title: "Python for Data Analysis: A Beginner's Guide",
-    excerpt: "Getting started with pandas, numpy, and matplotlib for your data analysis journey.",
-    content: `Python has become the go-to language for data analysis, and for good reason. Its ecosystem of libraries makes complex data tasks surprisingly approachable. Let's explore the essential tools every data analyst should know.
+    slug: "sql-murder-mystery",
+    title: "SQL Murder Mystery",
+    excerpt: "Solving the SQL Murder Mystery using Common Table Expressions (CTEs) to find the murderer and the mastermind.",
+    content: `Great work. We solve the murder mystery in SQL City. Now let's look at some Common Table Expressions(CTE)
 
-## The Essential Libraries
+## Finding the murderer
 
-### Pandas: Your Data Manipulation Swiss Army Knife
-Pandas provides DataFrame structures that make working with tabular data intuitive. Whether you're cleaning data, merging datasets, or calculating aggregations, pandas has you covered.
+\`\`\`sql
+With 
 
-\`\`\`python
-import pandas as pd
-df = pd.read_csv('data.csv')
-df.groupby('category').mean()
+suspect as (
+Select *
+From get_fit_now_member
+Join person on person_id = person.id
+Where get_fit_now_member.id like '48Z%'), 
+
+the_suspect as (
+Select *
+From suspect
+Join drivers_license on license_id = drivers_license.id
+Where plate_number like '%H42W%') 
+
+Select transcript
+From interview
+Join the_suspect on interview.person_id = the_suspect.person_id;
 \`\`\`
 
-### NumPy: The Foundation of Scientific Computing
-NumPy provides efficient array operations that power most of Python's data science stack. Understanding NumPy arrays is fundamental to working with any data in Python.
+## Finding the mastermind
 
-### Matplotlib & Seaborn: Visualization Made Simple
-While Tableau excels at interactive dashboards, Python's visualization libraries are perfect for exploratory analysis and creating publication-ready figures.
+\`\`\`sql
+With 
 
-## Getting Started
+short_list as (
+Select *
+From facebook_event_checkin
+Where event_name = 'SQL Symphony Concert'
+And date like '201712%'), 
 
-1. Install Anaconda for a complete data science environment
-2. Start with Jupyter notebooks for interactive exploration
-3. Practice with real datasets from Kaggle or UCI Machine Learning Repository
+persons_shortlist as (
+Select *
+From person
+Join short_list on id = person_id), event_info as (
+Select *, count(*) as num_attedance
+From persons_shortlist join drivers_license on license_id = drivers_license.id 
+Group by name) 
 
-## Next Steps
+Select name
+From event_info
+Where 65<= height <= 67
+And hair_color = 'red'
+And gender = 'female'
+And num_attedance = 3
+And car_make = 'Tesla'
+And car_model = 'Model S'
+\`\`\`
 
-Once comfortable with these basics, explore scikit-learn for machine learning and SQLAlchemy for database connections.`,
-    category: "Python",
-    readTime: "8 min read",
+If you enjoyed this, do check out [The SQL Murder Mystery](https://mystery.knightlab.com/) and do give [@jessica_xls](https://twitter.com/jessica_xls?s=21&t=iNqaPY0mlq63VBKVF_Bi8Q) a follow (She is AWESOME)`,
+    category: "SQL",
+    readTime: "3 min read",
     date: "January 10, 2024",
     featured: false,
   },
