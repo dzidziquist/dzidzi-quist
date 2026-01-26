@@ -15,7 +15,7 @@ export const Layout = ({ children }: LayoutProps) => {
   // All pages: flex column layout with footer at bottom
   const getContainerClass = () => {
     if (isHomePage) return "h-screen flex flex-col overflow-hidden";
-    if (isResumePage) return "min-h-screen lg:h-screen flex flex-col lg:overflow-hidden";
+    if (isResumePage) return "min-h-screen flex flex-col";
     return "min-h-screen flex flex-col";
   };
 
