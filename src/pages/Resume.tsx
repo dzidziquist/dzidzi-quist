@@ -63,41 +63,39 @@ const awards = ["Tableau Public Ambassador 2023", "Tableau Public Ambassador 202
 const technologies = ["Python", "SQL", "NoSQL", "MS Excel", "Tableau", "PowerPoint", "Xlsform (ODK)", "Power BI", "Palantir", "Amazon QuickSight", "R", "Core AI/ML Skills"];
 const Resume = () => {
   return <Layout>
-      {/* Main Content - Single page fit */}
-      <section className="pt-20 pb-4 h-full overflow-hidden">
-        <div className="container mx-auto px-6 h-full flex flex-col">
+      {/* Main Content - Responsive layout */}
+      <section className="py-6 md:py-8 lg:py-12 min-h-[calc(100vh-5rem)] lg:h-[calc(100vh-5rem)] lg:overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6 h-full flex flex-col">
           {/* Top bar with Download button */}
-          <div className="flex justify-end mb-4">
-            <Button variant="outline" size="sm" className="rounded-full border-2 border-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary text-sm py-1.5 px-4">
-              <Download className="mr-2 h-3.5 w-3.5" />
+          <div className="flex justify-end mb-4 md:mb-6">
+            <Button variant="outline" size="sm" className="rounded-full border-2 border-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary text-xs md:text-sm py-1.5 px-3 md:px-4">
+              <Download className="mr-1.5 md:mr-2 h-3 w-3 md:h-3.5 md:w-3.5" />
               Download Resume
             </Button>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-8 flex-1">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 flex-1 lg:overflow-auto">
             {/* Left Column - Experience & Certifications */}
-            <div className="space-y-5">
+            <div className="space-y-5 md:space-y-6">
               {/* Experience */}
               <AnimatedSection>
-                <div className="flex items-center gap-2.5 mb-4">
-                  <div className="w-8 h-8 rounded-full bg-coral flex items-center justify-center">
-                    <Briefcase className="h-4 w-4 text-white" />
+                <div className="flex items-center gap-2 md:gap-2.5 mb-3 md:mb-4">
+                  <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-coral flex items-center justify-center">
+                    <Briefcase className="h-3.5 w-3.5 md:h-4 md:w-4 text-white" />
                   </div>
-                  <h2 className="text-xl font-display font-bold">Relevant Experience</h2>
+                  <h2 className="text-lg md:text-xl font-display font-bold">Relevant Experience</h2>
                 </div>
-                <div className="space-y-2.5">
-                  {experience.filter(item => item.type === "work").map((item, index) => <motion.div key={item.id} className="p-3.5 rounded-lg bg-card border border-border" initial={{
-                  opacity: 0,
-                  y: 10
-                }} whileInView={{
-                  opacity: 1,
-                  y: 0
-                }} viewport={{
-                  once: true
-                }} transition={{
-                  delay: index * 0.05
-                }}>
-                      <div className="flex items-center justify-between mb-1">
+                <div className="space-y-2 md:space-y-2.5">
+                  {experience.filter(item => item.type === "work").map((item, index) => (
+                    <motion.div 
+                      key={item.id} 
+                      className="p-3 md:p-3.5 rounded-lg bg-card border border-border" 
+                      initial={{ opacity: 0, y: 10 }} 
+                      whileInView={{ opacity: 1, y: 0 }} 
+                      viewport={{ once: true }} 
+                      transition={{ delay: index * 0.05 }}
+                    >
+                      <div className="flex flex-col xs:flex-row xs:items-center xs:justify-between gap-0.5 xs:gap-0 mb-1">
                         <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                           <Calendar className="h-3 w-3" />
                           {item.period}
@@ -106,127 +104,130 @@ const Resume = () => {
                       </div>
                       <h3 className="font-display font-semibold text-sm">{item.role}</h3>
                       <p className="text-primary text-sm">{item.company}</p>
-                    </motion.div>)}
+                    </motion.div>
+                  ))}
                 </div>
               </AnimatedSection>
 
               {/* Certifications */}
               <AnimatedSection delay={0.1}>
-                <div className="flex items-center gap-2.5 mb-4">
-                  <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
-                    <Award className="h-4 w-4 text-primary-foreground" />
+                <div className="flex items-center gap-2 md:gap-2.5 mb-3 md:mb-4">
+                  <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-primary flex items-center justify-center">
+                    <Award className="h-3.5 w-3.5 md:h-4 md:w-4 text-primary-foreground" />
                   </div>
-                  <h2 className="text-xl font-display font-bold">Certifications</h2>
+                  <h2 className="text-lg md:text-xl font-display font-bold">Certifications</h2>
                 </div>
-                <div className="grid gap-2.5">
-                  {certifications.map((cert, index) => <motion.div key={cert.name} className="p-3 rounded-lg bg-card border border-border" initial={{
-                  opacity: 0,
-                  x: -10
-                }} whileInView={{
-                  opacity: 1,
-                  x: 0
-                }} viewport={{
-                  once: true
-                }} transition={{
-                  delay: index * 0.05
-                }}>
+                <div className="grid gap-2 md:gap-2.5">
+                  {certifications.map((cert, index) => (
+                    <motion.div 
+                      key={cert.name} 
+                      className="p-2.5 md:p-3 rounded-lg bg-card border border-border" 
+                      initial={{ opacity: 0, x: -10 }} 
+                      whileInView={{ opacity: 1, x: 0 }} 
+                      viewport={{ once: true }} 
+                      transition={{ delay: index * 0.05 }}
+                    >
                       <h3 className="font-display font-semibold text-sm">{cert.name}</h3>
                       <p className="text-xs text-muted-foreground">{cert.issuer}</p>
-                    </motion.div>)}
+                    </motion.div>
+                  ))}
                 </div>
               </AnimatedSection>
             </div>
 
             {/* Right Column - Education, Awards & Technologies */}
-            <div className="space-y-5">
+            <div className="space-y-5 md:space-y-6">
               {/* Education */}
               <AnimatedSection>
-                <div className="flex items-center gap-2.5 mb-4">
-                  <div className="w-8 h-8 rounded-full bg-primary/80 flex items-center justify-center">
-                    <GraduationCap className="h-4 w-4 text-primary-foreground" />
+                <div className="flex items-center gap-2 md:gap-2.5 mb-3 md:mb-4">
+                  <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-primary/80 flex items-center justify-center">
+                    <GraduationCap className="h-3.5 w-3.5 md:h-4 md:w-4 text-primary-foreground" />
                   </div>
-                  <h2 className="text-xl font-display font-bold">Education</h2>
+                  <h2 className="text-lg md:text-xl font-display font-bold">Education</h2>
                 </div>
-                <div className="space-y-2.5">
-                  {education.map((item, index) => <motion.div key={item.id} className="p-3.5 rounded-lg bg-card border border-border" initial={{
-                  opacity: 0,
-                  y: 10
-                }} whileInView={{
-                  opacity: 1,
-                  y: 0
-                }} viewport={{
-                  once: true
-                }} transition={{
-                  delay: index * 0.05
-                }}>
+                <div className="space-y-2 md:space-y-2.5">
+                  {education.map((item, index) => (
+                    <motion.div 
+                      key={item.id} 
+                      className="p-3 md:p-3.5 rounded-lg bg-card border border-border" 
+                      initial={{ opacity: 0, y: 10 }} 
+                      whileInView={{ opacity: 1, y: 0 }} 
+                      viewport={{ once: true }} 
+                      transition={{ delay: index * 0.05 }}
+                    >
                       <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-1">
                         <Calendar className="h-3 w-3" />
                         {item.period}
                       </div>
                       <h3 className="font-display font-semibold text-sm">{item.degree}</h3>
-                      <p className="text-primary text-sm">{item.school}</p>
-                      {item.membership && <p className="text-xs text-muted-foreground mt-1.5">
+                      <p className="text-primary text-xs md:text-sm">{item.school}</p>
+                      {item.membership && (
+                        <p className="text-xs text-muted-foreground mt-1.5">
                           <span className="font-medium text-foreground">Membership:</span> {item.membership}
-                        </p>}
-                      {item.honors && <p className="text-xs text-muted-foreground mt-1">
+                        </p>
+                      )}
+                      {item.honors && (
+                        <p className="text-xs text-muted-foreground mt-1">
                           <span className="font-medium text-foreground">Honors:</span> {item.honors}
-                        </p>}
-                      {item.experience && <p className="text-xs text-muted-foreground mt-1">
+                        </p>
+                      )}
+                      {item.experience && (
+                        <p className="text-xs text-muted-foreground mt-1">
                           <span className="font-medium text-foreground">Experience:</span> {item.experience}
-                        </p>}
-                    </motion.div>)}
+                        </p>
+                      )}
+                    </motion.div>
+                  ))}
                 </div>
               </AnimatedSection>
 
               {/* Awards & Technologies Row */}
-              <div className="grid grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
                 {/* Awards */}
                 <AnimatedSection delay={0.15}>
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-7 h-7 rounded-full bg-primary/60 flex items-center justify-center">
-                      <span className="text-sm">🏆</span>
+                  <div className="flex items-center gap-2 mb-2.5 md:mb-3">
+                    <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-primary/60 flex items-center justify-center">
+                      <span className="text-xs md:text-sm">🏆</span>
                     </div>
-                    <h2 className="text-base font-display font-bold">Awards</h2>
+                    <h2 className="text-sm md:text-base font-display font-bold">Awards</h2>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
-                    {awards.map((award, index) => <motion.span key={award} className="px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium" initial={{
-                    opacity: 0,
-                    scale: 0.8
-                  }} whileInView={{
-                    opacity: 1,
-                    scale: 1
-                  }} viewport={{
-                    once: true
-                  }} transition={{
-                    delay: index * 0.03
-                  }}>
+                    {awards.map((award, index) => (
+                      <motion.span 
+                        key={award} 
+                        className="px-2 md:px-2.5 py-0.5 md:py-1 rounded-full bg-primary/10 text-primary text-xs font-medium" 
+                        initial={{ opacity: 0, scale: 0.8 }} 
+                        whileInView={{ opacity: 1, scale: 1 }} 
+                        viewport={{ once: true }} 
+                        transition={{ delay: index * 0.03 }}
+                      >
                         {award}
-                      </motion.span>)}
+                      </motion.span>
+                    ))}
                   </div>
                 </AnimatedSection>
 
                 {/* Technologies */}
                 <AnimatedSection delay={0.2}>
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-7 h-7 rounded-full bg-muted flex items-center justify-center">
-                      <span className="text-sm">🛠</span>
+                  <div className="flex items-center gap-2 mb-2.5 md:mb-3">
+                    <div className="w-6 h-6 md:w-7 md:h-7 rounded-full bg-muted flex items-center justify-center">
+                      <span className="text-xs md:text-sm">🛠</span>
                     </div>
-                    <h2 className="text-base font-display font-bold">Tools</h2>
+                    <h2 className="text-sm md:text-base font-display font-bold">Tools</h2>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
-                    {technologies.map((tech, index) => <motion.span key={tech} className="px-2.5 py-1 rounded-full bg-card border border-border text-xs font-medium" initial={{
-                    opacity: 0,
-                    scale: 0.8
-                  }} whileInView={{
-                    opacity: 1,
-                    scale: 1
-                  }} viewport={{
-                    once: true
-                  }} transition={{
-                    delay: index * 0.02
-                  }}>
+                    {technologies.map((tech, index) => (
+                      <motion.span 
+                        key={tech} 
+                        className="px-2 md:px-2.5 py-0.5 md:py-1 rounded-full bg-card border border-border text-xs font-medium" 
+                        initial={{ opacity: 0, scale: 0.8 }} 
+                        whileInView={{ opacity: 1, scale: 1 }} 
+                        viewport={{ once: true }} 
+                        transition={{ delay: index * 0.02 }}
+                      >
                         {tech}
-                      </motion.span>)}
+                      </motion.span>
+                    ))}
                   </div>
                 </AnimatedSection>
               </div>
