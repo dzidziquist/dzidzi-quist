@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
-import { ArrowLeft, ExternalLink, Calendar, Users, Wrench, Download, FileText } from "lucide-react";
+import { ArrowLeft, ExternalLink, Calendar, Users, Wrench, Download, FileText, Code, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getProjectBySlug, getCategories } from "@/data/portfolioProjects";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -149,6 +150,11 @@ const ProjectDetail = () => {
         </div>
       </section>
 
+      {/* Code Snippet Section */}
+      {project.codeSnippet && (
+        <CodeSection code={project.codeSnippet} title={project.title} />
+      )}
+
       {/* Embedded Document */}
       {project.pdfUrl && (
         <PdfSection pdfUrl={project.pdfUrl} title={project.title} />
@@ -237,6 +243,59 @@ const PdfSection = ({ pdfUrl, title }: { pdfUrl: string; title: string }) => {
                 title={`${title} - Document`}
               />
             )}
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+};
+
+// Code section component
+const CodeSection = ({ code, title }: { code: string; title: string }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(code);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <section className="py-16 border-t border-border">
+      <div className="container mx-auto px-6">
+        <AnimatedSection>
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-lg bg-primary/10">
+                <Code className="h-5 w-5 text-primary" />
+              </div>
+              <h2 className="text-2xl font-display font-bold">Python Code</h2>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2"
+              onClick={handleCopy}
+            >
+              {copied ? (
+                <>
+                  <Check className="h-4 w-4" />
+                  Copied!
+                </>
+              ) : (
+                <>
+                  <Copy className="h-4 w-4" />
+                  Copy Code
+                </>
+              )}
+            </Button>
+          </div>
+          <div className="rounded-2xl overflow-hidden border border-border bg-muted/30">
+            <pre className="p-6 overflow-x-auto text-sm leading-relaxed">
+              <code className="text-foreground font-mono whitespace-pre">
+                {code}
+              </code>
+            </pre>
           </div>
         </AnimatedSection>
       </div>
