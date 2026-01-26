@@ -89,6 +89,21 @@ const BlogPost = () => {
                     </h3>
                   );
                 }
+                // Handle images with markdown syntax ![alt](src)
+                if (paragraph.startsWith('![')) {
+                  const match = paragraph.match(/!\[(.*?)\]\((.*?)\)/);
+                  if (match) {
+                    return (
+                      <div key={index} className="my-6 rounded-xl overflow-hidden border border-border">
+                        <img 
+                          src={match[2]} 
+                          alt={match[1]}
+                          className="w-full h-auto"
+                        />
+                      </div>
+                    );
+                  }
+                }
                 if (paragraph.startsWith('```')) {
                   const lines = paragraph.split('\n');
                   const code = lines.slice(1, -1).join('\n');
