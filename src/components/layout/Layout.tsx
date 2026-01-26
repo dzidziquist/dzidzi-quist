@@ -12,8 +12,9 @@ export const Layout = ({ children }: LayoutProps) => {
   const isHomePage = location.pathname === "/";
   const isResumePage = location.pathname === "/resume";
 
-  // All pages: flex column layout with footer at bottom
+  // Home: fullscreen no scroll, others: flex column with footer
   const getContainerClass = () => {
+    if (isHomePage) return "h-screen overflow-hidden flex flex-col";
     return "min-h-screen flex flex-col";
   };
 
