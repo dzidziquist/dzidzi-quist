@@ -16,13 +16,21 @@ const Portfolio = () => {
       
 
       {/* Filter Section */}
-      <section className="py-8 border-b border-border sticky top-20 bg-background/80 backdrop-blur-sm z-40">
-        <div className="container mx-auto px-6">
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
-            <Filter className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-            {categories.map(category => <Button key={category} variant={activeCategory === category ? "default" : "outline"} size="sm" className="rounded-full whitespace-nowrap" onClick={() => setActiveCategory(category)}>
+      <section className="py-4 md:py-8 border-b border-border sticky top-16 md:top-20 bg-background/95 backdrop-blur-sm z-40">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex items-center gap-1.5 md:gap-2 flex-wrap">
+            <Filter className="h-3.5 w-3.5 md:h-4 md:w-4 text-muted-foreground flex-shrink-0" />
+            {categories.map(category => (
+              <Button 
+                key={category} 
+                variant={activeCategory === category ? "default" : "outline"} 
+                size="sm" 
+                className="rounded-full text-xs md:text-sm h-7 md:h-9 px-2.5 md:px-4"
+                onClick={() => setActiveCategory(category)}
+              >
                 {category}
-              </Button>)}
+              </Button>
+            ))}
           </div>
         </div>
       </section>
