@@ -143,6 +143,17 @@ export const HeroSection = () => {
         </div>
       </div>
 
+      {/* Copyright Footer */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+        className="absolute bottom-6 left-0 right-0 text-center"
+      >
+        <p className="text-sm text-muted-foreground">
+          Copyright © 2026 Dzidzi Quist. Made with 💜.
+        </p>
+      </motion.div>
     </section>
   );
 };
