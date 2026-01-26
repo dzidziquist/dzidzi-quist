@@ -48,7 +48,8 @@ I love the tool and I am hoping one day, I will become super good at it. Oh, I f
     id: 2,
     slug: "my-workout-tracker-visualization",
     title: "My Workout Tracker Visualization",
-    excerpt: "Coming home to Accra, Ghana has got me eating a lot. All the food I missed while I was away. Time to track those workouts!",
+    excerpt:
+      "Coming home to Accra, Ghana has got me eating a lot. All the food I missed while I was away. Time to track those workouts!",
     content: `Coming home to Accra, Ghana has got me eating a lot. All the food I missed while I was away. I don't have a favourite food but not eating homemade delicious food for a while can give me a great appetite. It has just been a month and I feel I gained a 1000 pound – I know that is impossible. So I have decided to go on a 28-day challenge, with the help of bae to keep me on my toes 😅, regardless I am going through with this challenge.
 
 ![Dashboard Preview](/blog/workout-tracker-1.png)
@@ -165,7 +166,8 @@ With love always ❤️😘`,
     id: 3,
     slug: "data-cleaning-to-machine-learning",
     title: "Data Cleaning to Machine Learning",
-    excerpt: "A journey to re-learn Python and polish up my skills, from data cleaning to classification with the Titanic dataset.",
+    excerpt:
+      "A journey to re-learn Python and polish up my skills, from data cleaning to classification with the Titanic dataset.",
     content: `As part of my return journey to python project; this is a journey to re-learn python and polish up my skills, starting from the basics and climbing up to the advance; Machine Learning and Deep Learning, I look at data cleaning in python and classification under the supervised learning algorithms.
 
 **In this blog post:**
@@ -634,7 +636,8 @@ This project is based on the Google Data Analytics Professional Certificate.`,
     id: 6,
     slug: "python-publish-csv-to-tableau-server",
     title: "How To Use Python To Publish Data From A CSV To Tableau Server",
-    excerpt: "Learn how to automate publishing CSV data as Hyper extracts to Tableau Server using Python and the Tableau APIs.",
+    excerpt:
+      "Learn how to automate publishing CSV data as Hyper extracts to Tableau Server using Python and the Tableau APIs.",
     content: `![CSV Python Tableau](/blog/csv-python-tableau.png)
 
 Over the past year, I have learned a lot and I am extremely excited to share some of the cool things with you. As the world keeps evolving at a fast pace, it has led to automation. In my daily work, it is a key priority to automate some aspects of work to make life easy for everyone. Who doesn't love to do the hard lifting and enjoy its fruits? 😅
@@ -832,7 +835,8 @@ Once comfortable with these basics, explore scikit-learn for machine learning an
     id: 8,
     slug: "the-art-of-data-storytelling",
     title: "The Art of Data Storytelling",
-    excerpt: "How to transform raw numbers into compelling narratives that resonate with stakeholders and drive business decisions.",
+    excerpt:
+      "How to transform raw numbers into compelling narratives that resonate with stakeholders and drive business decisions.",
     content: `Numbers alone rarely inspire action. The most impactful data professionals know how to weave data into narratives that resonate with their audience and drive decisions.
 
 ## The Three Pillars of Data Storytelling
@@ -1004,7 +1008,7 @@ else:
 That's it guys. Thank you for checking this out. Enjoy music, it is the food for the soul❤️.`,
     category: "Python",
     readTime: "5 min read",
-    date: "December 20, 2023",
+    date: "December 1, 2020",
     featured: false,
     image: "/blog/spotify-lyrics-headphones.png",
   },
