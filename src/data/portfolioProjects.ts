@@ -117,7 +117,7 @@ This personal data visualization explores:
 - Monthly Listening Patterns: A bar chart showing total minutes listened each month, with March (3,294 minutes) being the highest.
 
 This visualization tells the story of my year through the music I listened to—revealing travel periods, mood patterns, and musical preferences.`,
-    category: "Data Viz",
+    category: "Data Viz 4 Fun",
     image: musicPlaysImg,
     externalLink:
       "https://public.tableau.com/views/MyMusicPlays2023/MYMUSICPLAYS?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
@@ -162,7 +162,7 @@ This visualization explores:
 - Number of Votes: Visualizing audience engagement across all 9 seasons.
 
 Data sourced from Wikipedia, IMDb, Fandom, and Pinterest with sound from Redringtones.`,
-    category: "Data Viz",
+    category: "Data Viz 4 Fun",
     image: rugratsImg,
     externalLink:
       "https://public.tableau.com/views/Rugrats/Rugrats?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
@@ -185,7 +185,7 @@ This visualization explores:
 - Votes per Season: Circular visualization showing audience engagement trends.
 
 Data sourced from IMDb and Wikipedia, with icons from The Noun Project and audio from YouTube.`,
-    category: "Data Viz",
+    category: "Data Viz 4 Fun",
     image: boondocksImg,
     externalLink:
       "https://public.tableau.com/views/TheBoondocks/THEBOONDOCKS?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
@@ -303,7 +303,7 @@ The icons shown are called Adinkra. They are symbols used by the people of Akan 
 
 Data source: thediasporacollective, worldpopulationreview, Creo(Ghanaba), Wikipedia
 Icons: Noun Project`,
-    category: "Data Viz",
+    category: "Data Viz 4 Fun",
     image: ghanaianDayNamesImg,
     externalLink:
       "https://public.tableau.com/views/GhanaianDayNames/GHANAIANDAYNAMES?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
@@ -356,7 +356,7 @@ Timeline Highlights:
 The visualization features an interactive timeline where users can click on the years for more information, with a toggle between Movies and Television appearances.
 
 Design: @dzidzi_quist / Data Source: Wikipedia`,
-    category: "Data Viz",
+    category: "Data Viz 4 Fun",
     image: willSmithImg,
     externalLink:
       "https://public.tableau.com/views/WillSmithsFilmography/WillSmithsFilmography?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
@@ -424,7 +424,7 @@ Data Source: RankedBoost | Injustice.com
 Icons: Injustice.fandom
 Radar Tutorial: Cj Mayes
 Radial Tutorial: Lindsay Betzendahl`,
-    category: "Data Viz",
+    category: "Data Viz 4 Fun",
     image: injustice2Img,
     externalLink:
       "https://public.tableau.com/views/Injustice2/INJUSTICE2?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
@@ -494,7 +494,7 @@ Made by Dzifa Quist
 Data: Wikipedia | Goodreads | Amazon
 Inspiration: Adedamola (Damola) Ladipo
 Ubuntu - I am because you are`,
-    category: "Data Viz",
+    category: "Data Viz 4 Fun",
     image: africanWritersBooksImg,
     externalLink:
       "https://public.tableau.com/views/TheRead/THEREAD?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
@@ -579,7 +579,7 @@ The visualization features:
 Enjoy Bob Marley's songs as Audrey enjoys them.
 
 Design: @dzidzi_quist`,
-    category: "Data Viz",
+    category: "Data Viz 4 Fun",
     image: bobMarleyTributeImg,
     externalLink:
       "https://public.tableau.com/views/MyCousinLovesforBobMarley/BOBMARLEY?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link",
@@ -589,12 +589,12 @@ Design: @dzidzi_quist`,
   },
 ];
 
-export const categories = ["All", "Tableau", "Python", "Data Viz", "Consumer Research"];
+export const categories = ["All", "Tableau", "Python", "Data Viz 4 Fun", "Consumer Research"];
 
 export const categoryIcons: Record<string, typeof BarChart2> = {
   Tableau: BarChart2,
   Python: Code,
-  "Data Viz": BarChart2,
+  "Data Viz 4 Fun": BarChart2,
 };
 
 export const getProjectBySlug = (slug: string): Project | undefined => {
