@@ -106,20 +106,6 @@ const BlogPost = () => {
                           </div>;
                   }
                 }
-                // Handle Figma embeds with syntax [figma:url]
-                if (paragraph.startsWith('[figma:')) {
-                  const match = paragraph.match(/\[figma:(.*?)\]/);
-                  if (match) {
-                    const embedUrl = match[1];
-                    return <div key={index} className="my-6 rounded-xl overflow-hidden border border-border">
-                            <iframe 
-                              src={embedUrl}
-                              className="w-full aspect-video"
-                              allowFullScreen
-                            />
-                          </div>;
-                  }
-                }
                 if (paragraph.startsWith('- ')) {
                   const items = paragraph.split('\n').filter(line => line.startsWith('- '));
                   return <ul key={index} className="list-disc pl-6 my-4 space-y-2">
@@ -136,10 +122,8 @@ const BlogPost = () => {
                             </li>)}
                         </ol>;
                 }
-                // Handle bold text, links, and regular paragraphs
-                let formattedText = paragraph
-                  .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                  .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">$1</a>');
+                // Handle bold text and regular paragraphs
+                const formattedText = paragraph.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
                 return <p key={index} className="text-muted-foreground leading-relaxed my-4" dangerouslySetInnerHTML={{
                   __html: formattedText
                 }} />;

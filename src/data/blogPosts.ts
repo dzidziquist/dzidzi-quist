@@ -575,62 +575,239 @@ Thank you for reading ❤️❤️. Data is the new world.`,
   {
     id: 5,
     slug: "cyclistic-bike-share-analysis",
-    title: "Cyclistic Bike Share Analysis: Members vs Casual Riders",
-    excerpt: "Analyzing the difference between Cyclistic members and casual users across 12 months in Chicago.",
-    content: `## Introduction
+    title: "How Does a Bike-Share Navigate Speedy Success?",
+    excerpt: "Difference between a Cyclistic member and a regular user – Across the previous 12 months in Chicago.",
+    content: `![Cyclistic Dashboard](/blog/cyclistic-dashboard.png)
 
-The Cyclistic bike share analysis is a project based on a fictional company in Chicago. As an analyst, the goal of this project is to maximize the number of annual memberships which would lead to the growth of the company.
+## INTRODUCTION
 
-The company launched in 2016 and has since then grown a fleet of 5,824 bicycles that are geotracked and locked into a network of 692 stations across Chicago.
+The Cyclistic bike share analysis is a project based on a fictional company in Chicago. As an analyst, the goal of this project is to maximize the number of annual memberships which would lead to the growth of the company. In order to achieve this, the team wants to design a new marketing strategy to convert casual riders into annual members. The company launched in 2016 and has since then grown a fleet of 5,824 bicycles that are geotracked and locked into a network of 692 stations across Chicago. The bikes can be unlocked from one station and returned to any other station in the system anytime.
 
-**Goal**: Converting casual riders into annual members of the bike-share product.
+**Goal**: Converting casual riders into annual members of the bike-share product. In order to tackle this, these key steps would be followed:
 
-## The Process
+- a. Ask
+- b. Prepare
+- c. Process
+- d. Analyse
+- e. Share
+- f. Act
 
-### Ask
-Business task: Growth of the company by increasing the number of members through converting casual riders to annual members.
+## ASK
 
-Key Stakeholders: The Director of Marketing, The Manager, Marketing Analytics Team and the Executive Team.
+**Business task**: Growth of the company by increasing the number of members through converting casual riders to annual members. Exploring how casual users use Cyclistic bikes differently from annual members.
 
-### Prepare
-The data being used is the Divvy datasets. The previous 12 months of data (June 2020 to May 2021) were analyzed.
+**Key Stakeholders**: The Director of Marketing, The Manager, Marketing Analytics Team and the Executive Team.
 
-### Process
-Key questions analyzed:
-- What is the average riding times for both users?
-- In which month records the highest number of rides for both users?
-- What happens on weekdays, in terms of number of rides taken by both users?
-- What times do we start both types of riders on the road?
-- What is the percentage of members to casual riders?
+## PREPARE
 
-## Key Findings
+The data being used is the Divvy datasets which has been made available by Motivate International Inc. under this license (https://divvybikes.com/data-license-agreement). Cyclistic is a fictional company hence using this public data to explore the different types of riders and their behaviours. Riders' personally identifiable information has been removed from the data due to data privacy policies.
 
-### Monthly Trends
-The peak of bike rides are around the summer months with August recording the highest bike rides of 622,361:
-- Members: 332,700
-- Casual riders: 289,661
+Viewing the data in spreadsheet for the first quick glance, it is seen that the datasets have 13 features namely; ride_id, rideable_type, started_at, ended_at, start_station_name, start_station_id, end_station_name, end_station_id, start_lat, start_lng, end_lat, end_lng and member_casual.
 
-### Weekday Analysis
-Saturday recorded the highest number of bike rides. As the week progresses into the weekend, the number of rides grows (Monday to Saturday).
+**Using Python for data cleaning**: The data being used is the previous 12 months of data that is from June 2020 to May 2021. This is to check for errors and duplicates in the data and also combining the individual csv files into a single data frame (GIANT CSV FILE😊). This can also be done in R by stacking the csvs on top of each other using the syntax rbind(). Note that, in Tableau, these individual csv files having the same columns can be combined as a union to form one table. Visualizations can also be done in Python and also R. In another blog post, I will explore those options. Since the data did not need colossal cleaning and manipulation, using Tableau to prepare insight and for sharing.
 
-Casual users tend to take more bike rides on weekends compared to members, and less on weekdays. This suggests some members may be using bikes as commute to work.
+## PROCESS
 
-### Start Times
-Members ride as early as 05:59:59 AM compared to casual riders who start at 06:00:46 AM.
+For this process using Tableau for both visualizing and manipulating the data. In answering the objective, relevant questions were asked such as;
 
-## Recommendations
+1. What is the average riding times for both users?
+2. In which month records the highest number of rides for both users?
+3. What happens on weekdays, in terms of number of rides taken by both users?
+4. What times do we start both types of riders on the road?
+5. What is the percentage of members to casual riders?
 
-1. **Weekend Promotions**: Casual riders tend to ride more on weekends. Providing promotions or discounts can engage these users to subscribe.
+### Checking for duplicates in the dataset before visualizing:
 
-2. **Summer Campaigns**: During summer, maximize engagement with both user types through incentives for members and subscription packages for casual riders.
+\`\`\`
+IF { FIXED [Ride_Id], [Started_At], [Ended_At], 
+[start_station_name], [end_station_name]: (COUNT([Union]))}>1 THEN 'DUPLICATES'
+ELSE 'ALL GOOD' END
+\`\`\`
 
-3. **User Statistics App**: Providing an app to show ride statistics, health benefits, and calories burnt would engage both types of users.
+### Finding the number of trips or rides
 
-This project is based on the Google Data Analytics Professional Certificate.`,
+\`\`\`
+COUNT([Ride_Id])
+\`\`\`
+
+### Which percentage of this is for members. Finding ride ids that belong to just member users
+
+\`\`\`
+IF [Member_Casual] = 'member' THEN [Ride_Id] END
+\`\`\`
+
+### Number of trips taken by members
+
+\`\`\`
+COUNT([members_rid_id])
+\`\`\`
+
+### Percentage of rides taken by members
+
+\`\`\`
+[number_rides_by_members]/[number_of_trips]
+\`\`\`
+
+The same thing is done for casual rides, in the first calculated field, replace member with casual to filter out.
+
+### Average riding time
+
+The calculated field below gives the riding time.
+
+\`\`\`
+DATETIME([Ended_At] - [Started_At])
+\`\`\`
+
+In order to calculate for the average ride length; naming this field ride_length_copy
+
+\`\`\`
+[Ended_At] - [Started_At]
+\`\`\`
+
+Change the type of the calculated field above to custom data format using hh:mm:ss
+
+\`\`\`
+DATETIME(AVG([ride_length_copy]))
+\`\`\`
+
+### Extracting the month from the start time
+
+\`\`\`
+DATENAME('month', [Started_At])
+\`\`\`
+
+### Extracting the weekdays from the start time
+
+\`\`\`
+DATENAME('weekday', [Started_At])
+\`\`\`
+
+## ANALYSE
+
+This is based on the questions asked in the Process Stage.
+
+### What is the average riding times for both users?
+
+For average ride length by each type of customer, filter out the type. For example for casual rides, drag the member_casual to the filter pane and choose casual.
+
+**TOTAL**
+
+![Average Ride Time Total](/blog/cyclistic-avg-total.png)
+
+**MEMBER**
+
+![Average Ride Time Member](/blog/cyclistic-avg-member.png)
+
+**CASUAL**
+
+![Average Ride Time Casual](/blog/cyclistic-avg-casual.png)
+
+### In which month records the highest number of rides for both users?
+
+Using the months and number of trips. Remember the data is from June 2020 to May 2021.
+
+**TOTAL**
+
+![Monthly Rides Total](/blog/cyclistic-monthly-total.png)
+
+**MEMBER**
+
+![Monthly Rides Member](/blog/cyclistic-monthly-member.png)
+
+**CASUAL**
+
+![Monthly Rides Casual](/blog/cyclistic-monthly-casual.png)
+
+The peak of bike rides are around the summer months with August recording the highest bike rides of 622,361. 332,700 from members and 289,661 for casual riders.
+
+### What happens on weekdays, in terms of number of rides taken by both users?
+
+**TOTAL**
+
+![Weekday Rides Total](/blog/cyclistic-weekday-total.png)
+
+**MEMBER**
+
+![Weekday Rides Member](/blog/cyclistic-weekday-member.png)
+
+**CASUAL**
+
+![Weekday Rides Casual](/blog/cyclistic-weekday-casual.png)
+
+The line represents the trend of trips taken from Sunday to Saturday.
+
+Saturday recorded the highest number of bike rides in the weekdays. Saturdays is the weekend and people might take bike rides for leisure. It can be seen that as the week progresses into the weekend the number of rides grows. that's from Monday to Saturday.
+
+Casual users tend to use take more bike rides as compared to members on the weekends and less on the weekdays.
+
+Can it be said that, some members may be using the bikes as commute to work?
+
+### What is the percentage of members to casual riders?
+
+**TOTAL**
+
+![Total Rides](/blog/cyclistic-total-rides.png)
+
+**MEMBER**
+
+![Percent Member](/blog/cyclistic-percent-member.png)
+
+**CASUAL**
+
+![Percent Casual](/blog/cyclistic-percent-casual.png)
+
+### What times do we start both types of rides on the road?
+
+Members ride as early as 05:59:59 am as compared to casual riders who can start at 06:00:46am. Showing the table breakdowns below for months and days:
+
+![Start Time by Day](/blog/cyclistic-starttime-day.png)
+
+![Start Time by Day Breakdown](/blog/cyclistic-starttime-day-breakdown.png)
+
+![Start Time by Month](/blog/cyclistic-starttime-month.png)
+
+![Start Time by Month Breakdown](/blog/cyclistic-starttime-month-breakdown.png)
+
+Most of the months have rides starting as early as after midnight. Some people do appreciate midnight ride tour of the city after all.
+
+## SHARE
+
+In this step, visualizing the findings as seen in the Analyse progress and bring them all together.
+
+Decided to make a fun visualization to project the findings of the analysis. The heatmap in the dashboard shows the number of trips completed in the days of each month. That is from Sunday to Saturday. Currently showing the total for both user types for the line chart and the heatmap. Once the parameter is changed to either of the user type, this visualization would have to represent the user type.
+
+**Saturdays in August recorded the highest number of rides for both users.**
+
+**TOTAL**
+
+![Heatmap Total](/blog/cyclistic-heatmap-total.png)
+
+**MEMBER**
+
+![Heatmap Member](/blog/cyclistic-heatmap-member.png)
+
+**CASUAL**
+
+![Heatmap Casual](/blog/cyclistic-heatmap-casual.png)
+
+## ACT
+
+### Conclusion
+
+In this step, recommendations are provided based on the findings from the Analyse stage.
+
+**Weekends are for leisures.** It is seen that casual riders tend to ride more on the weekend. In this situation, providing promotions or discounts to engage these users to subscribe or become members to take advantage of the discounts or promotions.
+
+**Summer is for vacation**, visiting family, unwinding from work and having great time. During the summer to maximize and engage both types of users, members should be giving a boost to ride more by providing some incentives as motivation and casuals also giving some packages to enable them subscribe and enjoy more of the services offered by Cyclistic.
+
+**Rides are for exercising and clearing the mind.** User Statistics could be a way to capture both casual users and members. The start time from the analyze shows early risers from working out or for unwinding. Providing an app to show users their ride statistics encompassing the health benefits and calories burnt would be a good way to engage both users.
+
+This Project is based on the Google Data Analytics Professional Certificate.`,
     category: "Tableau",
-    readTime: "10 min read",
-    date: "June 24, 2021",
+    readTime: "15 min read",
+    date: "June 15, 2021",
     featured: true,
+    image: "/blog/cyclistic-dashboard.png",
   },
   {
     id: 6,
