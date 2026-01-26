@@ -49,90 +49,113 @@ I love the tool and I am hoping one day, I will become super good at it. Oh, I f
     slug: "my-workout-tracker-visualization",
     title: "My Workout Tracker Visualization",
     excerpt: "Coming home to Accra, Ghana has got me eating a lot. All the food I missed while I was away. Time to track those workouts!",
-    content: `Coming home to Accra, Ghana has got me eating a lot. All the food I missed while I was away. I don't have a favourite food but not eating homemade delicious food for a while can give me a great appetite. It has just been a month and I feel I gained a 1000 pounds – I know that is impossible. So I have decided to go on a 28-day challenge, with the help of bae to keep me on my toes, regardless I am going through with this challenge.
+    content: `Coming home to Accra, Ghana has got me eating a lot. All the food I missed while I was away. I don't have a favourite food but not eating homemade delicious food for a while can give me a great appetite. It has just been a month and I feel I gained a 1000 pound – I know that is impossible. So I have decided to go on a 28-day challenge, with the help of bae to keep me on my toes 😅, regardless I am going through with this challenge.
 
-To push through to the end, I woke up at 4 AM on 3rd August just thinking why not create a viz board since it has been forever since I built one – to kill two birds with one stone.
+![Dashboard Preview](/blog/workout-tracker-1.png)
 
-With today's post, I will quickly but efficiently run you through how I achieved this dashboard.
+To push through to the end, I woke up 4 am on 3rd August just thinking why not create a viz board since it has been forever a built one to kill two birds with a stone.
 
-## The Inspiration
+With today's post, I will quickly but efficiently run you through how I achieved the dashboard for both desktop view and mobile view in tableau.
 
-With the dashboard, I wanted it to feel like an interaction that one would have with an actual app. But first, I needed to have some inspiration and also build the dataset. I took to Pinterest to gather some ideas, and eventually I had two good ideas I wanted to go for.
+With the dashboard, I wanted it to feel like an interaction that one would have with an actual app but first, I needed to have some inspiration and also build the dataset. I took to Pinterest to gather some ideas, eventually, I had two good ideas I wanted to go for. Here are the links to both ideas.
 
-Now let's get to the dataset. I had control over the variables I needed. Using Google Sheets, I manually inputted the data and imported it into Tableau. This is a good way to update the dashboard without having to manually update it.
+Now let's get to the dataset. I had control on the variables I needed, using google sheets I manually inputted the data and imported it into tableau. This is a good way to update the dashboard without having to manually update it. For the daily weather, I got the data from here and the daily motivation quotes from here.
 
-## Shall We Create the Viz?
+## Shall we create the viz.
 
-### Building the Calendar
+**Calendar first.** Below is how it looks. There are writings showing the days tho 😅 because my dashboard is black, i used a white font color. Anyways, let's do this 💪🏾
 
-Let's start with the calendar. Because my dashboard is black, I used a white font color. Here's how to build it:
+![Calendar View](/blog/workout-tracker-2.png)
 
-1. Let's create a date part with months. Right-click on the date in the dimension pane, select create on the pop-up menu and click on custom date
-2. Under detail, select month as the date part, click ok. Hurray, you did it!
+1. Let's create a date part with months, right-click on the date in the dimension pane, select create on the pop-up menu and click on custom date.
+
+2. Under detail, the select month the dart part, click ok. Hurray, you did it!!!!!!!
+
 3. Drag the new date field in the dimension pane to columns
+
 4. Drag date to columns, right-click and choose more to select weekday
+
 5. Drag date again to row, right-click and choose more again to select week number
-6. Drag date to text on the marks card, right-click and select day
-7. Now let's change the marks to circles
-8. To color, I created a new field using the calculated field in Tableau. Drag this new field to color on the marks card. Click on the color, and edit colors as needed
 
-The calculated field formula:
-\`\`\`
-if [Achieved]='Completed' then 'green'
-elseif [Achieved]='Not yet' then 'black'
-else 'red'
-END
-\`\`\`
+6. Drag date to text on the marks card, right-click and select day.
 
-The calendar is done – showing our completed tasks, missed and yet to be completed.
+7. Now let's change the marks to circles.
+
+8. To colour, I created a new field using the calculated field in tableau. Drag this new field to colour on the marks card. Click on the colour, and edit colours as needed.
+
+![Calculated Field - Completed](/blog/workout-tracker-3.png)
+
+The calendar is done. Showing our completed tasks, missed and yet to be completed.
 
 ## Target Tracking
 
-Each day in August has a certain target to be completed. Icons used are downloaded from Flaticon. Place these downloaded icons in the Tableau repository folder on your computer. Now let's build:
+Each day in August has a certain target to be completed. Shall we create the target then?
 
-1. Create a new calculated field called "today" to select the current date as \`[Date] = TODAY()\`
-2. Drag this new field to the filter box
-3. Drag measure names to filter box; we want to show multiple variables (select the needed measures)
-4. Drag measure values to text on the marks card
-5. Select shapes on the marks card, and drag measure names to shapes
+![Targets for Day](/blog/workout-tracker-4.png)
 
-Now let's customize the shapes. Click on shapes on the marks card, locate the icons downloaded and assign them accordingly.
+Icons used are downloaded from flaticons. Place these downloaded icons in the tableau repository folder on your computer. Now let's build.
+
+1. create a new calculated field called today, to selected the current date as [Date] = today()
+
+2. drag this new field to the filter box
+
+3. drag measure names to filter box; we want to show multiple variables(selected the needed measures)
+
+4. drag measure values to text on the marks card
+
+5. select shapes on the marks card, and drag measure names to shapes
+
+![Calculated Field - Today](/blog/workout-tracker-5.png)
+
+Now let's customize the shapes. Click on shapes on the marks card, locate the icons downloaded and assigned them accordingly.
+
+![Edit Shapes](/blog/workout-tracker-6.png)
+
+Almost there 🤗 For the arrow doughnut chart, there is a great tutorial on how to achieve that by Toan Hoang. Do check it out.
 
 ## The Timeline Chart
 
-For the arrow doughnut chart, there is a great tutorial on how to achieve that by Toan Hoang. Do check it out.
+The last viz chart is the timeline chart using the area chart.
 
-The last viz chart is the timeline chart using the area chart:
+![Timeline Chart](/blog/workout-tracker-7.png)
 
 1. Drag date to the columns pane, right-click and select the exact date option
-2. Drag measure names to filter, select the needed measures, click on apply then ok
-3. Drag measure values to the rows pane
-4. Drag measure names to color, edit colors as needed
+
+2. drag measure names to filter, select the needed measures, click on apply then ok
+
+3. drag measure values to the rows pane
+
+4. drag measure names to colour, edit colours as needed
 
 ## Adding Dynamic Elements
 
-Now assemble the dashboard. Before we do that, I almost forgot about the time and the greetings:
+Now assemble the dashboard. Before we do that, I almost forgot about the time and the greetings 😅
 
-1. Create a new calculated field to display the time now. In the calculated field box, type NOW(), click apply then ok
-2. Create exact date from the new field and change the date format to custom, typing in \`h:mm AMPM\`
-3. Drag the new calculated field to text on the marks card
-4. Let's create the last calculated field to help with the greetings. In the custom box for formatting, type HH to get just the hours of time
-5. Now for the greetings formula:
+1. create a new calculated field to display the time now. In the calculated field box, type NOW(), click apply then ok.
 
-\`\`\`
-IF int([time]) < 12 THEN 'Good A.M Dzifa :)'
-ELSE 'Good P.M Dzifa :)'
-END
-\`\`\`
+2. create exact date from the new field and change the date format to custom, typing in this h: mm AMPM after right-clicking, selecting default property, date format and custom.
 
-6. Drag the greetings field to the text card
-7. Click on the text card, and type in "It's" before the measure in the text box
+3. drag the new calculated field to text on the marks card
 
-**Note:** The other icons on the dashboard are either placed as images, resized to fit, and others as buttons of a container layout that has either texts, color legends or the to-do worksheets.
+4. let's create the last calculated field to help with the greetings, just as the above new field in the custom box for formating type in HH to get just the hours of time.
 
-The layout of the dashboard was designed in Figma and brought into Tableau as a tiled image, fit to size as usual.
+5. now for the greetings, the formula below
 
-That's all for this simple yet fun dashboard. Thank you for reading. With love always ❤️😘`,
+6. drag the greetings field to the text card.
+
+7. click on the text card, and type in It's before the measure in the text box.
+
+![Greeting Formula](/blog/workout-tracker-8.png)
+
+**Note:** the other icons on the dashboard are either places as images, resizing to fit and others as buttons of a container layout that has either texts, colour legends or the to-do worksheets.
+
+The layout of the dashboard was designed in figma and bought into tableau as a tiled image, fit to size as usual.
+
+That's all for this simple yet fun dashboard.
+
+Thank you for reading.
+
+With love always ❤️😘`,
     category: "Tableau",
     readTime: "8 min read",
     date: "August 4, 2020",
