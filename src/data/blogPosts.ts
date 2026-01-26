@@ -987,6 +987,8 @@ The website makes it interesting to solve the case. Before we start getting the 
 
 ![Database Tables](/blog/sql-mystery-tables.png)
 
+![Table Structure](/blog/sql-mystery-structure.png)
+
 Great Job! Now let's bust some criminals.
 
 ## Step 1: Let's take a look at the Crime Report
