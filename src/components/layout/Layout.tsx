@@ -11,13 +11,26 @@ export const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const isResumePage = location.pathname === "/resume";
-  const isFullScreenPage = isHomePage || isResumePage;
+
+  // Home: always fullscreen no scroll
+  // Resume: fullscreen on desktop, scrollable on mobile/tablet
+  const getContainerClass = () => {
+    if (isHomePage) return "h-screen overflow-hidden";
+    if (isResumePage) return "min-h-screen lg:h-screen lg:overflow-hidden flex flex-col";
+    return "min-h-screen flex flex-col";
+  };
+
+  const getMainClass = () => {
+    if (isHomePage) return "h-full";
+    if (isResumePage) return "flex-1 pt-16 md:pt-20";
+    return "flex-1 pt-20";
+  };
 
   return (
-    <div className={isFullScreenPage ? "h-screen overflow-hidden" : "min-h-screen flex flex-col"}>
+    <div className={getContainerClass()}>
       <Header />
-      <main className={isFullScreenPage ? "h-full" : "flex-1 pt-20"}>{children}</main>
-      {!isFullScreenPage && <Footer />}
+      <main className={getMainClass()}>{children}</main>
+      {!isHomePage && !isResumePage && <Footer />}
     </div>
   );
 };
