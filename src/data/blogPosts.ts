@@ -985,6 +985,10 @@ Shall we dive into it? I promise I would make it fun.
 
 The website makes it interesting to solve the case. Before we start getting the name of the murderer, The website gives this cool feature of running 2 queries to know the names of the tables in the database and the data structure of the crime_scene_report table (of course we do need that in order to solve this case as our detective instincts grow). Note: The SQL Murder Mystery is built using SQLite.
 
+![Database Tables](/blog/sql-mystery-tables.png)
+
+![Table Structure](/blog/sql-mystery-structure.png)
+
 Great Job! Now let's bust some criminals.
 
 ## Step 1: Let's take a look at the Crime Report
@@ -998,6 +1002,8 @@ Where date = '20180115'
 And city = 'SQL City'
 And type = 'murder'
 \`\`\`
+
+![Crime Scene Report](/blog/sql-mystery-crime-report.png)
 
 Good news! We have just one murder case on Jan 15 2018. It narrows down our work, doesn't it?
 
@@ -1016,6 +1022,10 @@ Order by 4 desc
 Limit 1
 \`\`\`
 
+![Morty Schapiro ID](/blog/sql-mystery-witness1-id.png)
+
+![Morty Schapiro Transcript](/blog/sql-mystery-witness1.png)
+
 Our first witness Morty Schapiro definitely heard a gunshot being fired that day. Also what a perfect description to get of the suspect.
 
 Can we check in on our second witness Annabel of Franklin Ave?
@@ -1027,6 +1037,10 @@ Join interview on id = interview.person_id
 Where name like '%Annabel%'
 And address_street_name = 'Franklin Ave'
 \`\`\`
+
+![Annabel Miller ID](/blog/sql-mystery-witness2-id.png)
+
+![Annabel Miller Transcript](/blog/sql-mystery-witness2.png)
 
 Annabel Miller also did confirm that there was a murder. With Morty's description, we have some good leads on the case.
 
@@ -1055,6 +1069,8 @@ Join person on interview.person_id = person.id
 Where person.name = 'Jeremy Bowers'
 \`\`\`
 
+![Jeremy Bowers Transcript](/blog/sql-mystery-transcript.png)
+
 We are getting warmer. Let's find the Real Villain, the Mastermind of this mystery.
 
 \`\`\`sql
@@ -1076,6 +1092,8 @@ And car_model = 'Model S'
 \`\`\`
 
 **Miranda Priestly** is the brains behind this murder!
+
+![Final Solution](/blog/sql-mystery-solution.png)
 
 Great work. We solve the murder mystery in SQL City. Now let's look at some Common Table Expressions(CTE)
 
