@@ -100,8 +100,9 @@ const BlogPost = () => {
                 if (paragraph.startsWith('![')) {
                   const match = paragraph.match(/!\[(.*?)\]\((.*?)\)/);
                   if (match) {
+                    const [, alt, src] = match;
                     return <div key={index} className="my-6 rounded-xl overflow-hidden border border-border">
-                            
+                            <img src={src} alt={alt} className="w-full h-auto" />
                           </div>;
                   }
                 }
