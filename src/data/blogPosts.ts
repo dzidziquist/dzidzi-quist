@@ -160,7 +160,6 @@ With love always ❤️😘`,
     readTime: "8 min read",
     date: "August 4, 2020",
     featured: true,
-    image: "/blog/workout-tracker-dashboard.jpg",
   },
   {
     id: 3,
