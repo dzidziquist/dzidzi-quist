@@ -975,9 +975,111 @@ That is all folks!! This is pretty straightforward. In order to run this periodi
     slug: "sql-murder-mystery",
     title: "SQL Murder Mystery",
     excerpt: "Solving the SQL Murder Mystery using Common Table Expressions (CTEs) to find the murderer and the mastermind.",
-    content: `Great work. We solve the murder mystery in SQL City. Now let's look at some Common Table Expressions(CTE)
+    content: `![SQL Murder Mystery](/blog/sql-murder-mystery-header.png)
 
-## Finding the murderer
+*Image from The SQL Murder Mystery Website*
+
+In my current role, I do not use SQL at all. I have always loved SQL. It is quite the language and I was very happy when @jessica_xls shared the link to The SQL Murder Mystery. I decided to relive my SQL days and what better way to do it than to solve a MYSTERY!! It was also a great way to use Common Table Expressions(CTE) – this would be found below.
+
+Shall we dive into it? I promise I would make it fun.
+
+The website makes it interesting to solve the case. Before we start getting the name of the murderer, The website gives this cool feature of running 2 queries to know the names of the tables in the database and the data structure of the crime_scene_report table (of course we do need that in order to solve this case as our detective instincts grow). Note: The SQL Murder Mystery is built using SQLite.
+
+Great Job! Now let's bust some criminals.
+
+## Step 1: Let's take a look at the Crime Report
+
+The only information we have is that the crime was murder, which took place in SQL City on Jan 15 2018.
+
+\`\`\`sql
+Select *
+From crime_scene_report
+Where date = '20180115' 
+And city = 'SQL City'
+And type = 'murder'
+\`\`\`
+
+Good news! We have just one murder case on Jan 15 2018. It narrows down our work, doesn't it?
+
+What is next you may ask?
+
+## Step 2: Getting the transcripts of the witnesses
+
+Let's get the transcript of the first witness. Assuming the houses are arranged in ascending order, let's get the last house on Northwestern Dr address.
+
+\`\`\`sql
+Select *
+From person
+Join interview on id = interview.person_id
+Where address_street_name = 'Northwestern Dr'
+Order by 4 desc
+Limit 1
+\`\`\`
+
+Our first witness Morty Schapiro definitely heard a gunshot being fired that day. Also what a perfect description to get of the suspect.
+
+Can we check in on our second witness Annabel of Franklin Ave?
+
+\`\`\`sql
+Select *
+From person
+Join interview on id = interview.person_id
+Where name like '%Annabel%'
+And address_street_name = 'Franklin Ave'
+\`\`\`
+
+Annabel Miller also did confirm that there was a murder. With Morty's description, we have some good leads on the case.
+
+## Step 3: Let's find the murderer
+
+Using the person table and the drivers_license table:
+
+\`\`\`sql
+Select name
+From (
+Select *
+From get_fit_now_member
+Join person on person_id = person.id
+Where get_fit_now_member.id like '48Z%'
+) as results 
+Join drivers_license on results.license_id = drivers_license.id
+Where plate_number like '%H42W%'
+\`\`\`
+
+The murderer was **Jeremy Bowers** but is he the mastermind behind this crime? Let's find out by checking his transcript.
+
+\`\`\`sql
+Select transcript
+From interview
+Join person on interview.person_id = person.id
+Where person.name = 'Jeremy Bowers'
+\`\`\`
+
+We are getting warmer. Let's find the Real Villain, the Mastermind of this mystery.
+
+\`\`\`sql
+Select name
+From(
+Select *, count(*) as number_of_attendance
+From person
+Join facebook_event_checkin on person.id = facebook_event_checkin.person_id
+Where event_name = 'SQL Symphony Concert'
+And date like '201712%' group by name
+) as results
+Join drivers_license on results.license_id = drivers_license.id
+Where number_of_attendance = 3 
+And 65 <= height <= 67
+And gender = 'female'
+And hair_color = 'red'
+And car_make = 'Tesla' 
+And car_model = 'Model S'
+\`\`\`
+
+**Miranda Priestly** is the brains behind this murder!
+
+Great work. We solve the murder mystery in SQL City. Now let's look at some Common Table Expressions(CTE)
+
+## Finding the murderer with CTE
 
 \`\`\`sql
 With 
@@ -999,7 +1101,7 @@ From interview
 Join the_suspect on interview.person_id = the_suspect.person_id;
 \`\`\`
 
-## Finding the mastermind
+## Finding the mastermind with CTE
 
 \`\`\`sql
 With 
@@ -1013,7 +1115,9 @@ And date like '201712%'),
 persons_shortlist as (
 Select *
 From person
-Join short_list on id = person_id), event_info as (
+Join short_list on id = person_id), 
+
+event_info as (
 Select *, count(*) as num_attedance
 From persons_shortlist join drivers_license on license_id = drivers_license.id 
 Group by name) 
@@ -1030,9 +1134,10 @@ And car_model = 'Model S'
 
 If you enjoyed this, do check out [The SQL Murder Mystery](https://mystery.knightlab.com/) and do give [@jessica_xls](https://twitter.com/jessica_xls?s=21&t=iNqaPY0mlq63VBKVF_Bi8Q) a follow (She is AWESOME)`,
     category: "SQL",
-    readTime: "3 min read",
-    date: "January 10, 2024",
+    readTime: "8 min read",
+    date: "Oct 15, 2022",
     featured: false,
+    image: "/blog/sql-murder-mystery-header.png",
   },
   {
     id: 8,
