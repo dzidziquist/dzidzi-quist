@@ -27,7 +27,7 @@ export const Layout = ({ children }: LayoutProps) => {
     <div className={getContainerClass()}>
       <Header />
       <main className={getMainClass()}>{children}</main>
-      
+      <Footer />
     </div>
   );
 };
