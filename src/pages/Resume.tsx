@@ -69,7 +69,7 @@ const Resume = () => {
           {/* Top bar with Download button */}
           <div className="flex justify-end mb-4 md:mb-6">
             <Button variant="outline" size="sm" className="rounded-full border-2 border-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary text-xs md:text-sm py-1.5 px-3 md:px-4" asChild>
-              <a href="/documents/resume.pdf" download>
+              <a href="/documents/resume.pdf" target="_blank" rel="noopener noreferrer">
                 <Download className="mr-1.5 md:mr-2 h-3 w-3 md:h-3.5 md:w-3.5" />
                 Download Resume
               </a>
