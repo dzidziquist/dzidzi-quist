@@ -1,53 +1,74 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
-type Theme = "light" | "dark";
+type ThemeMode = "system" | "light" | "dark";
+type ResolvedTheme = "light" | "dark";
 
 interface ThemeContextType {
-  theme: Theme;
-  toggleTheme: () => void;
+  mode: ThemeMode;
+  theme: ResolvedTheme;
+  setMode: (mode: ThemeMode) => void;
+  cycleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+const getSystemTheme = (): ResolvedTheme => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+};
+
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    const stored = localStorage.getItem("theme") as Theme;
-    if (stored) return stored;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  const [mode, setModeState] = useState<ThemeMode>(() => {
+    const stored = localStorage.getItem("theme-mode") as ThemeMode;
+    return stored || "system";
   });
 
-  useEffect(() => {
-    const root = document.documentElement;
-    if (theme === "dark") {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+  const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>(() => {
+    if (mode === "system") return getSystemTheme();
+    return mode;
+  });
 
-  // Listen for system preference changes
+  // Update resolved theme when mode changes or system preference changes
   useEffect(() => {
+    const updateTheme = () => {
+      const newTheme = mode === "system" ? getSystemTheme() : mode;
+      setResolvedTheme(newTheme);
+      
+      const root = document.documentElement;
+      if (newTheme === "dark") {
+        root.classList.add("dark");
+      } else {
+        root.classList.remove("dark");
+      }
+    };
+
+    updateTheme();
+
+    // Listen for system preference changes
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    
-    const handleChange = (e: MediaQueryListEvent) => {
-      // Only auto-switch if user hasn't manually set a preference recently
-      const stored = localStorage.getItem("theme");
-      if (!stored) {
-        setTheme(e.matches ? "dark" : "light");
+    const handleChange = () => {
+      if (mode === "system") {
+        updateTheme();
       }
     };
 
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
+  }, [mode]);
 
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  const setMode = (newMode: ThemeMode) => {
+    setModeState(newMode);
+    localStorage.setItem("theme-mode", newMode);
+  };
+
+  const cycleTheme = () => {
+    const modes: ThemeMode[] = ["system", "light", "dark"];
+    const currentIndex = modes.indexOf(mode);
+    const nextMode = modes[(currentIndex + 1) % modes.length];
+    setMode(nextMode);
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ mode, theme: resolvedTheme, setMode, cycleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
