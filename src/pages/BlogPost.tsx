@@ -101,6 +101,10 @@ if (paragraph.startsWith('![')) {
   const match = paragraph.match(/!\[(.*?)\]\((.*?)\)/);
   if (match) {
     const [, alt, src] = match;
+    // Skip if this image is the same as the featured image
+    if (post.image && src === post.image) {
+      return null;
+    }
     return <div key={index} className="my-6 rounded-xl overflow-hidden border border-border">
             <img src={src} alt={alt} className="w-full h-auto" />
           </div>;
