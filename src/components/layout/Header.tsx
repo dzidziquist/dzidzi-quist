@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon, Monitor } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/hooks/use-theme";
 
@@ -17,6 +17,12 @@ export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
+
+  const ThemeIcon = () => {
+    if (theme === "system") return <Monitor className="h-5 w-5" />;
+    if (theme === "dark") return <Sun className="h-5 w-5" />;
+    return <Moon className="h-5 w-5" />;
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass">
@@ -59,14 +65,10 @@ export const Header = () => {
             >
               <motion.div
                 initial={false}
-                animate={{ rotate: theme === "dark" ? 180 : 0 }}
+                animate={{ rotate: theme === "dark" ? 180 : theme === "light" ? 0 : 90 }}
                 transition={{ duration: 0.3 }}
               >
-                {theme === "dark" ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                )}
+                <ThemeIcon />
               </motion.div>
             </Button>
           </div>
@@ -79,11 +81,7 @@ export const Header = () => {
               onClick={toggleTheme}
               className="rounded-full"
             >
-              {theme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )}
+              <ThemeIcon />
             </Button>
             <Button
               variant="ghost"
