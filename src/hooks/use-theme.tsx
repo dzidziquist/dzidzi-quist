@@ -38,11 +38,15 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     } else {
       root.classList.remove("dark");
     }
-    localStorage.setItem("theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    setTheme((prev) => {
+      const next = prev === "light" ? "dark" : "light";
+      // Persist only when the user explicitly toggles (manual override)
+      localStorage.setItem("theme", next);
+      return next;
+    });
   };
 
   return (
